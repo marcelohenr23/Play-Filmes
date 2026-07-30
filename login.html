@@ -20,6 +20,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            transition: all 0.3s ease; /* Animação global suave para elementos interativos */
         }
 
         body {
@@ -39,6 +40,18 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            animation: fadeIn 0.6s ease-out; /* Animação de entrada da tela */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .header-logo {
@@ -57,6 +70,12 @@
             align-items: center;
             box-shadow: 0 0 15px var(--neon-glow);
             margin: 0 auto 12px auto;
+            animation: pulseLogo 3s infinite ease-in-out;
+        }
+
+        @keyframes pulseLogo {
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 240, 255, 0.3); }
+            50% { box-shadow: 0 0 22px rgba(0, 240, 255, 0.7); }
         }
 
         .logo-box-small svg {
@@ -83,7 +102,7 @@
             text-transform: uppercase;
         }
 
-        /* Abas de Alternância (Entrar / Criar Conta) */
+        /* Abas de Alternância */
         .tabs-container {
             display: flex;
             width: 100%;
@@ -103,7 +122,6 @@
             color: var(--text-muted);
             border-radius: 10px;
             cursor: pointer;
-            transition: all 0.3s ease;
             background: none;
             border: none;
         }
@@ -115,7 +133,7 @@
             box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
         }
 
-        /* Mensagens de feedback (Erro ou Sucesso) */
+        /* Mensagens de feedback com animação */
         .feedback-msg {
             width: 100%;
             padding: 10px;
@@ -123,19 +141,24 @@
             font-size: 13px;
             text-align: center;
             margin-bottom: 15px;
-            display: none;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
         }
         .feedback-msg.error {
+            opacity: 1;
+            max-height: 60px;
             background: rgba(255, 51, 102, 0.15);
             border: 1px solid var(--error-color);
             color: var(--error-color);
-            display: block;
         }
         .feedback-msg.success {
+            opacity: 1;
+            max-height: 60px;
             background: rgba(0, 240, 255, 0.15);
             border: 1px solid var(--neon-blue);
             color: var(--neon-blue);
-            display: block;
         }
 
         .form-group {
@@ -153,12 +176,12 @@
             color: var(--text-main);
             font-size: 14px;
             outline: none;
-            transition: all 0.3s ease;
         }
 
         .input-box:focus {
             border-color: var(--neon-blue);
             box-shadow: 0 0 12px var(--neon-glow);
+            background-color: rgba(15, 21, 40, 0.8);
         }
 
         .input-icon {
@@ -186,6 +209,10 @@
             height: 20px;
         }
 
+        .password-toggle:hover {
+            fill: var(--neon-blue);
+        }
+
         .forgot-password {
             width: 100%;
             text-align: right;
@@ -197,7 +224,6 @@
             font-size: 12px;
             text-decoration: none;
             opacity: 0.8;
-            transition: opacity 0.2s;
         }
 
         .forgot-password a:hover {
@@ -217,13 +243,16 @@
             letter-spacing: 0.5px;
             cursor: pointer;
             box-shadow: 0 4px 20px rgba(0, 114, 255, 0.4);
-            transition: all 0.3s ease;
             margin-bottom: 20px;
         }
 
         .btn-primary:hover {
-            box-shadow: 0 0 20px var(--neon-blue);
-            transform: translateY(-1px);
+            box-shadow: 0 0 22px var(--neon-blue);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
         }
 
         .footer-signup {
@@ -240,6 +269,10 @@
             font-weight: 600;
             cursor: pointer;
             font-size: 13px;
+        }
+
+        .footer-signup button:hover {
+            text-decoration: underline;
         }
 
         .legal-notice {
@@ -264,16 +297,13 @@
             <p>Cinema em cada detalhe</p>
         </div>
 
-        <!-- Abas -->
         <div class="tabs-container">
             <button id="tabEntrar" class="tab active" onclick="mudarModo('entrar')">Entrar</button>
             <button id="tabCriar" class="tab" onclick="mudarModo('criar')">Criar conta</button>
         </div>
 
-        <!-- Alerta dinâmico -->
         <div id="feedback" class="feedback-msg"></div>
 
-        <!-- Formulário -->
         <div class="form-group">
             <input type="email" id="email" class="input-box" placeholder="Seu e-mail">
             <svg class="input-icon" viewBox="0 0 24 24">
@@ -295,7 +325,6 @@
             <a href="#">Esqueceu a senha?</a>
         </div>
 
-        <!-- Botão Principal -->
         <button id="btnAcao" class="btn-primary" onclick="processarAcao()">Entrar</button>
 
         <div class="footer-signup" id="footerText">
@@ -309,7 +338,7 @@
     </div>
 
     <script>
-        let modoAtual = 'entrar'; // 'entrar' ou 'criar'
+        let modoAtual = 'entrar';
 
         function mudarModo(modo) {
             modoAtual = modo;
@@ -358,18 +387,15 @@
                 return;
             }
 
-            // Pega as contas salvas no celular (ou cria um cofre vazio)
             let contas = JSON.parse(localStorage.getItem('playfilmes_contas')) || [];
 
             if (modoAtual === 'criar') {
-                // Verificar se a conta já existe
                 const existe = contas.find(c => c.email === email);
                 if (existe) {
                     mostrarMensagem("Este e-mail já está cadastrado. Faça login.", "error");
                     return;
                 }
 
-                // Salvar nova conta
                 contas.push({ email, senha });
                 localStorage.setItem('playfilmes_contas', JSON.stringify(contas));
                 
@@ -379,7 +405,6 @@
                 }, 1200);
 
             } else {
-                // Tentar fazer login
                 const contaValida = contas.find(c => c.email === email && c.senha === senha);
                 
                 if (contaValida) {
