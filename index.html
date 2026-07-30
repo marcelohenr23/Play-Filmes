@@ -5,27 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play Filmes</title>
     <style>
-        /* --- DEFINIÇÃO DAS NOVAS CORES (Paleta Azul) --- */
         :root {
-            --bg-color: #0a0f1e;      /* Azul muito escuro (fundo) */
-            --card-bg: #111625;      /* Azul um pouco mais claro para os cards */
-            --header-bg: #111625;    /* Fundo do topo */
-            --primary-color: #007bff; /* Azul vibrante (Destaques, botões) */
-            --text-color: #ffffff;   /* Branco */
-            --text-muted: #a0aab5;   /* Cinza claro para textos secundários */
+            --bg-color: #0a0f1e;
+            --card-bg: #111625;
+            --header-bg: #111625;
+            --primary-color: #007bff;
+            --text-color: #ffffff;
+            --text-muted: #a0aab5;
         }
 
-        /* --- ESTILOS GERAIS --- */
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte mais moderna */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
         }
 
-        /* --- TELA DE ANIMAÇÃO (Splash Screen) - ATUALIZADA PARA AZUL --- */
+        /* --- TELA DE ANIMAÇÃO (Splash Screen) - SEM SPINNER --- */
         #splash-screen {
             position: fixed;
             top: 0;
@@ -34,8 +32,7 @@
             height: 100%;
             background-color: var(--bg-color);
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: center; /* Centraliza apenas o logo agora */
             align-items: center;
             z-index: 9999;
             transition: opacity 0.8s ease, visibility 0.8s;
@@ -47,35 +44,22 @@
         }
 
         .splash-logo {
-            font-size: 40px;
+            font-size: 45px; /* Aumentei um pouquinho o tamanho já que está sozinho */
             font-weight: bold;
-            color: var(--primary-color); /* Logo agora é azul */
-            animation: pulse 1.5s infinite;
-            margin-bottom: 10px;
-            text-shadow: 0 0 15px rgba(0, 123, 255, 0.5); /* Brilho azul no logo */
+            color: var(--primary-color);
+            animation: pulse 2s infinite; /* Deixei a pulsação um pouco mais lenta e suave */
+            text-shadow: 0 0 20px rgba(0, 123, 255, 0.7); /* Mais brilho */
         }
-        
-        .splash-loading {
-            width: 30px;
-            height: 30px;
-            border: 4px solid var(--card-bg);
-            border-top: 4px solid var(--primary-color); /* Spinner azul */
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
+
+        /* Removi o estilo .splash-loading que fazia a bolinha girar */
 
         @keyframes pulse {
-            0% { transform: scale(0.9); opacity: 0.7; }
+            0% { transform: scale(0.95); opacity: 0.8; }
             50% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(0.9); opacity: 0.7; }
+            100% { transform: scale(0.95); opacity: 0.8; }
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* --- CABEÇALHO E MENU (Atualizados) --- */
+        /* --- ESTILOS DO SITE (não mudaram) --- */
         header {
             background-color: var(--header-bg);
             padding: 15px;
@@ -100,11 +84,11 @@
         }
 
         nav button {
-            background-color: transparent; /* Botões transparentes inicialmente */
+            background-color: transparent;
             color: var(--text-muted);
             border: 2px solid transparent;
             padding: 8px 18px;
-            border-radius: 20px; /* Botões arredondados */
+            border-radius: 20px;
             cursor: pointer;
             font-weight: 600;
             transition: 0.3s;
@@ -116,12 +100,11 @@
         }
 
         nav button.active {
-            background-color: var(--primary-color); /* Fundo azul no ativo */
+            background-color: var(--primary-color);
             color: white;
             border-color: var(--primary-color);
         }
 
-        /* --- CATÁLOGO (Atualizado) --- */
         .container {
             padding: 20px;
             max-width: 1200px;
@@ -138,7 +121,6 @@
             align-items: center;
         }
         
-        /* Pequeno detalhe decorativo antes do título */
         .section-title::before {
             content: '';
             display: inline-block;
@@ -151,15 +133,14 @@
 
         .grid {
             display: grid;
-            /* Ajustei o tamanho mínimo para caber melhor em telas pequenas */
-            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); 
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
             gap: 15px;
             margin-bottom: 30px;
         }
 
         .card {
             background-color: var(--card-bg);
-            border-radius: 8px; /* Cards mais arredondados */
+            border-radius: 8px;
             overflow: hidden;
             text-align: center;
             padding-bottom: 10px;
@@ -168,7 +149,6 @@
             border: 1px solid transparent;
         }
 
-        /* Efeito legal ao passar o mouse/dedo no card */
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 15px rgba(0,0,0,0.5);
@@ -177,7 +157,7 @@
 
         .card img {
             width: 100%;
-            height: 160px; /* Altura ajustada */
+            height: 160px;
             object-fit: cover;
             border-bottom: 1px solid #1f2940;
         }
@@ -192,13 +172,12 @@
 </head>
 <body>
 
-    <!-- TELA DE ANIMAÇÃO (Splash Screen) - Azul -->
+    <!-- TELA DE ANIMAÇÃO (Splash Screen) - Sem bolinha -->
     <div id="splash-screen">
         <div class="splash-logo">Play Filmes</div>
-        <div class="splash-loading"></div>
     </div>
 
-    <!-- CONTEÚDO PRINCIPAL - Azul -->
+    <!-- CONTEÚDO PRINCIPAL -->
     <header>Play Filmes 🎬</header>
 
     <nav>
@@ -211,25 +190,13 @@
     <div class="container">
         <div class="section-title">Em Destaque</div>
         <div class="grid">
-            <!-- Exemplo 1 -->
             <div class="card">
                 <div style="height: 160px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #5c6b7f;">Poster</div>
                 <p>Liga da Justiça</p>
             </div>
-            <!-- Exemplo 2 -->
             <div class="card">
                 <div style="height: 160px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #5c6b7f;">Poster</div>
                 <p>O Homem de Aço</p>
-            </div>
-            <!-- Exemplo 3 -->
-            <div class="card">
-                <div style="height: 160px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #5c6b7f;">Poster</div>
-                <p>The Flash</p>
-            </div>
-            <!-- Exemplo 4 -->
-            <div class="card">
-                <div style="height: 160px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #5c6b7f;">Poster</div>
-                <p>Aquaman</p>
             </div>
         </div>
     </div>
@@ -237,6 +204,7 @@
     <script>
         window.addEventListener("load", function(){
             const splash = document.querySelector('#splash-screen');
+            // Mantive o tempo de 2 segundos, mas se quiser mais rápido, mude aqui
             setTimeout(function(){
                 splash.classList.add('hidden');
             }, 2000);
