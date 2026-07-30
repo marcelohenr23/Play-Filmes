@@ -103,7 +103,7 @@
             border-color: var(--primary-color);
         }
 
-        /* BARRA DE PESQUISA ESTILOSA */
+        /* BARRA DE PESQUISA */
         .search-container {
             padding: 15px 20px 0 20px;
             max-width: 1200px;
@@ -193,6 +193,7 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid transparent;
+            cursor: pointer;
         }
 
         .card:hover {
@@ -214,6 +215,63 @@
             color: var(--text-color);
             font-weight: 500;
         }
+
+        /* --- TELA DO PLAYER DE VÍDEO (NOVIDADE) --- */
+        #player-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            z-index: 10000;
+            display: none; /* Fica oculto até alguém clicar em um filme */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #player-screen.active {
+            display: flex;
+        }
+
+        .player-header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10001;
+        }
+
+        .back-btn {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: 2px solid var(--primary-color);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 16/9;
+            background-color: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            outline: none;
+        }
     </style>
 </head>
 <body>
@@ -221,6 +279,20 @@
     <!-- TELA DE ANIMAÇÃO -->
     <div id="splash-screen">
         <div class="splash-logo">Play Filmes</div>
+    </div>
+
+    <!-- --- TELA DO PLAYER (Oculta por padrão) --- -->
+    <div id="player-screen">
+        <div class="player-header">
+            <button class="back-btn" onclick="closePlayer()">⬅ Voltar</button>
+        </div>
+        <div class="video-container">
+            <!-- Player HTML5 nativo com controles -->
+            <video id="videoPlayer" controls autoplay>
+                <source id="videoSource" src="" type="video/mp4">
+                Seu navegador não suporta a reprodução de vídeos.
+            </video>
+        </div>
     </div>
 
     <!-- CABEÇALHO -->
@@ -237,7 +309,6 @@
     <!-- BARRA DE PESQUISA -->
     <div class="search-container">
         <div class="search-box">
-            <!-- Ícone de lupa em SVG -->
             <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
             <input type="text" id="searchInput" placeholder="Pesquisar filmes, séries, canais...">
         </div>
@@ -249,60 +320,45 @@
         <div id="inicio" class="page-content active-page">
             <div class="section-title">Tops Filmes</div>
             <div class="grid">
-                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Vingadores</p></div>
-                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Avatar 2</p></div>
+                <!-- Exemplo com link de vídeo de teste gratuito -->
+                <div class="card" onclick="openPlayer('https://www.w3schools.com/html/mov_bbb.mp4')">
+                    <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Play  ▶</div>
+                    <p>Vingadores</p>
+                </div>
+                <div class="card" onclick="openPlayer('https://www.w3schools.com/html/mov_bbb.mp4')">
+                    <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Play ▶</div>
+                    <p>Avatar 2</p>
+                </div>
             </div>
 
             <div class="section-title">Filmes</div>
             <div class="grid">
-                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Homem-Aranha</p></div>
-                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Batman</p></div>
-            </div>
-
-            <div class="section-title">Séries</div>
-            <div class="grid">
-                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Stranger Things</p></div>
-            </div>
-
-            <div class="section-title">Tops Séries</div>
-            <div class="grid">
-                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Breaking Bad</p></div>
-            </div>
-
-            <div class="section-title">Canais Premium</div>
-            <div class="grid">
-                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Canal</div><p>HBO Max</p></div>
+                <div class="card" onclick="openPlayer('https://www.w3schools.com/html/mov_bbb.mp4')">
+                    <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Play ▶</div>
+                    <p>Homem-Aranha</p>
+                </div>
             </div>
         </div>
 
         <!-- ================= PÁGINA FILMES ================= -->
         <div id="filmes" class="page-content">
-            <div class="section-title">Tops Filmes</div>
-            <div class="grid">
-                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Vingadores</p></div>
-                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Avatar 2</p></div>
-            </div>
-
             <div class="section-title">Todos os Filmes</div>
             <div class="grid">
-                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Homem-Aranha</p></div>
-                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Batman</p></div>
-                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>O Homem de Aço</p></div>
+                <div class="card" onclick="openPlayer('https://www.w3schools.com/html/mov_bbb.mp4')">
+                    <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Play ▶</div>
+                    <p>Batman</p>
+                </div>
             </div>
         </div>
 
         <!-- ================= PÁGINA SÉRIES ================= -->
         <div id="series" class="page-content">
-            <div class="section-title">Tops Séries</div>
-            <div class="grid">
-                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Breaking Bad</p></div>
-                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Game of Thrones</p></div>
-            </div>
-
             <div class="section-title">Todas as Séries</div>
             <div class="grid">
-                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Stranger Things</p></div>
-                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>The Last of Us</p></div>
+                <div class="card" onclick="openPlayer('https://www.w3schools.com/html/mov_bbb.mp4')">
+                    <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Play ▶</div>
+                    <p>Stranger Things</p>
+                </div>
             </div>
         </div>
 
@@ -310,16 +366,16 @@
         <div id="canais" class="page-content">
             <div class="section-title">Canais Premium Disponíveis</div>
             <div class="grid">
-                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Logo</div><p>HBO Max</p></div>
-                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Logo</div><p>Telecine</p></div>
-                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Logo</div><p>Premiere</p></div>
-                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Logo</div><p>Combate</p></div>
+                <div class="card" onclick="openPlayer('https://www.w3schools.com/html/mov_bbb.mp4')">
+                    <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Ao Vivo 🔴</div>
+                    <p>HBO Max</p>
+                </div>
             </div>
         </div>
 
     </div>
 
-    <!-- SCRIPT -->
+    <!-- SCRIPT DO PLAYER E ABAS -->
     <script>
         // Animação de entrada
         window.addEventListener("load", function(){
@@ -339,6 +395,31 @@
             const buttons = document.querySelectorAll('nav button');
             buttons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
+        }
+
+        // --- FUNÇÕES DO PLAYER DE VÍDEO ---
+        function openPlayer(videoUrl) {
+            const playerScreen = document.getElementById('player-screen');
+            const videoPlayer = document.getElementById('videoPlayer');
+            const videoSource = document.getElementById('videoSource');
+
+            // Define o link do vídeo
+            videoSource.src = videoUrl;
+            videoPlayer.load(); // Carrega o vídeo
+            
+            // Mostra a tela do player
+            playerScreen.classList.add('active');
+            videoPlayer.play();
+        }
+
+        function closePlayer() {
+            const playerScreen = document.getElementById('player-screen');
+            const videoPlayer = document.getElementById('videoPlayer');
+
+            // Para o vídeo e esconde a tela do player
+            videoPlayer.pause();
+            videoSource.src = "";
+            playerScreen.classList.remove('active');
         }
     </script>
 
