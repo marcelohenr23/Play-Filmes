@@ -103,11 +103,20 @@
             border-color: var(--primary-color);
         }
 
-        /* CATÁLOGO E SEÇÕES */
+        /* CONTEÚDO E PÁGINAS */
         .container {
             padding: 20px;
             max-width: 1200px;
             margin: auto;
+        }
+
+        /* Classe para esconder as abas que não estão selecionadas */
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active-page {
+            display: block;
         }
 
         .section-title {
@@ -178,91 +187,114 @@
     <!-- CABEÇALHO -->
     <header>Play Filmes 🎬</header>
 
-    <!-- MENU -->
+    <!-- MENU DE NAVEGAÇÃO -->
     <nav>
-        <button class="active">Início</button>
-        <button>Filmes</button>
-        <button>Séries</button>
-        <button>Canais</button>
+        <button onclick="switchTab('inicio', event)" class="active">Início</button>
+        <button onclick="switchTab('filmes', event)">Filmes</button>
+        <button onclick="switchTab('series', event)">Séries</button>
+        <button onclick="switchTab('canais', event)">Canais</button>
     </nav>
 
-    <!-- CONTEÚDO ORGANIZADO -->
     <div class="container">
 
-        <!-- 1. Tops Filmes -->
-        <div class="section-title">Tops Filmes</div>
-        <div class="grid">
-            <div class="card">
-                <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div>
-                <p>Vingadores: Ultimato</p>
+        <!-- ================= PÁGINA INÍCIO ================= -->
+        <div id="inicio" class="page-content active-page">
+            <div class="section-title">Tops Filmes</div>
+            <div class="grid">
+                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Vingadores</p></div>
+                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Avatar 2</p></div>
             </div>
-            <div class="card">
-                <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div>
-                <p>Avatar 2</p>
+
+            <div class="section-title">Filmes</div>
+            <div class="grid">
+                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Homem-Aranha</p></div>
+                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Batman</p></div>
+            </div>
+
+            <div class="section-title">Séries</div>
+            <div class="grid">
+                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Stranger Things</p></div>
+            </div>
+
+            <div class="section-title">Tops Séries</div>
+            <div class="grid">
+                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Breaking Bad</p></div>
+            </div>
+
+            <div class="section-title">Canais Premium</div>
+            <div class="grid">
+                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Canal</div><p>HBO Max</p></div>
             </div>
         </div>
 
-        <!-- 2. Filmes -->
-        <div class="section-title">Filmes</div>
-        <div class="grid">
-            <div class="card">
-                <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div>
-                <p>Homem-Aranha</p>
+        <!-- ================= PÁGINA FILMES ================= -->
+        <div id="filmes" class="page-content">
+            <div class="section-title">Tops Filmes</div>
+            <div class="grid">
+                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Vingadores</p></div>
+                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Avatar 2</p></div>
             </div>
-            <div class="card">
-                <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div>
-                <p>Batman</p>
+
+            <div class="section-title">Todos os Filmes</div>
+            <div class="grid">
+                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Homem-Aranha</p></div>
+                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Batman</p></div>
+                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>O Homem de Aço</p></div>
             </div>
         </div>
 
-        <!-- 3. Séries -->
-        <div class="section-title">Séries</div>
-        <div class="grid">
-            <div class="card">
-                <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div>
-                <p>Stranger Things</p>
+        <!-- ================= PÁGINA SÉRIES ================= -->
+        <div id="series" class="page-content">
+            <div class="section-title">Tops Séries</div>
+            <div class="grid">
+                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Breaking Bad</p></div>
+                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Game of Thrones</p></div>
             </div>
-            <div class="card">
-                <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div>
-                <p>The Last of Us</p>
+
+            <div class="section-title">Todas as Séries</div>
+            <div class="grid">
+                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>Stranger Things</p></div>
+                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div><p>The Last of Us</p></div>
             </div>
         </div>
 
-        <!-- 4. Tops Séries -->
-        <div class="section-title">Tops Séries</div>
-        <div class="grid">
-            <div class="card">
-                <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div>
-                <p>Breaking Bad</p>
-            </div>
-            <div class="card">
-                <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div>
-                <p>Game of Thrones</p>
-            </div>
-        </div>
-
-        <!-- 5. Canais Premium -->
-        <div class="section-title">Canais Premium</div>
-        <div class="grid">
-            <div class="card">
-                <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Logo Canal</div>
-                <p>HBO Max</p>
-            </div>
-            <div class="card">
-                <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Logo Canal</div>
-                <p>Telecine</p>
+        <!-- ================= PÁGINA CANAIS ================= -->
+        <div id="canais" class="page-content">
+            <div class="section-title">Canais Premium Disponíveis</div>
+            <div class="grid">
+                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Logo</div><p>HBO Max</p></div>
+                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Logo</div><p>Telecine</p></div>
+                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Logo</div><p>Premiere</p></div>
+                <div class="card"><div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Logo</div><p>Combate</p></div>
             </div>
         </div>
 
     </div>
 
+    <!-- SCRIPT DE CONTROLE DAS ABAS -->
     <script>
+        // Animação de entrada
         window.addEventListener("load", function(){
             const splash = document.querySelector('#splash-screen');
             setTimeout(function(){
                 splash.classList.add('hidden');
             }, 2000);
         });
+
+        // Função que troca as páginas ao clicar no menu
+        function switchTab(pageId, event) {
+            // Esconde todas as páginas
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.classList.remove('active-page'));
+
+            // Mostra apenas a página clicada
+            document.getElementById(pageId).classList.add('active-page');
+
+            // Remove a classe active de todos os botões e coloca no botão clicado
+            const buttons = document.querySelectorAll('nav button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
     </script>
 
 </body>
