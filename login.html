@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Filmes - Entrar</title>
+    <style>
+        :root {
+            --bg-color: #070913;
+            --card-bg: #0f1528;
+            --neon-blue: #00f0ff;
+            --neon-glow: rgba(0, 240, 255, 0.4);
+            --text-main: #ffffff;
+            --text-muted: #8c9bae;
+            --border-color: #1e2942;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Topo com Logo e Slogan */
+        .header-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-box-small {
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #111a30, #0a0f1d);
+            border: 2px solid var(--neon-blue);
+            border-radius: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 15px var(--neon-glow);
+            margin: 0 auto 12px auto;
+        }
+
+        .logo-box-small svg {
+            width: 36px;
+            height: 36px;
+            fill: var(--neon-blue);
+            filter: drop-shadow(0 0 6px var(--neon-blue));
+        }
+
+        .header-logo h1 {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            background: linear-gradient(90deg, #ffffff, var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px;
+        }
+
+        .header-logo p {
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        /* Alternador de Abas (Entrar / Criar Conta) */
+        .tabs-container {
+            display: flex;
+            width: 100%;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 4px;
+            margin-bottom: 24px;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(0, 240, 255, 0.05));
+            color: var(--neon-blue);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+        }
+
+        /* Formulário de Login */
+        .form-group {
+            width: 100%;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .input-box {
+            width: 100%;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 15px 15px 15px 45px;
+            color: var(--text-main);
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-box:focus {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 12px var(--neon-glow);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            fill: var(--text-muted);
+        }
+
+        .input-box:focus ~ .input-icon {
+            fill: var(--neon-blue);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            fill: var(--text-muted);
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Link Esqueci a senha */
+        .forgot-password {
+            width: 100%;
+            text-align: right;
+            margin-bottom: 25px;
+        }
+
+        .forgot-password a {
+            color: var(--neon-blue);
+            font-size: 12px;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .forgot-password a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        /* Botão Principal de Entrar */
+        .btn-primary {
+            width: 100%;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            color: #ffffff;
+            border: none;
+            border-radius: 14px;
+            padding: 16px;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 114, 255, 0.4);
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 20px var(--neon-blue);
+            transform: translateY(-1px);
+        }
+
+        /* Rodapé de cadastro */
+        .footer-signup {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .footer-signup a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .legal-notice {
+            text-align: center;
+            font-size: 10px;
+            color: #55627a;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Logo e Slogan -->
+        <div class="header-logo">
+            <div class="logo-box-small">
+                <svg viewBox="0 0 24 24">
+                    <path d="M18,5H16.89C17.47,4.11 17.8,3.08 17.8,2H15.8C15.8,3.11 15.2,4.09 14.33,4.64C13.8,3.7 12.96,3 12,3C11.04,3 10.2,3.7 9.67,4.64C8.8,4.09 8.2,3.11 8.2,2H6.2C6.2,3.08 6.53,4.11 7.11,5H6C4.89,5 4,5.89 4,7V20C4,21.1 4.89,22 6,22H18C19.1,22 20,21.1 20,20V7C20,5.89 19.1,5 18,5M18,20H6V7H18V20M9.5,9A1.5,1.5 0 0,0 8,10.5A1.5,1.5 0 0,0 9.5,12A1.5,1.5 0 0,0 11,10.5A1.5,1.5 0 0,0 9.5,9M14.5,9A1.5,1.5 0 0,0 13,10.5A1.5,1.5 0 0,0 14.5,12A1.5,1.5 0 0,0 16,10.5A1.5,1.5 0 0,0 14.5,9M9.5,13.5A1.5,1.5 0 0,0 8,15A1.5,1.5 0 0,0 9.5,16.5A1.5,1.5 0 0,0 11,15A1.5,1.5 0 0,0 9.5,13.5M14.5,13.5A1.5,1.5 0 0,0 13,15A1.5,1.5 0 0,0 14.5,16.5A1.5,1.5 0 0,0 16,15A1.5,1.5 0 0,0 14.5,13.5Z"/>
+                </svg>
+            </div>
+            <h1>PLAY FILMES</h1>
+            <p>Cinema em cada detalhe</p>
+        </div>
+
+        <!-- Abas de Alternância -->
+        <div class="tabs-container">
+            <a href="login.html" class="tab active">Entrar</a>
+            <a href="#" class="tab">Criar conta</a>
+        </div>
+
+        <!-- Campos do Formulário -->
+        <div class="form-group">
+            <input type="email" class="input-box" placeholder="Seu e-mail">
+            <svg class="input-icon" viewBox="0 0 24 24">
+                <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18C2,19.1 2.9,20 4,20H20C21.1,20 22,19.1 22,18V6C22,4.89 21.1,4 20,4Z"/>
+            </svg>
+        </div>
+
+        <div class="form-group">
+            <input type="password" id="senha" class="input-box" placeholder="Sua senha">
+            <svg class="input-icon" viewBox="0 0 24 24">
+                <path d="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.89,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z"/>
+            </svg>
+            <!-- Ícone de Olho para mostrar/esconder senha -->
+            <svg class="password-toggle" viewBox="0 0 24 24" onclick="toggleSenha()">
+                <path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/>
+            </svg>
+        </div>
+
+        <div class="forgot-password">
+            <a href="#">Esqueceu a senha?</a>
+        </div>
+
+        <!-- Botão de Ação -->
+        <button class="btn-primary">Entrar</button>
+
+        <!-- Rodapé -->
+        <div class="footer-signup">
+            Não tem conta? <a href="#">Criar agora</a>
+        </div>
+
+        <div class="legal-notice">
+            Play Filmes é um guia informativo de filmes e séries. Não transmite nem hospeda conteúdo.
+        </div>
+
+    </div>
+
+    <script>
+        // Script simples para alternar visualização da senha ao clicar no olhinho
+        function toggleSenha() {
+            const inputSenha = document.getElementById('senha');
+            if (inputSenha.type === 'password') {
+                inputSenha.type = 'text';
+            } else {
+                inputSenha.type = 'password';
+            }
+        }
+    </script>
+
+</body>
+                      </html>
+                      
