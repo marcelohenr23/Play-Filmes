@@ -23,7 +23,7 @@
             overflow-x: hidden;
         }
 
-        /* --- TELA DE ANIMAÇÃO (Splash Screen) - SEM SPINNER --- */
+        /* TELA DE ANIMAÇÃO */
         #splash-screen {
             position: fixed;
             top: 0;
@@ -32,7 +32,7 @@
             height: 100%;
             background-color: var(--bg-color);
             display: flex;
-            justify-content: center; /* Centraliza apenas o logo agora */
+            justify-content: center;
             align-items: center;
             z-index: 9999;
             transition: opacity 0.8s ease, visibility 0.8s;
@@ -44,14 +44,12 @@
         }
 
         .splash-logo {
-            font-size: 45px; /* Aumentei um pouquinho o tamanho já que está sozinho */
+            font-size: 45px;
             font-weight: bold;
             color: var(--primary-color);
-            animation: pulse 2s infinite; /* Deixei a pulsação um pouco mais lenta e suave */
-            text-shadow: 0 0 20px rgba(0, 123, 255, 0.7); /* Mais brilho */
+            animation: pulse 2s infinite;
+            text-shadow: 0 0 20px rgba(0, 123, 255, 0.7);
         }
-
-        /* Removi o estilo .splash-loading que fazia a bolinha girar */
 
         @keyframes pulse {
             0% { transform: scale(0.95); opacity: 0.8; }
@@ -59,7 +57,7 @@
             100% { transform: scale(0.95); opacity: 0.8; }
         }
 
-        /* --- ESTILOS DO SITE (não mudaram) --- */
+        /* CABEÇALHO E MENU */
         header {
             background-color: var(--header-bg);
             padding: 15px;
@@ -105,6 +103,7 @@
             border-color: var(--primary-color);
         }
 
+        /* CATÁLOGO E SEÇÕES */
         .container {
             padding: 20px;
             max-width: 1200px;
@@ -112,9 +111,9 @@
         }
 
         .section-title {
-            font-size: 20px;
-            margin-bottom: 20px;
-            margin-top: 10px;
+            font-size: 18px;
+            margin-bottom: 15px;
+            margin-top: 25px;
             color: var(--text-color);
             font-weight: 700;
             display: flex;
@@ -124,8 +123,8 @@
         .section-title::before {
             content: '';
             display: inline-block;
-            width: 6px;
-            height: 24px;
+            width: 5px;
+            height: 20px;
             background-color: var(--primary-color);
             margin-right: 10px;
             border-radius: 3px;
@@ -135,7 +134,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
             gap: 15px;
-            margin-bottom: 30px;
         }
 
         .card {
@@ -157,13 +155,13 @@
 
         .card img {
             width: 100%;
-            height: 160px;
+            height: 150px;
             object-fit: cover;
             border-bottom: 1px solid #1f2940;
         }
 
         .card p {
-            font-size: 13px;
+            font-size: 12px;
             margin: 8px 5px 0 5px;
             color: var(--text-color);
             font-weight: 500;
@@ -172,14 +170,15 @@
 </head>
 <body>
 
-    <!-- TELA DE ANIMAÇÃO (Splash Screen) - Sem bolinha -->
+    <!-- TELA DE ANIMAÇÃO -->
     <div id="splash-screen">
         <div class="splash-logo">Play Filmes</div>
     </div>
 
-    <!-- CONTEÚDO PRINCIPAL -->
+    <!-- CABEÇALHO -->
     <header>Play Filmes 🎬</header>
 
+    <!-- MENU -->
     <nav>
         <button class="active">Início</button>
         <button>Filmes</button>
@@ -187,24 +186,79 @@
         <button>Canais</button>
     </nav>
 
+    <!-- CONTEÚDO ORGANIZADO -->
     <div class="container">
-        <div class="section-title">Em Destaque</div>
+
+        <!-- 1. Tops Filmes -->
+        <div class="section-title">Tops Filmes</div>
         <div class="grid">
             <div class="card">
-                <div style="height: 160px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #5c6b7f;">Poster</div>
-                <p>Liga da Justiça</p>
+                <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div>
+                <p>Vingadores: Ultimato</p>
             </div>
             <div class="card">
-                <div style="height: 160px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #5c6b7f;">Poster</div>
-                <p>O Homem de Aço</p>
+                <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div>
+                <p>Avatar 2</p>
             </div>
         </div>
+
+        <!-- 2. Filmes -->
+        <div class="section-title">Filmes</div>
+        <div class="grid">
+            <div class="card">
+                <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div>
+                <p>Homem-Aranha</p>
+            </div>
+            <div class="card">
+                <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div>
+                <p>Batman</p>
+            </div>
+        </div>
+
+        <!-- 3. Séries -->
+        <div class="section-title">Séries</div>
+        <div class="grid">
+            <div class="card">
+                <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div>
+                <p>Stranger Things</p>
+            </div>
+            <div class="card">
+                <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div>
+                <p>The Last of Us</p>
+            </div>
+        </div>
+
+        <!-- 4. Tops Séries -->
+        <div class="section-title">Tops Séries</div>
+        <div class="grid">
+            <div class="card">
+                <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div>
+                <p>Breaking Bad</p>
+            </div>
+            <div class="card">
+                <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Poster</div>
+                <p>Game of Thrones</p>
+            </div>
+        </div>
+
+        <!-- 5. Canais Premium -->
+        <div class="section-title">Canais Premium</div>
+        <div class="grid">
+            <div class="card">
+                <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Logo Canal</div>
+                <p>HBO Max</p>
+            </div>
+            <div class="card">
+                <div style="height: 150px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5c6b7f;">Logo Canal</div>
+                <p>Telecine</p>
+            </div>
+        </div>
+
     </div>
 
     <script>
         window.addEventListener("load", function(){
             const splash = document.querySelector('#splash-screen');
-            // Mantive o tempo de 2 segundos, mas se quiser mais rápido, mude aqui
             setTimeout(function(){
                 splash.classList.add('hidden');
             }, 2000);
