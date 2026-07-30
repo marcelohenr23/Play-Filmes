@@ -392,6 +392,12 @@
                     Compartilhar
                 </div>
             </div>
+
+            <!-- SEÇÃO DE FILMES SEMELHANTES -->
+            <div class="section-title" style="margin-top: 30px;">Próximos e Semelhantes</div>
+            <div class="grid" id="similarMoviesGrid">
+                <!-- Os filmes semelhantes vão aparecer aqui automaticamente -->
+            </div>
         </div>
     </div>
 
@@ -433,11 +439,11 @@
         <div id="inicio" class="page-content active-page">
             <div class="section-title">Filmes em Destaque</div>
             <div class="grid">
-                <div class="card" onclick="openDetails('Ong Bak 2', 'O guerreiro Tien busca vingança e enfrenta inimigos poderosos.', '')">
+                <div class="card" onclick="openDetails('Ong Bak 2', 'O guerreiro Tien busca vingança e enfrenta inimigos poderosos.', 'img/ongbak2.jpg', '')">
                     <img src="img/ongbak2.jpg" alt="Ong Bak 2">
                     <p>Ong Bak 2</p>
                 </div>
-                <div class="card" onclick="openDetails('Ong Bak 3', 'Tien retorna para enfrentar seu maior desafio na conclusão da saga.', '')">
+                <div class="card" onclick="openDetails('Ong Bak 3', 'Tien retorna para enfrentar seu maior desafio na conclusão da saga.', 'img/ongbak3.jpg', '')">
                     <img src="img/ongbak3.jpg" alt="Ong Bak 3">
                     <p>Ong Bak 3</p>
                 </div>
@@ -448,11 +454,11 @@
         <div id="filmes" class="page-content">
             <div class="section-title">Lista de Filmes</div>
             <div class="grid">
-                <div class="card" onclick="openDetails('Cores da Justiça', 'Neste intenso thriller policial, policiais se encontram no limite entre a lei e a busca por justiça em meio a segredos perigosos.', 'https://www.youtube.com/embed/QCfSeVCr7ng?autoplay=1&mute=1&controls=0&loop=1&playlist=QCfSeVCr7ng')">
+                <div class="card" onclick="openDetails('Cores da Justiça', 'Neste intenso thriller policial, policiais se encontram no limite entre a lei e a busca por justiça em meio a segredos perigosos.', 'coresdajustica.jpg', 'https://www.youtube.com/embed/QCfSeVCr7ng?autoplay=1&mute=1&controls=0&loop=1&playlist=QCfSeVCr7ng')">
                     <img src="coresdajustica.jpg" alt="Cores da Justiça">
                     <p>Cores da Justiça</p>
                 </div>
-                <div class="card" onclick="openDetails('Plano de Família 2', 'A divertida sequência traz ainda mais confusões e aventuras hilárias para proteger a família em momentos inusitados.', '')">
+                <div class="card" onclick="openDetails('Plano de Família 2', 'A divertida sequência traz ainda mais confusões e aventuras hilárias para proteger a família em momentos inusitados.', 'planodefamilia2.jpg', '')">
                     <img src="planodefamilia2.jpg" alt="planodefamilia2.jpg">
                     <p>Plano de Família 2</p>
                 </div>
@@ -491,7 +497,7 @@
         }
 
         // --- FUNÇÕES DA TELA DE DETALHES E PLAYER ---
-        function openDetails(title, synopsis, youtubeEmbedUrl) {
+        function openDetails(title, synopsis, image, youtubeEmbedUrl) {
             document.getElementById('detTitle').innerText = title;
             document.getElementById('detSynopsis').innerText = synopsis;
             
@@ -508,6 +514,33 @@
                 iframe.allow = "autoplay; encrypted-media";
                 headerContainer.appendChild(iframe);
             }
+
+            // Gerar recomendações parecidas embaixo (estilo Netflix)
+            const similarGrid = document.getElementById('similarMoviesGrid');
+            similarGrid.innerHTML = '';
+
+            // Lista de todos os filmes disponíveis para sugerir
+            const allMovies = [
+                { title: 'Ong Bak 2', syn: 'O guerreiro Tien busca vingança e enfrenta inimigos poderosos.', img: 'img/ongbak2.jpg', yt: '' },
+                { title: 'Ong Bak 3', syn: 'Tien retorna para enfrentar seu maior desafio na conclusão da saga.', img: 'img/ongbak3.jpg', yt: '' },
+                { title: 'Cores da Justiça', syn: 'Neste intenso thriller policial, policiais se encontram no limite entre a lei e a busca por justiça.', img: 'coresdajustica.jpg', yt: 'https://www.youtube.com/embed/QCfSeVCr7ng?autoplay=1&mute=1&controls=0&loop=1&playlist=QCfSeVCr7ng' },
+                { title: 'Plano de Família 2', syn: 'A divertida sequência traz ainda mais confusões e aventuras hilárias.', img: 'planodefamilia2.jpg', yt: '' }
+            ];
+
+            // Filtra para não mostrar o filme atual na lista de semelhantes
+            const filteredMovies = allMovies.filter(movie => movie.title !== title);
+
+            // Cria os cards dos filmes semelhantes
+            filteredMovies.forEach(movie => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.onclick = () => openDetails(movie.title, movie.syn, movie.img, movie.yt);
+                card.innerHTML = `
+                    <img src="${movie.img}" alt="${movie.title}">
+                    <p>${movie.title}</p>
+                `;
+                similarGrid.appendChild(card);
+            });
 
             document.getElementById('details-screen').classList.add('active');
         }
