@@ -113,7 +113,7 @@
         }
     </style>
 </head>
-<body>
+<body onclick="irParaLogin()">
 
     <div class="splash-container">
         <div class="logo-box">
@@ -129,6 +129,17 @@
             <div class="loader-progress"></div>
         </div>
     </div>
+
+    <script>
+        function irParaLogin() {
+            window.location.href = "login.html";
+        }
+
+        // Passa para a tela de login automaticamente após 3 segundos
+        setTimeout(() => {
+            irParaLogin();
+        }, 3000);
+    </script>
 
 </body>
 </html>
