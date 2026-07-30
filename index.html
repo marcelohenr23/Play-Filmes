@@ -311,7 +311,6 @@
             color: var(--text-color);
         }
 
-        /* ESTILO ESPECÍFICO PARA OS FILMES SEMELHANTES (ESTILO NETFLIX) */
         .similar-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -448,9 +447,7 @@
 
             <!-- SEÇÃO DE FILMES SEMELHANTES -->
             <div class="section-title" style="margin-top: 30px;">Próximos e Semelhantes</div>
-            <div class="similar-grid" id="similarMoviesGrid">
-                <!-- Os filmes semelhantes vão aparecer aqui automaticamente -->
-            </div>
+            <div class="similar-grid" id="similarMoviesGrid"></div>
         </div>
     </div>
 
@@ -507,7 +504,14 @@
         <div id="filmes" class="page-content">
             <div class="section-title">Lista de Filmes</div>
             <div class="grid">
-                <!-- Adicione mais filmes aqui conforme for incluindo novos arquivos -->
+                <div class="card" onclick="openDetails('Ong Bak 2', 'O guerreiro Tien busca vingança e enfrenta inimigos poderosos.', 'img/ongbak2.jpg', '')">
+                    <img src="img/ongbak2.jpg" alt="Ong Bak 2">
+                    <p>Ong Bak 2</p>
+                </div>
+                <div class="card" onclick="openDetails('Ong Bak 3', 'Tien retorna para enfrentar seu maior desafio na conclusão da saga.', 'img/ongbak3.jpg', '')">
+                    <img src="img/ongbak3.jpg" alt="Ong Bak 3">
+                    <p>Ong Bak 3</p>
+                </div>
             </div>
         </div>
 
@@ -529,26 +533,29 @@
 
     </div>
 
-    <!-- SCRIPT -->
+    <!-- SCRIPT CORRIGIDO -->
     <script>
         function switchTab(pageId, event) {
             const pages = document.querySelectorAll('.page-content');
             pages.forEach(page => page.classList.remove('active-page'));
 
-            document.getElementById(pageId).classList.add('active-page');
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active-page');
+            }
 
             const buttons = document.querySelectorAll('nav button');
             buttons.forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
         }
 
-        // --- FUNÇÕES DA TELA DE DETALHES E PLAYER ---
         function openDetails(title, synopsis, image, youtubeEmbedUrl) {
             document.getElementById('detTitle').innerText = title;
             document.getElementById('detSynopsis').innerText = synopsis;
             
             const headerContainer = document.getElementById('detailsHeaderContainer');
-            
             const existingIframe = headerContainer.querySelector('iframe');
             if (existingIframe) {
                 existingIframe.remove();
@@ -561,7 +568,6 @@
                 headerContainer.appendChild(iframe);
             }
 
-            // Gerar recomendações parecidas embaixo (estilo Netflix)
             const similarGrid = document.getElementById('similarMoviesGrid');
             similarGrid.innerHTML = '';
 
@@ -606,13 +612,4 @@
 
             videoSource.src = "https://www.w3schools.com/html/mov_bbb.mp4";
             videoPlayer.load();
-            playerScreen.classList.add('active');
-            videoPlayer.play();
-        }
-
-        function closePlayer() {
-            const playerScreen = document.getElementById('player-screen');
-            const videoPlayer = document.getElementById('videoPlayer');
-
-            videoPlayer.pause();
-            document.getElementById('videoS
+          
