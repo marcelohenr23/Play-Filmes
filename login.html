@@ -13,6 +13,7 @@
             --text-main: #ffffff;
             --text-muted: #8c9bae;
             --border-color: #1e2942;
+            --error-color: #ff3366;
         }
 
         * {
@@ -40,10 +41,9 @@
             align-items: center;
         }
 
-        /* Topo com Logo e Slogan */
         .header-logo {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .logo-box-small {
@@ -83,7 +83,7 @@
             text-transform: uppercase;
         }
 
-        /* Alternador de Abas (Entrar / Criar Conta) */
+        /* Abas de Alternância (Entrar / Criar Conta) */
         .tabs-container {
             display: flex;
             width: 100%;
@@ -91,7 +91,7 @@
             border: 1px solid var(--border-color);
             border-radius: 14px;
             padding: 4px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .tab {
@@ -104,7 +104,8 @@
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-decoration: none;
+            background: none;
+            border: none;
         }
 
         .tab.active {
@@ -114,7 +115,29 @@
             box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
         }
 
-        /* Formulário de Login */
+        /* Mensagens de feedback (Erro ou Sucesso) */
+        .feedback-msg {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            text-align: center;
+            margin-bottom: 15px;
+            display: none;
+        }
+        .feedback-msg.error {
+            background: rgba(255, 51, 102, 0.15);
+            border: 1px solid var(--error-color);
+            color: var(--error-color);
+            display: block;
+        }
+        .feedback-msg.success {
+            background: rgba(0, 240, 255, 0.15);
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-blue);
+            display: block;
+        }
+
         .form-group {
             width: 100%;
             margin-bottom: 16px;
@@ -163,11 +186,10 @@
             height: 20px;
         }
 
-        /* Link Esqueci a senha */
         .forgot-password {
             width: 100%;
             text-align: right;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .forgot-password a {
@@ -183,7 +205,6 @@
             text-decoration: underline;
         }
 
-        /* Botão Principal de Entrar */
         .btn-primary {
             width: 100%;
             background: linear-gradient(135deg, #00c6ff, #0072ff);
@@ -205,7 +226,6 @@
             transform: translateY(-1px);
         }
 
-        /* Rodapé de cadastro */
         .footer-signup {
             text-align: center;
             font-size: 13px;
@@ -213,10 +233,13 @@
             margin-bottom: 15px;
         }
 
-        .footer-signup a {
+        .footer-signup button {
+            background: none;
+            border: none;
             color: var(--neon-blue);
-            text-decoration: none;
             font-weight: 600;
+            cursor: pointer;
+            font-size: 13px;
         }
 
         .legal-notice {
@@ -231,7 +254,6 @@
 
     <div class="app-container">
         
-        <!-- Logo e Slogan -->
         <div class="header-logo">
             <div class="logo-box-small">
                 <svg viewBox="0 0 24 24">
@@ -242,15 +264,18 @@
             <p>Cinema em cada detalhe</p>
         </div>
 
-        <!-- Abas de Alternância -->
+        <!-- Abas -->
         <div class="tabs-container">
-            <a href="login.html" class="tab active">Entrar</a>
-            <a href="#" class="tab">Criar conta</a>
+            <button id="tabEntrar" class="tab active" onclick="mudarModo('entrar')">Entrar</button>
+            <button id="tabCriar" class="tab" onclick="mudarModo('criar')">Criar conta</button>
         </div>
 
-        <!-- Campos do Formulário -->
+        <!-- Alerta dinâmico -->
+        <div id="feedback" class="feedback-msg"></div>
+
+        <!-- Formulário -->
         <div class="form-group">
-            <input type="email" class="input-box" placeholder="Seu e-mail">
+            <input type="email" id="email" class="input-box" placeholder="Seu e-mail">
             <svg class="input-icon" viewBox="0 0 24 24">
                 <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18C2,19.1 2.9,20 4,20H20C21.1,20 22,19.1 22,18V6C22,4.89 21.1,4 20,4Z"/>
             </svg>
@@ -261,22 +286,20 @@
             <svg class="input-icon" viewBox="0 0 24 24">
                 <path d="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.89,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z"/>
             </svg>
-            <!-- Ícone de Olho para mostrar/esconder senha -->
             <svg class="password-toggle" viewBox="0 0 24 24" onclick="toggleSenha()">
                 <path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/>
             </svg>
         </div>
 
-        <div class="forgot-password">
+        <div class="forgot-password" id="forgotBox">
             <a href="#">Esqueceu a senha?</a>
         </div>
 
-        <!-- Botão de Ação -->
-        <button class="btn-primary">Entrar</button>
+        <!-- Botão Principal -->
+        <button id="btnAcao" class="btn-primary" onclick="processarAcao()">Entrar</button>
 
-        <!-- Rodapé -->
-        <div class="footer-signup">
-            Não tem conta? <a href="#">Criar agora</a>
+        <div class="footer-signup" id="footerText">
+            Não tem conta? <button onclick="mudarModo('criar')">Criar agora</button>
         </div>
 
         <div class="legal-notice">
@@ -286,17 +309,90 @@
     </div>
 
     <script>
-        // Script simples para alternar visualização da senha ao clicar no olhinho
+        let modoAtual = 'entrar'; // 'entrar' ou 'criar'
+
+        function mudarModo(modo) {
+            modoAtual = modo;
+            const btnAcao = document.getElementById('btnAcao');
+            const tabEntrar = document.getElementById('tabEntrar');
+            const tabCriar = document.getElementById('tabCriar');
+            const forgotBox = document.getElementById('forgotBox');
+            const footerText = document.getElementById('footerText');
+            const feedback = document.getElementById('feedback');
+            
+            feedback.className = "feedback-msg";
+            feedback.innerText = "";
+
+            if (modo === 'criar') {
+                tabCriar.classList.add('active');
+                tabEntrar.classList.remove('active');
+                btnAcao.innerText = "Cadastrar conta";
+                forgotBox.style.display = 'none';
+                footerText.innerHTML = `Já tem conta? <button onclick="mudarModo('entrar')">Entrar</button>`;
+            } else {
+                tabEntrar.classList.add('active');
+                tabCriar.classList.remove('active');
+                btnAcao.innerText = "Entrar";
+                forgotBox.style.display = 'block';
+                footerText.innerHTML = `Não tem conta? <button onclick="mudarModo('criar')">Criar agora</button>`;
+            }
+        }
+
         function toggleSenha() {
             const inputSenha = document.getElementById('senha');
-            if (inputSenha.type === 'password') {
-                inputSenha.type = 'text';
+            inputSenha.type = inputSenha.type === 'password' ? 'text' : 'password';
+        }
+
+        function mostrarMensagem(texto, tipo) {
+            const feedback = document.getElementById('feedback');
+            feedback.className = `feedback-msg ${tipo}`;
+            feedback.innerText = texto;
+        }
+
+        function processarAcao() {
+            const email = document.getElementById('email').value.trim();
+            const senha = document.getElementById('senha').value.trim();
+
+            if (!email || !senha) {
+                mostrarMensagem("Preencha o e-mail e a senha.", "error");
+                return;
+            }
+
+            // Pega as contas salvas no celular (ou cria um cofre vazio)
+            let contas = JSON.parse(localStorage.getItem('playfilmes_contas')) || [];
+
+            if (modoAtual === 'criar') {
+                // Verificar se a conta já existe
+                const existe = contas.find(c => c.email === email);
+                if (existe) {
+                    mostrarMensagem("Este e-mail já está cadastrado. Faça login.", "error");
+                    return;
+                }
+
+                // Salvar nova conta
+                contas.push({ email, senha });
+                localStorage.setItem('playfilmes_contas', JSON.stringify(contas));
+                
+                mostrarMensagem("Conta criada com sucesso! Entrando...", "success");
+                setTimeout(() => {
+                    window.location.href = "perfil.html";
+                }, 1200);
+
             } else {
-                inputSenha.type = 'password';
+                // Tentar fazer login
+                const contaValida = contas.find(c => c.email === email && c.senha === senha);
+                
+                if (contaValida) {
+                    mostrarMensagem("Login bem-sucedido! Redirecionando...", "success");
+                    setTimeout(() => {
+                        window.location.href = "perfil.html";
+                    }, 1000);
+                } else {
+                    mostrarMensagem("E-mail ou senha incorretos, ou conta não existe.", "error");
+                }
             }
         }
     </script>
 
 </body>
-                      </html>
-                      
+</html>
