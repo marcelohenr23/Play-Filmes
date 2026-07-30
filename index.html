@@ -214,7 +214,7 @@
             width: 100%;
             height: 100%;
             border: none;
-            pointer-events: none; /* Mantém focado no design sem atrapalhar */
+            pointer-events: none;
         }
 
         .close-details-btn {
@@ -360,7 +360,6 @@
     <div id="details-screen">
         <div class="details-header-bg" id="detailsHeaderContainer">
             <button class="close-details-btn" onclick="closeDetails()">⬅ Voltar</button>
-            <!-- O trailer em vídeo do YouTube entrará aqui dinamicamente -->
         </div>
         <div class="details-content">
             <div class="details-title" id="detTitle">Nome do Filme</div>
@@ -434,16 +433,16 @@
         <div id="inicio" class="page-content active-page">
             <div class="section-title">Filmes em Destaque</div>
             <div class="grid">
-    <div class="card" onclick="openDetails('Ong Bak 2', 'O guerreiro Tien busca vingança e enfrenta inimigos poderosos.', '')">
-        <img src="img/ongbak2.jpg" alt="Ong Bak 2">
-        <p>Ong Bak 2</p>
-    </div>
-
-    <div class="card" onclick="openDetails('Ong Bak 3', 'Tien retorna para enfrentar seu maior desafio na conclusão da saga.', '')">
-        <img src="img/ongbak3.jpg" alt="Ong Bak 3">
-        <p>Ong Bak 3</p>
-    </div>
+                <div class="card" onclick="openDetails('Ong Bak 2', 'O guerreiro Tien busca vingança e enfrenta inimigos poderosos.', '')">
+                    <img src="img/ongbak2.jpg" alt="Ong Bak 2">
+                    <p>Ong Bak 2</p>
+                </div>
+                <div class="card" onclick="openDetails('Ong Bak 3', 'Tien retorna para enfrentar seu maior desafio na conclusão da saga.', '')">
+                    <img src="img/ongbak3.jpg" alt="Ong Bak 3">
+                    <p>Ong Bak 3</p>
+                </div>
             </div>
+        </div>
 
         <!-- ================= PÁGINA FILMES ================= -->
         <div id="filmes" class="page-content">
@@ -498,13 +497,11 @@
             
             const headerContainer = document.getElementById('detailsHeaderContainer');
             
-            // Remove trailer anterior se houver
             const existingIframe = headerContainer.querySelector('iframe');
             if (existingIframe) {
                 existingIframe.remove();
             }
 
-            // Se houver link de trailer, insere o iframe rodando automático e mudo
             if (youtubeEmbedUrl) {
                 const iframe = document.createElement('iframe');
                 iframe.src = youtubeEmbedUrl;
@@ -517,7 +514,6 @@
 
         function closeDetails() {
             document.getElementById('details-screen').classList.remove('active');
-            // Para o trailer ao fechar
             const headerContainer = document.getElementById('detailsHeaderContainer');
             const existingIframe = headerContainer.querySelector('iframe');
             if (existingIframe) {
