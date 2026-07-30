@@ -533,22 +533,17 @@
 
     </div>
 
-    <!-- SCRIPT CORRIGIDO -->
+    <!-- SCRIPT ORIGINAL RESTAURADO -->
     <script>
         function switchTab(pageId, event) {
             const pages = document.querySelectorAll('.page-content');
             pages.forEach(page => page.classList.remove('active-page'));
 
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active-page');
-            }
+            document.getElementById(pageId).classList.add('active-page');
 
             const buttons = document.querySelectorAll('nav button');
             buttons.forEach(btn => btn.classList.remove('active'));
-            if (event && event.currentTarget) {
-                event.currentTarget.classList.add('active');
-            }
+            event.currentTarget.classList.add('active');
         }
 
         function openDetails(title, synopsis, image, youtubeEmbedUrl) {
@@ -612,4 +607,9 @@
 
             videoSource.src = "https://www.w3schools.com/html/mov_bbb.mp4";
             videoPlayer.load();
-          
+            playerScreen.classList.add('active');
+            videoPlayer.play();
+        }
+
+        function closePlayer() {
+            const playerScreen 
