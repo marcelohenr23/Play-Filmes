@@ -103,6 +103,46 @@
             border-color: var(--primary-color);
         }
 
+        /* BARRA DE PESQUISA ESTILOSA */
+        .search-container {
+            padding: 15px 20px 0 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            background-color: var(--card-bg);
+            border: 1px solid #1f2940;
+            border-radius: 25px;
+            color: var(--text-color);
+            font-size: 15px;
+            outline: none;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+        }
+
+        .search-box svg {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            fill: var(--text-muted);
+        }
+
         /* CONTEÚDO E PÁGINAS */
         .container {
             padding: 20px;
@@ -110,7 +150,6 @@
             margin: auto;
         }
 
-        /* Classe para esconder as abas que não estão selecionadas */
         .page-content {
             display: none;
         }
@@ -195,6 +234,15 @@
         <button onclick="switchTab('canais', event)">Canais</button>
     </nav>
 
+    <!-- BARRA DE PESQUISA -->
+    <div class="search-container">
+        <div class="search-box">
+            <!-- Ícone de lupa em SVG -->
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <input type="text" id="searchInput" placeholder="Pesquisar filmes, séries, canais...">
+        </div>
+    </div>
+
     <div class="container">
 
         <!-- ================= PÁGINA INÍCIO ================= -->
@@ -271,7 +319,7 @@
 
     </div>
 
-    <!-- SCRIPT DE CONTROLE DAS ABAS -->
+    <!-- SCRIPT -->
     <script>
         // Animação de entrada
         window.addEventListener("load", function(){
@@ -281,16 +329,13 @@
             }, 2000);
         });
 
-        // Função que troca as páginas ao clicar no menu
+        // Troca de abas
         function switchTab(pageId, event) {
-            // Esconde todas as páginas
             const pages = document.querySelectorAll('.page-content');
             pages.forEach(page => page.classList.remove('active-page'));
 
-            // Mostra apenas a página clicada
             document.getElementById(pageId).classList.add('active-page');
 
-            // Remove a classe active de todos os botões e coloca no botão clicado
             const buttons = document.querySelectorAll('nav button');
             buttons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
