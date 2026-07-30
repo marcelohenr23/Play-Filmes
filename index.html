@@ -5,56 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play Filmes</title>
     <style>
-        /* --- ESTILOS GERAIS (já tínhamos) --- */
-        body {
-            background-color: #121212;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden; /* Evita barra de rolagem durante a animação */
+        /* --- DEFINIÇÃO DAS NOVAS CORES (Paleta Azul) --- */
+        :root {
+            --bg-color: #0a0f1e;      /* Azul muito escuro (fundo) */
+            --card-bg: #111625;      /* Azul um pouco mais claro para os cards */
+            --header-bg: #111625;    /* Fundo do topo */
+            --primary-color: #007bff; /* Azul vibrante (Destaques, botões) */
+            --text-color: #ffffff;   /* Branco */
+            --text-muted: #a0aab5;   /* Cinza claro para textos secundários */
         }
 
-        /* --- NOVOS ESTILOS DA ANIMAÇÃO --- */
+        /* --- ESTILOS GERAIS --- */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte mais moderna */
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- TELA DE ANIMAÇÃO (Splash Screen) - ATUALIZADA PARA AZUL --- */
         #splash-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #000000; /* Fundo preto total */
+            background-color: var(--bg-color);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 9999; /* Fica acima de tudo */
-            transition: opacity 0.8s ease, visibility 0.8s; /* Efeito suave ao sumir */
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s;
         }
 
         #splash-screen.hidden {
-            opacity: 0; /* Fica invisível */
-            visibility: hidden; /* Desativa interação */
+            opacity: 0;
+            visibility: hidden;
         }
 
-        /* O Logo ou Texto animado */
         .splash-logo {
             font-size: 40px;
             font-weight: bold;
-            color: #e50914; /* Vermelho Netflix */
-            animation: pulse 1.5s infinite; /* Animação de piscar suave */
+            color: var(--primary-color); /* Logo agora é azul */
+            animation: pulse 1.5s infinite;
             margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(0, 123, 255, 0.5); /* Brilho azul no logo */
         }
         
         .splash-loading {
             width: 30px;
             height: 30px;
-            border: 4px solid #333;
-            border-top: 4px solid #e50914;
+            border: 4px solid var(--card-bg);
+            border-top: 4px solid var(--primary-color); /* Spinner azul */
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
 
-        /* Keyframes das animações */
         @keyframes pulse {
             0% { transform: scale(0.9); opacity: 0.7; }
             50% { transform: scale(1); opacity: 1; }
@@ -66,43 +75,53 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* --- ESTILOS DO CONTEÚDO PRINCIPAL (o que já fizemos) --- */
+        /* --- CABEÇALHO E MENU (Atualizados) --- */
         header {
-            background-color: #1f1f1f;
+            background-color: var(--header-bg);
             padding: 15px;
             text-align: center;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: bold;
-            color: #e50914;
-            border-bottom: 2px solid #222;
+            color: var(--primary-color);
+            border-bottom: 1px solid #1f2940;
+            letter-spacing: 1px;
         }
 
         nav {
             display: flex;
             justify-content: center;
-            background-color: #181818;
-            padding: 10px;
-            gap: 15px;
+            background-color: var(--header-bg);
+            padding: 12px;
+            gap: 10px;
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
 
         nav button {
-            background-color: #333;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
+            background-color: transparent; /* Botões transparentes inicialmente */
+            color: var(--text-muted);
+            border: 2px solid transparent;
+            padding: 8px 18px;
+            border-radius: 20px; /* Botões arredondados */
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 600;
             transition: 0.3s;
         }
 
-        nav button:hover, nav button.active {
-            background-color: #e50914;
+        nav button:hover {
+            color: var(--text-color);
+            background-color: rgba(255,255,255,0.05);
         }
 
+        nav button.active {
+            background-color: var(--primary-color); /* Fundo azul no ativo */
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* --- CATÁLOGO (Atualizado) --- */
         .container {
             padding: 20px;
             max-width: 1200px;
@@ -110,49 +129,76 @@
         }
 
         .section-title {
-            font-size: 18px;
-            margin-bottom: 15px;
-            border-left: 4px solid #e50914;
-            padding-left: 8px;
+            font-size: 20px;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            color: var(--text-color);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Pequeno detalhe decorativo antes do título */
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 24px;
+            background-color: var(--primary-color);
+            margin-right: 10px;
+            border-radius: 3px;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            /* Ajustei o tamanho mínimo para caber melhor em telas pequenas */
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); 
             gap: 15px;
             margin-bottom: 30px;
         }
 
         .card {
-            background-color: #222;
-            border-radius: 6px;
+            background-color: var(--card-bg);
+            border-radius: 8px; /* Cards mais arredondados */
             overflow: hidden;
             text-align: center;
             padding-bottom: 10px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        /* Efeito legal ao passar o mouse/dedo no card */
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.5);
+            border-color: rgba(0, 123, 255, 0.3);
         }
 
         .card img {
             width: 100%;
-            height: 180px;
+            height: 160px; /* Altura ajustada */
             object-fit: cover;
+            border-bottom: 1px solid #1f2940;
         }
 
         .card p {
-            font-size: 14px;
-            margin: 10px 5px 0 5px;
+            font-size: 13px;
+            margin: 8px 5px 0 5px;
+            color: var(--text-color);
+            font-weight: 500;
         }
     </style>
 </head>
 <body>
 
-    <!-- --- A TELA DE ANIMAÇÃO (Splash Screen) - NOVIDADE --- -->
+    <!-- TELA DE ANIMAÇÃO (Splash Screen) - Azul -->
     <div id="splash-screen">
         <div class="splash-logo">Play Filmes</div>
         <div class="splash-loading"></div>
     </div>
 
-    <!-- --- O SEU CONTEÚDO (o que já tínhamos) --- -->
+    <!-- CONTEÚDO PRINCIPAL - Azul -->
     <header>Play Filmes 🎬</header>
 
     <nav>
@@ -163,29 +209,37 @@
     </nav>
 
     <div class="container">
-        <div class="section-title">Filmes em Destaque</div>
+        <div class="section-title">Em Destaque</div>
         <div class="grid">
+            <!-- Exemplo 1 -->
             <div class="card">
-                <div style="height: 180px; background: #333; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #aaa;">Capa Filme</div>
-                <p>Vingadores</p>
+                <div style="height: 160px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #5c6b7f;">Poster</div>
+                <p>Liga da Justiça</p>
             </div>
+            <!-- Exemplo 2 -->
             <div class="card">
-                <div style="height: 180px; background: #333; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #aaa;">Capa Filme</div>
-                <p>Avatar</p>
+                <div style="height: 160px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #5c6b7f;">Poster</div>
+                <p>O Homem de Aço</p>
+            </div>
+            <!-- Exemplo 3 -->
+            <div class="card">
+                <div style="height: 160px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #5c6b7f;">Poster</div>
+                <p>The Flash</p>
+            </div>
+            <!-- Exemplo 4 -->
+            <div class="card">
+                <div style="height: 160px; background: #1a233a; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #5c6b7f;">Poster</div>
+                <p>Aquaman</p>
             </div>
         </div>
     </div>
 
-    <!-- --- O SCRIPT QUE FAZ A MÁGICA ACONTECER --- -->
     <script>
-        // Espera o site carregar completamente
         window.addEventListener("load", function(){
             const splash = document.querySelector('#splash-screen');
-            
-            // Aguarda 2 segundos (2000ms) antes de adicionar a classe 'hidden'
             setTimeout(function(){
                 splash.classList.add('hidden');
-            }, 2000); // Você pode aumentar ou diminuir esse tempo aqui
+            }, 2000);
         });
     </script>
 
