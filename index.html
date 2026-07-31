@@ -64,11 +64,16 @@
     </div>
 
     <script>
-        // Redireciona para a tela de cadastro exatamente quando a barra encher (2 segundos)
-        setTimeout(function() {
-            window.location.href = "pages/cadastro.html";
-        }, 2000);
-    </script>
+    setTimeout(function() {
+        // Verifica se o usuário já fez login anteriormente
+        const jaLogado = localStorage.getItem('usuarioLogado');
 
-</body>
-</html>
+        if (jaLogado === 'true') {
+            // Se já logou antes, vai direto para a escolha de perfil
+            window.location.href = "pages/perfil.html";
+        } else {
+            // Se é a primeira vez, vai para o cadastro
+            window.location.href = "pages/cadastro.html";
+        }
+    }, 2000);
+    </script>
