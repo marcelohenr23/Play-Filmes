@@ -224,7 +224,7 @@
             width: 100%;
             height: 100%;
             background-color: var(--bg-color);
-            z-index: 1000;
+            z-index: 9999;
             overflow-y: auto;
         }
 
@@ -476,10 +476,22 @@
         <div class="category-section">
             <div class="category-title has-border">🎬 Filmes</div>
             <div class="carousel">
-                <div class="movie-card no-top" onclick="openPlayer('Cores da Justiça', 'img/coresdajustica.jpg', 'Ação', 'Um thriller de ação eletrizante onde a busca por justiça cruza os limites da lei nas ruas da cidade.')"><div class="movie-poster"><img src="img/coresdajustica.jpg" alt="Cores da Justiça"></div><div class="movie-info"><div class="movie-title">Cores da Justiça</div><div class="movie-genre">Ação</div></div></div>
-                <div class="movie-card no-top" onclick="openPlayer('Johnny English', 'img/jonyingles.jpg', 'Comédia', 'O agente secreto mais atrapalhado do mundo precisa salvar a coroa britânica em uma aventura hilária.')"><div class="movie-poster"><img src="img/jonyingles.jpg" alt="Johnny English"></div><div class="movie-info"><div class="movie-title">Johnny English</div><div class="movie-genre">Comédia</div></div></div>
-                <div class="movie-card no-top" onclick="openPlayer('Tubarão de 6 Cabeças', 'img/oataquedos6tubaroes.jpg', 'Terror', 'Turistas em uma ilha isolada enfrentam o terror absoluto quando uma abominação marinha mutante com seis cabeças os persegue.')"><div class="movie-poster"><img src="img/oataquedos6tubaroes.jpg" alt="Tubarão de 6 Cabeças"></div><div class="movie-info"><div class="movie-title">Tubarão de 6 Cabeças</div><div class="movie-genre">Terror</div></div></div>
-                <div class="movie-card no-top" onclick="openPlayer('Diga Quem Morre', 'img/quemmorre.jpg', 'Suspense', 'Um jogo mortal onde os participantes precisam tomar decisões impossíveis antes que o tempo se esgote.')"><div class="movie-poster"><img src="img/quemmorre.jpg" alt="Diga Quem Morre"></div><div class="movie-info"><div class="movie-title">Diga Quem Morre</div><div class="movie-genre">Suspense</div></div></div>
+                <div class="movie-card no-top" onclick="openPlayer('Cores da Justiça', 'img/coresdajustica.jpg', 'Ação', 'Um thriller de ação eletrizante onde a busca por justiça cruza os limites da lei nas ruas da cidade.')">
+                    <div class="movie-poster"><img src="img/coresdajustica.jpg" alt="Cores da Justiça"></div>
+                    <div class="movie-info"><div class="movie-title">Cores da Justiça</div><div class="movie-genre">Ação</div></div>
+                </div>
+                <div class="movie-card no-top" onclick="openPlayer('Johnny English', 'img/jonyingles.jpg', 'Comédia', 'O agente secreto mais atrapalhado do mundo precisa salvar a coroa britânica em uma aventura hilária.')">
+                    <div class="movie-poster"><img src="img/jonyingles.jpg" alt="Johnny English"></div>
+                    <div class="movie-info"><div class="movie-title">Johnny English</div><div class="movie-genre">Comédia</div></div>
+                </div>
+                <div class="movie-card no-top" onclick="openPlayer('Tubarão de 6 Cabeças', 'img/oataquedos6tubaroes.jpg', 'Terror', 'Turistas em uma ilha isolada enfrentam o terror absoluto quando uma abominação marinha mutante com seis cabeças os persegue.')">
+                    <div class="movie-poster"><img src="img/oataquedos6tubaroes.jpg" alt="Tubarão de 6 Cabeças"></div>
+                    <div class="movie-info"><div class="movie-title">Tubarão de 6 Cabeças</div><div class="movie-genre">Terror</div></div>
+                </div>
+                <div class="movie-card no-top" onclick="openPlayer('Diga Quem Morre', 'img/quemmorre.jpg', 'Suspense', 'Um jogo mortal onde os participantes precisam tomar decisões impossíveis antes que o tempo se esgote.')">
+                    <div class="movie-poster"><img src="img/quemmorre.jpg" alt="Diga Quem Morre"></div>
+                    <div class="movie-info"><div class="movie-title">Diga Quem Morre</div><div class="movie-genre">Suspense</div></div>
+                </div>
             </div>
         </div>
 
@@ -487,10 +499,22 @@
         <div class="category-section">
             <div class="category-title">🏆 Top 10 Filmes</div>
             <div class="carousel">
-                <div class="movie-card" onclick="openPlayer('Cores da Justiça', 'img/coresdajustica.jpg', 'Ação', 'Um thriller de ação eletrizante onde a busca por justiça cruza os limites da lei nas ruas da cidade.')"><div class="movie-poster"><img src="img/coresdajustica.jpg" alt="Cores da Justiça"><span class="top-number-badge">1</span></div><div class="movie-info"><div class="movie-title">Cores da Justiça</div><div class="movie-genre">Ação</div></div></div>
-                <div class="movie-card" onclick="openPlayer('Johnny English', 'img/jonyingles.jpg', 'Comédia', 'O agente secreto mais atrapalhado do mundo precisa salvar a coroa britânica em uma aventura hilária.')"><div class="movie-poster"><img src="img/jonyingles.jpg" alt="Johnny English"><span class="top-number-badge">2</span></div><div class="movie-info"><div class="movie-title">Johnny English</div><div class="movie-genre">Comédia</div></div></div>
-                <div class="movie-card" onclick="openPlayer('Tubarão de 6 Cabeças', 'img/oataquedos6tubaroes.jpg', 'Terror', 'Turistas em uma ilha isolada enfrentam o terror absoluto quando uma abominação marinha mutante com seis cabeças os persegue.')"><div class="movie-poster"><img src="img/oataquedos6tubaroes.jpg" alt="Tubarão de 6 Cabeças"><span class="top-number-badge">3</span></div><div class="movie-info"><div class="movie-title">Tubarão de 6 Cabeças</div><div class="movie-genre">Terror</div></div></div>
-                <div class="movie-card" onclick="openPlayer('Diga Quem Morre', 'img/quemmorre.jpg', 'Suspense', 'Um jogo mortal onde os participantes precisam tomar decisões impossíveis antes que o tempo se esgote.')"><div class="movie-poster"><img src="img/quemmorre.jpg" alt="Diga Quem Morre"><span class="top-number-badge">4</span></div><div class="movie-info"><div class="movie-title">Diga Quem Morre</div><div class="movie-genre">Suspense</div></div></div>
+                <div class="movie-card" onclick="openPlayer('Cores da Justiça', 'img/coresdajustica.jpg', 'Ação', 'Um thriller de ação eletrizante onde a busca por justiça cruza os limites da lei nas ruas da cidade.')">
+                    <div class="movie-poster"><img src="img/coresdajustica.jpg" alt="Cores da Justiça"><span class="top-number-badge">1</span></div>
+                    <div class="movie-info"><div class="movie-title">Cores da Justiça</div><div class="movie-genre">Ação</div></div>
+                </div>
+                <div class="movie-card" onclick="openPlayer('Johnny English', 'img/jonyingles.jpg', 'Comédia', 'O agente secreto mais atrapalhado do mundo precisa salvar a coroa britânica em uma aventura hilária.')">
+                    <div class="movie-poster"><img src="img/jonyingles.jpg" alt="Johnny English"><span class="top-number-badge">2</span></div>
+                    <div class="movie-info"><div class="movie-title">Johnny English</div><div class="movie-genre">Comédia</div></div>
+                </div>
+                <div class="movie-card" onclick="openPlayer('Tubarão de 6 Cabeças', 'img/oataquedos6tubaroes.jpg', 'Terror', 'Turistas em uma ilha isolada enfrentam o terror absoluto quando uma abominação marinha mutante com seis cabeças os persegue.')">
+                    <div class="movie-poster"><img src="img/oataquedos6tubaroes.jpg" alt="Tubarão de 6 Cabeças"><span class="top-number-badge">3</span></div>
+                    <div class="movie-info"><div class="movie-title">Tubarão de 6 Cabeças</div><div class="movie-genre">Terror</div></div>
+                </div>
+                <div class="movie-card" onclick="openPlayer('Diga Quem Morre', 'img/quemmorre.jpg', 'Suspense', 'Um jogo mortal onde os participantes precisam tomar decisões impossíveis antes que o tempo se esgote.')">
+                    <div class="movie-poster"><img src="img/quemmorre.jpg" alt="Diga Quem Morre"><span class="top-number-badge">4</span></div>
+                    <div class="movie-info"><div class="movie-title">Diga Quem Morre</div><div class="movie-genre">Suspense</div></div>
+                </div>
             </div>
         </div>
 
@@ -498,8 +522,14 @@
         <div class="category-section">
             <div class="category-title has-border">😱 Terror</div>
             <div class="carousel">
-                <div class="movie-card no-top" onclick="openPlayer('Tubarão de 6 Cabeças', 'img/oataquedos6tubaroes.jpg', 'Terror', 'Turistas em uma ilha isolada enfrentam o terror absoluto quando uma abominação marinha mutante com seis cabeças os persegue.')"><div class="movie-poster"><img src="img/oataquedos6tubaroes.jpg" alt="Tubarão de 6 Cabeças"></div><div class="movie-info"><div class="movie-title">Tubarão de 6 Cabeças</div><div class="movie-genre">Terror</div></div></div>
-                <div class="movie-card no-top" onclick="openPlayer('Diga Quem Morre', 'img/quemmorre.jpg', 'Terror', 'Um jogo mortal onde os participantes precisam tomar decisões impossíveis antes que o tempo se esgote.')"><div class="movie-poster"><img src="img/quemmorre.jpg" alt="Diga Quem Morre"></div><div class="movie-info"><div class="movie-title">Diga Quem Morre</div><div class="movie-genre">Terror</div></div></div>
+                <div class="movie-card no-top" onclick="openPlayer('Tubarão de 6 Cabeças', 'img/oataquedos6tubaroes.jpg', 'Terror', 'Turistas em uma ilha isolada enfrentam o terror absoluto quando uma abominação marinha mutante com seis cabeças os persegue.')">
+                    <div class="movie-poster"><img src="img/oataquedos6tubaroes.jpg" alt="Tubarão de 6 Cabeças"></div>
+                    <div class="movie-info"><div class="movie-title">Tubarão de 6 Cabeças</div><div class="movie-genre">Terror</div></div>
+                </div>
+                <div class="movie-card no-top" onclick="openPlayer('Diga Quem Morre', 'img/quemmorre.jpg', 'Terror', 'Um jogo mortal onde os participantes precisam tomar decisões impossíveis antes que o tempo se esgote.')">
+                    <div class="movie-poster"><img src="img/quemmorre.jpg" alt="Diga Quem Morre"></div>
+                    <div class="movie-info"><div class="movie-title">Diga Quem Morre</div><div class="movie-genre">Terror</div></div>
+                </div>
             </div>
         </div>
 
@@ -507,7 +537,10 @@
         <div class="category-section">
             <div class="category-title has-border">😂 Para Morrer de Rir</div>
             <div class="carousel">
-                <div class="movie-card no-top" onclick="openPlayer('Johnny English', 'img/jonyingles.jpg', 'Comédia', 'O agente secreto mais atrapalhado do mundo precisa salvar a coroa britânica em uma aventura hilária.')"><div class="movie-poster"><img src="img/jonyingles.jpg" alt="Johnny English"></div><div class="movie-info"><div class="movie-title">Johnny English</div><div class="movie-genre">Comédia</div></div></div>
+                <div class="movie-card no-top" onclick="openPlayer('Johnny English', 'img/jonyingles.jpg', 'Comédia', 'O agente secreto mais atrapalhado do mundo precisa salvar a coroa britânica em uma aventura hilária.')">
+                    <div class="movie-poster"><img src="img/jonyingles.jpg" alt="Johnny English"></div>
+                    <div class="movie-info"><div class="movie-title">Johnny English</div><div class="movie-genre">Comédia</div></div>
+                </div>
             </div>
         </div>
 
@@ -515,15 +548,6 @@
         <div class="category-section">
             <div class="category-title has-border">💥 Ação a Todo Momento</div>
             <div class="carousel">
-                <div class="movie-card no-top" onclick="openPlayer('Cores da Justiça', 'img/coresdajustica.jpg', 'Ação', 'Um thriller de ação eletrizante onde a busca por justiça cruza os limites da lei nas ruas da cidade.')"><div class="movie-poster"><img src="img/coresdajustica.jpg" alt="Cores da Justiça"></div><div class="movie-info"><div class="movie-title">Cores da Justiça</div><div class="movie-genre">Ação</div></div></div>
-            </div>
-        </div>
-
-        <div style="height: 15px;"></div>
-
-        <!-- SEÇÃO: SÉRIES (Geral) -->
-        <div class="category-section">
-            <div class="category-title has-border">📺 Séries</div>
-            <div class="carousel">
-                <div class="movie-card no-top"><div class="movie-poster">🐉</div><div class="movie-info"><div class="movie-title">House of the Dragon</div><div class="movie-genre">Fantasia</div></div></div>
-                <div class="movie-card no-top"><div class="movie-poster">♟️</div><div class="movie-info"><div class="movie-title"
+                <div class="movie-card no-top" onclick="openPlayer('Cores da Justiça', 'img/coresdajustica.jpg', 'Ação', 'Um thriller de ação eletrizante onde a busca por justiça cruza os limites da lei nas ruas da cidade.')">
+                    <div class="movie-poster"><img src="img/coresdajustica.jpg" alt="Cores da Justiça"></div>
+                    <div class="movie-info
