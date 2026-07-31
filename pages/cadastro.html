@@ -6,45 +6,56 @@
     <title>Play Filmes - Cadastro</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/login.css">
+    <style>
+        /* Garante que o fundo da página inteira seja o azul escuro do app e centralize tudo */
+        body {
+            background-color: #050811 !important;
+            color: #ffffff;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: sans-serif;
+        }
+    </style>
 </head>
 <body>
     <div class="login-container">
         <h1>CRIAR CONTA</h1>
         
-        <!-- Mensagem de sucesso (inicialmente escondida) -->
+        <!-- Mensagem de sucesso estilizada -->
         <div id="mensagem-sucesso" style="display: none; background: rgba(0, 210, 255, 0.2); border: 1px solid #00d2ff; color: #00d2ff; padding: 12px; border-radius: 8px; margin-bottom: 20px; font-weight: bold; text-align: center;">
             Cadastro realizado com sucesso! Redirecionando...
         </div>
 
         <form id="form-cadastro" onsubmit="realizarCadastro(event)">
             <div style="margin-bottom: 15px;">
-                <input type="text" placeholder="Nome Completo" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #0055ff; background: #050811; color: #fff;" required>
+                <input type="text" placeholder="Nome Completo" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #0055ff; background: #050811; color: #fff; box-sizing: border-box;" required>
             </div>
             <div style="margin-bottom: 15px;">
-                <input type="email" placeholder="E-mail" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #0055ff; background: #050811; color: #fff;" required>
+                <input type="email" placeholder="E-mail" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #0055ff; background: #050811; color: #fff; box-sizing: border-box;" required>
             </div>
             <div style="margin-bottom: 15px;">
-                <input type="password" placeholder="Senha" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #0055ff; background: #050811; color: #fff;" required>
+                <input type="password" placeholder="Senha" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #0055ff; background: #050811; color: #fff; box-sizing: border-box;" required>
             </div>
             <div style="margin-bottom: 20px;">
-                <input type="password" placeholder="Confirmar Senha" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #0055ff; background: #050811; color: #fff;" required>
+                <input type="password" placeholder="Confirmar Senha" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #0055ff; background: #050811; color: #fff; box-sizing: border-box;" required>
             </div>
-            <button type="submit" style="width: 100%; padding: 12px; border-radius: 8px; background: #0055ff; color: #fff; font-weight: bold; font-size: 16px; cursor: pointer;">Cadastrar</button>
+            <button type="submit" style="width: 100%; padding: 12px; border-radius: 8px; background: #0055ff; color: #fff; font-weight: bold; font-size: 16px; cursor: pointer; border: none;">Cadastrar</button>
         </form>
-        <div style="margin-top: 15px;">
+        <div style="margin-top: 15px; text-align: center;">
             <a href="login.html" style="color: #00d2ff; text-decoration: none; font-size: 14px;">Já tem uma conta? Entre aqui</a>
         </div>
     </div>
 
     <script>
         function realizarCadastro(event) {
-            event.preventDefault(); // Evita que a página recarregue seco
+            event.preventDefault();
             
-            // Esconde o formulário e mostra a mensagem de sucesso
             document.getElementById('form-cadastro').style.display = 'none';
             document.getElementById('mensagem-sucesso').style.display = 'block';
 
-            // Aguarda 2 segundos e joga para a página de login
             setTimeout(function() {
                 window.location.href = "login.html";
             }, 2000);
