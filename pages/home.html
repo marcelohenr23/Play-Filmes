@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Filmes - Início</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body { background-color: #050811; color: #fff; margin: 0; padding-bottom: 50px; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: #0a0f1d; border-bottom: 1px solid #0055ff; }
+        .logo { color: #00d2ff; font-weight: bold; font-size: 1.2rem; }
+        .banner-principal { width: 100%; height: 250px; background: linear-gradient(to bottom, transparent, #050811), url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80') center/cover; display: flex; align-items: flex-end; padding: 20px; }
+        .btn-assistir { background: #0055ff; color: #fff; padding: 10px 20px; border-radius: 6px; font-weight: bold; font-size: 1rem; border: none; }
+        .categoria-titulo { padding: 15px 20px 5px 20px; font-size: 1.1rem; color: #00d2ff; }
+        .carrossel { display: flex; overflow-x: auto; gap: 10px; padding: 10px 20px; scrollbar-width: none; }
+        .carrossel::-webkit-scrollbar { display: none; }
+        .filme-card { min-width: 110px; height: 160px; background: #0a0f1d; border-radius: 8px; border: 1px solid #0055ff; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; text-align: center; padding: 5px; color: #8c92a4; }
+    </style>
+</head>
+<body>
+
+    <!-- Header do App -->
+    <header>
+        <span class="logo">PLAY FILMES</span>
+        <div>🔍 👤</div>
+    </header>
+
+    <!-- Banner Principal -->
+    <div class="banner-principal">
+        <div>
+            <h2 style="margin-bottom: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Aventura Espacial</h2>
+            <button class="btn-assistir">▶ Assistir</button>
+        </div>
+    </div>
+
+    <!-- Categoria 1: Top 7 Filmes -->
+    <div class="categoria-titulo">Top 7 Filmes</div>
+    <div class="carrossel">
+        <div class="filme-card">Filme 1</div>
+        <div class="filme-card">Filme 2</div>
+        <div class="filme-card">Filme 3</div>
+        <div class="filme-card">Filme 4</div>
+        <div class="filme-card">Filme 5</div>
+    </div>
+
+    <!-- Categoria 2: Adrenalina -->
+    <div class="categoria-titulo">Adrenalina</div>
+    <div class="carrossel">
+        <div class="filme-card">Ação 1</div>
+        <div class="filme-card">Ação 2</div>
+        <div class="filme-card">Ação 3</div>
+        <div class="filme-card">Ação 4</div>
+    </div>
+
+</body>
+</html>
