@@ -25,7 +25,7 @@
 <body>
 
     <!-- Banner Superior com Botão de Voltar -->
-    <div class="banner-detalhe">
+    <div class="banner-detalhe" id="bannerDetalhe">
         <a href="home.html" class="btn-voltar-topo">‹</a>
     </div>
 
@@ -48,5 +48,30 @@
         </div>
     </div>
 
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const nomeFilme = params.get('filme');
+            
+            if (nomeFilme) {
+                // Atualiza o título do filme na tela de detalhes
+                const tituloElemento = document.querySelector('.titulo-filme');
+                if (tituloElemento) {
+                    tituloElemento.textContent = nomeFilme;
+                }
+
+                // Busca a imagem correta salva no localStorage para colocar no banner de fundo
+                const filmesSalvos = JSON.parse(localStorage.getItem('filmesImagens')) || [];
+                const filmeEncontrado = filmesSalvos.find(f => f.titulo === nomeFilme);
+
+                if (filmeEncontrado) {
+                    const banner = document.getElementById('bannerDetalhe');
+                    if (banner) {
+                        banner.style.background = `linear-gradient(to bottom, transparent 60%, #050811), url(${filmeEncontrado.imagem}) center/cover`;
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
