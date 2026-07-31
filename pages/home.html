@@ -12,7 +12,7 @@
         
         .filtros-nav { display: flex; gap: 15px; padding: 12px 20px; background: #0a0f1d; overflow-x: auto; border-bottom: 1px solid rgba(0,85,255,0.2); scrollbar-width: none; }
         .filtros-nav::-webkit-scrollbar { display: none; }
-        .filtro-btn { background: rgba(0, 85, 255, 0.2); border: 1px solid #0055ff; color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 0.9rem; white-space: nowrap; cursor: pointer; }
+        .filtro-btn { background: rgba(0, 85, 255, 0.2); border: 1px solid #0055ff; color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 0.9rem; white-space: nowrap; text-decoration: none; display: inline-block; cursor: pointer; }
         .filtro-btn.active { background: #0055ff; font-weight: bold; }
 
         .banner-principal { width: 100%; height: 250px; background: linear-gradient(to bottom, transparent, #050811), url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80') center/cover; display: flex; align-items: flex-end; padding: 20px; }
@@ -21,7 +21,6 @@
         .carrossel { display: flex; overflow-x: auto; gap: 10px; padding: 10px 20px; scrollbar-width: none; }
         .carrossel::-webkit-scrollbar { display: none; }
         
-        /* Transformando os cards em links clicáveis para a página de detalhes */
         .filme-card { min-width: 110px; height: 160px; background: #0a0f1d; border-radius: 8px; border: 1px solid #0055ff; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; text-align: center; padding: 5px; color: #8c92a4; text-decoration: none; transition: transform 0.2s; }
         .filme-card:active { transform: scale(0.95); }
     </style>
@@ -33,12 +32,13 @@
         <div>🔍 👤</div>
     </header>
 
+    <!-- Menu Superior com os links funcionando -->
     <div class="filtros-nav">
-        <button class="filtro-btn active">Início</button>
-        <button class="filtro-btn">Séries</button>
-        <button class="filtro-btn">Filmes</button>
-        <button class="filtro-btn">Categorias</button>
-        <button class="filtro-btn">Minha Lista</button>
+        <a href="home.html" class="filtro-btn active">Início</a>
+        <a href="series.html" class="filtro-btn">Séries</a>
+        <a href="filmes.html" class="filtro-btn">Filmes</a>
+        <a href="categorias.html" class="filtro-btn">Categorias</a>
+        <a href="minhalista.html" class="filtro-btn">Minha Lista</a>
     </div>
 
     <div class="banner-principal">
