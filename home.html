@@ -92,10 +92,6 @@
             border-color: var(--neon-blue);
         }
 
-        .user-profile-badge span {
-            font-size: 14px;
-        }
-
         /* Banner de Boas-vindas */
         .welcome-banner {
             padding: 25px 20px 15px 20px;
@@ -153,6 +149,7 @@
             overflow: hidden;
             scroll-snap-align: start;
             cursor: pointer;
+            position: relative;
             transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
@@ -189,7 +186,7 @@
             color: var(--text-main);
             -webkit-text-stroke: 2px var(--bg-color);
             text-shadow: 0 0 10px var(--neon-blue);
-            z-index: 1;
+            z-index: 2;
         }
 
         .movie-card.no-top .movie-poster {
@@ -215,7 +212,7 @@
             text-transform: uppercase;
         }
 
-        /* --- TELA DE DETALHES / PLAYER DO FILME --- */
+        /* --- TELA DE DETALHES / PLAYER DO FILME (ESTILO NETFLIX) --- */
         #moviePlayerScreen {
             display: none;
             position: fixed;
@@ -224,13 +221,13 @@
             width: 100%;
             height: 100%;
             background-color: var(--bg-color);
-            z-index: 9999;
+            z-index: 99999;
             overflow-y: auto;
         }
 
         .player-header-banner {
             width: 100%;
-            height: 260px;
+            height: 280px;
             position: relative;
             background: #111;
         }
@@ -248,7 +245,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 80px;
+            height: 90px;
             background: linear-gradient(to top, var(--bg-color), transparent);
         }
 
@@ -256,11 +253,11 @@
             position: absolute;
             top: 15px;
             left: 15px;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
             border: 1px solid var(--border-color);
             color: #fff;
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -290,12 +287,6 @@
             text-transform: uppercase;
             margin-bottom: 5px;
             text-shadow: 0 0 8px var(--neon-glow);
-            animation: pulseGlow 2s infinite alternate;
-        }
-
-        @keyframes pulseGlow {
-            0% { opacity: 0.7; text-shadow: 0 0 5px var(--neon-glow); }
-            100% { opacity: 1; text-shadow: 0 0 12px var(--neon-blue); }
         }
 
         .player-movie-title {
@@ -326,7 +317,7 @@
             background-color: #ffffff;
             color: #000000;
             border: none;
-            padding: 12px;
+            padding: 13px;
             border-radius: 6px;
             font-size: 15px;
             font-weight: 700;
@@ -349,7 +340,7 @@
             background-color: #1a2238;
             color: #ffffff;
             border: 1px solid var(--border-color);
-            padding: 12px;
+            padding: 13px;
             border-radius: 6px;
             font-size: 15px;
             font-weight: 700;
@@ -462,17 +453,17 @@
             </div>
             <div class="user-profile-badge" onclick="window.location.href='perfil.html'">
                 <span id="userAvatar">🍿</span>
-                <strong id="userName">Perfil</strong>
+                <strong>Perfil</strong>
             </div>
         </header>
 
         <!-- Saudação -->
         <div class="welcome-banner">
-            <h2 id="welcomeText">Olá!</h2>
+            <h2>Olá!</h2>
             <p>Explore nosso catálogo</p>
         </div>
 
-        <!-- SEÇÃO: FILMES (Geral) -->
+        <!-- SEÇÃO: FILMES -->
         <div class="category-section">
             <div class="category-title has-border">🎬 Filmes</div>
             <div class="carousel">
@@ -550,4 +541,12 @@
             <div class="carousel">
                 <div class="movie-card no-top" onclick="openPlayer('Cores da Justiça', 'img/coresdajustica.jpg', 'Ação', 'Um thriller de ação eletrizante onde a busca por justiça cruza os limites da lei nas ruas da cidade.')">
                     <div class="movie-poster"><img src="img/coresdajustica.jpg" alt="Cores da Justiça"></div>
-                    <div class="movie-info
+                    <div class="movie-info"><div class="movie-title">Cores da Justiça</div><div class="movie-genre">Ação</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO: SÉRIES -->
+        <div class="category-section">
+            <div class="category-title has-border">📺 Séries</div>
+            <div clas
