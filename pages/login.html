@@ -23,7 +23,7 @@
 <body>
     <div class="login-container">
         <h1>PLAY FILMES</h1>
-        <form onsubmit="event.preventDefault(); window.location.href='perfil.html';">
+        <form onsubmit="event.preventDefault(); localStorage.setItem('usuarioLogado', 'true'); window.location.href='perfil.html';">
             <div style="margin-bottom: 15px;">
                 <input type="email" placeholder="E-mail" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #0055ff; background: #050811; color: #fff; box-sizing: border-box;" required>
             </div>
