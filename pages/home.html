@@ -21,7 +21,7 @@
         .carrossel { display: flex; overflow-x: auto; gap: 10px; padding: 10px 20px; scrollbar-width: none; }
         .carrossel::-webkit-scrollbar { display: none; }
         
-        .filme-card { min-width: 110px; height: 160px; background: #0a0f1d; border-radius: 8px; border: 1px solid #0055ff; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; text-align: center; padding: 5px; color: #8c92a4; text-decoration: none; transition: transform 0.2s; }
+        .filme-card { min-width: 110px; height: 160px; background: #0a0f1d; border-radius: 8px; border: 1px solid #0055ff; flex-shrink: 0; display: flex; align-items: center; justifyContent: center; font-size: 0.9rem; text-align: center; padding: 5px; color: #8c92a4; text-decoration: none; transition: transform 0.2s; }
         .filme-card:active { transform: scale(0.95); }
     </style>
 </head>
@@ -82,30 +82,29 @@
         <a href="detalhes.html" class="filme-card">Série 1</a>
         <a href="detalhes.html" class="filme-card">Série 2</a>
         <a href="detalhes.html" class="filme-card">Série 3</a>
-        <a href="detalhes.html" class="filme-card">Série 4</a>
+        <a href="detalsche.html" class="filme-card">Série 4</a>
     </div>
+
     <script>
-        // Quando a página carregar, busca os filmes salvos no localStorage
         window.addEventListener('DOMContentLoaded', function() {
             const filmesSalvos = JSON.parse(localStorage.getItem('filmesImagens')) || [];
             
             if (filmesSalvos.length > 0) {
-                // Pega todos os elementos que têm a classe 'filme-card'
                 const cards = document.querySelectorAll('.filme-card');
                 
-                // Preenche cada card com os filmes que você cadastrou
                 filmesSalvos.forEach((filme, index) => {
                     if (cards[index]) {
-                        // Aplica a imagem de fundo, remove o texto antigo e ajusta o estilo
                         cards[index].style.background = `url(${filme.imagem}) center/cover no-repeat`;
-                        cards[index].textContent = ''; // Limpa o texto (ex: "Filme 1") para aparecer só a capa
+                        cards[index].textContent = ''; 
                         cards[index].style.border = '1px solid #00d2ff';
                         cards[index].style.display = 'flex';
                         cards[index].style.alignItems = 'flex-end';
                         cards[index].style.justifyContent = 'center';
                         cards[index].style.paddingBottom = '8px';
                         
-                        // Opcional: Adiciona o título do filme pequenininho embaixo da capa
+                        // Atualiza o link do card para enviar o nome exato do filme clicado
+                        cards[index].href = `detalhes.html?filme=${encodeURIComponent(filme.titulo)}`;
+
                         const span = document.createElement('span');
                         span.textContent = filme.titulo;
                         span.style.background = 'rgba(0, 0, 0, 0.7)';
