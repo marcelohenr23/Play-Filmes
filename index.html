@@ -8,34 +8,66 @@
         body {
             background-color: #050811;
             color: #ffffff;
-            font-family: sans-serif;
-            text-align: center;
-            padding-top: 150px;
             margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: sans-serif;
+            overflow: hidden;
         }
+
         .logo-splash {
-            font-size: 2.2rem;
+            font-size: 2.8rem;
             font-weight: bold;
             color: #00d2ff;
-            margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+            margin-bottom: 25px;
+            text-shadow: 0 0 20px rgba(0, 210, 255, 0.6);
+            letter-spacing: 2px;
+            animation: pulsar 1.5s infinite alternate;
         }
-        .loading-text {
-            font-size: 1rem;
-            color: #8c92a4;
+
+        .loading-bar-container {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loading-bar {
+            width: 0%;
+            height: 100%;
+            background: #00d2ff;
+            box-shadow: 0 0 10px #00d2ff;
+            animation: progresso 2s forwards;
+        }
+
+        @keyframes pulsar {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.05); opacity: 1; }
+        }
+
+        @keyframes progresso {
+            0% { width: 0%; }
+            100% { width: 100%; }
         }
     </style>
 </head>
 <body>
 
     <div class="logo-splash">PLAY FILMES</div>
-    <div class="loading-text">Carregando...</div>
+    <div class="loading-bar-container">
+        <div class="loading-bar"></div>
+    </div>
 
     <script>
-        // Redireciona para a tela de cadastro após 1.5 segundos
+        // Redireciona para a tela de cadastro exatamente quando a barra encher (2 segundos)
         setTimeout(function() {
             window.location.href = "pages/cadastro.html";
-        }, 1500);
+        }, 2000);
     </script>
 
 </body>
