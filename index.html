@@ -4,8 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play Filmes</title>
+    <style>
+        body {
+            background-color: #050811;
+            color: #fff;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+        }
+        .logo-splash {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #00d2ff;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+            letter-spacing: 1px;
+        }
+        .loading-text {
+            font-size: 1rem;
+            color: #8c92a4;
+        }
+    </style>
 </head>
 <body>
-    <h1>Play Filmes - Carregando...</h1>
+
+    <div class="logo-splash">PLAY FILMES</div>
+    <div class="loading-text">Carregando...</div>
+
+    <script>
+        // Depois da animação/carregamento, redireciona para a tela seguinte (ex: login ou cadastro)
+        setTimeout(function() {
+            // Mude para a próxima página do seu fluxo quando criar, ex: "pages/login.html"
+            window.location.href = "pages/home.html"; 
+        }, 2000);
+    </script>
+
 </body>
 </html>
