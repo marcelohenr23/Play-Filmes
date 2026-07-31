@@ -89,7 +89,7 @@
             cursor: pointer;
         }
 
-        /* Banner de Boas-vindas */
+        /* Saudação */
         .welcome-banner {
             padding: 25px 20px 15px 20px;
         }
@@ -105,7 +105,7 @@
             color: var(--text-muted);
         }
 
-        /* Títulos de Categorias */
+        /* Categorias e Carrossel */
         .category-section {
             margin-bottom: 22px;
         }
@@ -124,7 +124,6 @@
             border-left: 3px solid var(--neon-blue);
         }
 
-        /* Carrossel Horizontal */
         .carousel {
             display: flex;
             gap: 10px;
@@ -161,7 +160,7 @@
             font-size: 30px;
             position: relative;
             overflow: hidden;
-            pointer-events: none; /* Garante que o toque passe direto para o card */
+            pointer-events: none;
         }
 
         .movie-poster img {
@@ -371,7 +370,7 @@
             fill: currentColor;
         }
 
-        /* Menu Inferior */
+        /* Menu Inferior Fixo */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -425,7 +424,7 @@
                 <h1>PLAY FILMES</h1>
             </div>
             <div class="user-profile-badge" onclick="window.location.href='perfil.html'">
-                <span id="userAvatar">🍿</span>
+                <span>🍿</span>
                 <strong>Perfil</strong>
             </div>
         </header>
@@ -481,50 +480,64 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- SEÇÃO: TERROR -->
-        <div class="category-section">
-            <div class="category-title has-border">😱 Terror</div>
-            <div class="carousel">
-                <div class="movie-card no-top" data-title="Tubarão de 6 Cabeças" data-img="img/oataquedos6tubaroes.jpg" data-genre="Terror" data-synopsis="Turistas em uma ilha isolada enfrentam o terror absoluto quando uma abominação marinha mutante com seis cabeças os persegue.">
-                    <div class="movie-poster"><img src="img/oataquedos6tubaroes.jpg" alt="Tubarão de 6 Cabeças"></div>
-                    <div class="movie-info"><div class="movie-title">Tubarão de 6 Cabeças</div><div class="movie-genre">Terror</div></div>
-                </div>
-                <div class="movie-card no-top" data-title="Diga Quem Morre" data-img="img/quemmorre.jpg" data-genre="Terror" data-synopsis="Um jogo mortal onde os participantes precisam tomar decisões impossíveis antes que o tempo se esgote.">
-                    <div class="movie-poster"><img src="img/quemmorre.jpg" alt="Diga Quem Morre"></div>
-                    <div class="movie-info"><div class="movie-title">Diga Quem Morre</div><div class="movie-genre">Terror</div></div>
-                </div>
+    <!-- TELA DE DETALHES / PLAYER (ESTILO NETFLIX) -->
+    <div id="moviePlayerScreen">
+        <div class="player-header-banner">
+            <button class="back-btn" onclick="closePlayer()">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="#ffffff"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            </button>
+            <img id="playerImg" src="" alt="Capa do Filme">
+        </div>
+        <div class="player-content">
+            <span class="player-top-tag">PLAY FILMES ORIGINAL</span>
+            <h2 id="playerTitle" class="player-movie-title">Nome do Filme</h2>
+            
+            <div class="player-meta">
+                <span style="color: #46d369; font-weight: bold;">98% relevante</span>
+                <span>2026</span>
+                <span class="badge-hd">HD</span>
+                <span id="playerGenre" style="text-transform: uppercase;">Ação</span>
+            </div>
+
+            <button class="btn-action-primary" onclick="alert('Iniciando reprodução...')">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="#000"><path d="M8 5v14l11-7z"/></svg>
+                Assistir
+            </button>
+
+            <button class="btn-action-secondary" onclick="alert('Download iniciado!')">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                Baixar
+            </button>
+
+            <p id="playerSynopsis" class="player-synopsis">Sinopse detalhada do filme escolhido...</p>
+
+            <div class="player-actions-row">
+                <button class="action-icon-btn" onclick="alert('Adicionado à Minha Lista!')">
+                    <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                    Minha lista
+                </button>
+                <button class="action-icon-btn" onclick="alert('Avaliado com sucesso!')">
+                    <svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
+                    Avaliar
+                </button>
+                <button class="action-icon-btn" onclick="alert('Link copiado para compartilhar!')">
+                    <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+                    Compartilhe
+                </button>
             </div>
         </div>
+    </div>
 
-        <!-- SEÇÃO: PARA MORRER DE RIR -->
-        <div class="category-section">
-            <div class="category-title has-border">😂 Para Morrer de Rir</div>
-            <div class="carousel">
-                <div class="movie-card no-top" data-title="Johnny English" data-img="img/jonyingles.jpg" data-genre="Comédia" data-synopsis="O agente secreto mais atrapalhado do mundo precisa salvar a coroa britânica em uma aventura hilária.">
-                    <div class="movie-poster"><img src="img/jonyingles.jpg" alt="Johnny English"></div>
-                    <div class="movie-info"><div class="movie-title">Johnny English</div><div class="movie-genre">Comédia</div></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SEÇÃO: AÇÃO A TODO MOMENTO -->
-        <div class="category-section">
-            <div class="category-title has-border">💥 Ação a Todo Momento</div>
-            <div class="carousel">
-                <div class="movie-card no-top" data-title="Cores da Justiça" data-img="img/coresdajustica.jpg" data-genre="Ação" data-synopsis="Um thriller de ação eletrizante onde a busca por justiça cruza os limites da lei nas ruas da cidade.">
-                    <div class="movie-poster"><img src="img/coresdajustica.jpg" alt="Cores da Justiça"></div>
-                    <div class="movie-info"><div class="movie-title">Cores da Justiça</div><div class="movie-genre">Ação</div></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SEÇÃO: SÉRIES -->
-        <div class="category-section">
-            <div class="category-title has-border">📺 Séries</div>
-            <div class="carousel">
-                <div class="movie-card no-top" data-title="House of the Dragon" data-img="img/coresdajustica.jpg" data-genre="Fantasia" data-synopsis="A história da guerra civil dos Targaryen em Westeros.">
-                    <div class="movie-poster">🐉</div>
-                    <div class="movie-info"><div class="movie-title">House of the Dragon</div><div class="movie-genre">Fantasia</div></div>
-                </div>
-                <div class="movie-ca
+    <!-- Menu Inferior Fixo -->
+    <nav class="bottom-nav">
+        <button class="nav-item active">
+            <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            Início
+        </button>
+        <button class="nav-item" onclick="alert('Seção de Clipes em breve!')">
+            <svg viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>
+            Clipes
+        </button>
+        <button class="nav-item" onclick="alert('Busca em breve!'
