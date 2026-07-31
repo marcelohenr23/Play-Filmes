@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Filmes - Buscar</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body { background-color: #050811; color: #fff; margin: 0; padding-bottom: 50px; }
+        header { display: flex; align-items: center; padding: 15px 20px; background: #0a0f1d; border-bottom: 1px solid #0055ff; gap: 15px; }
+        .btn-voltar { color: #fff; text-decoration: none; font-size: 1.2rem; }
+        
+        .search-container { padding: 20px; }
+        .search-box { display: flex; background: #0a0f1d; border: 1px solid #0055ff; border-radius: 8px; padding: 10px 15px; align-items: center; gap: 10px; }
+        .search-input { background: transparent; border: none; color: #fff; font-size: 1rem; width: 100%; outline: none; }
+        .search-input::placeholder { color: #8c92a4; }
+
+        .categoria-titulo { padding: 10px 20px; font-size: 1.1rem; color: #00d2ff; }
+        .grid-busca { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 0 20px; }
+        .filme-card { height: 150px; background: #0a0f1d; border-radius: 8px; border: 1px solid #0055ff; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; text-align: center; padding: 5px; color: #8c92a4; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="home.html" class="btn-voltar">‹</a>
+        <div class="search-box" style="flex: 1;">
+            <span>🔍</span>
+            <input type="text" class="search-input" placeholder="Pesquisar filmes, séries..." autofocus>
+        </div>
+    </header>
+
+    <div class="categoria-titulo" style="margin-top: 10px;">Buscas Populares</div>
+    <div class="grid-busca">
+        <a href="detalhes.html" class="filme-card">Aventura Espacial</a>
+        <a href="detalhes.html" class="filme-card">Comédia 1</a>
+        <a href="detalhes.html" class="filme-card">Ação 1</a>
+        <a href="detalhes.html" class="filme-card">Série Em Alta 1</a>
+    </div>
+
+</body>
+</html>
