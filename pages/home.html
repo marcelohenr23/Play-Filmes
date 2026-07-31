@@ -16,18 +16,19 @@
         .filtro-btn.active { background: #0055ff; font-weight: bold; }
 
         .categoria-titulo { padding: 15px 20px 5px 20px; font-size: 1.1rem; color: #00d2ff; }
-        .carrossel { display: flex; overflow-x: auto; gap: 10px; padding: 10px 20px; scrollbar-width: none; }
+        .carrossel { display: flex; overflow-x: auto; gap: 15px; padding: 10px 20px; scrollbar-width: none; }
         .carrossel::-webkit-scrollbar { display: none; }
         
-        .filme-card { min-width: 110px; height: 160px; background: #0a0f1d; border-radius: 8px; border: 1px solid #0055ff; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; text-align: center; padding: 5px; color: #8c92a4; text-decoration: none; }
+        .filme-card { min-width: 130px; height: 180px; background: #0a0f1d; border-radius: 8px; border: 1px solid #0055ff; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; text-align: center; padding: 5px; color: #8c92a4; text-decoration: none; transition: transform 0.2s; }
+        .filme-card:active { transform: scale(0.95); }
     </style>
 </head>
 <body>
 
     <header>
         <span class="logo">PLAY FILMES</span>
-        <div>
-            <a href="busca.html" style="text-decoration: none; font-size: 1.2rem; margin-right: 12px;">🔍</a>
+        <div style="display: flex; gap: 15px; align-items: center;">
+            <a href="busca.html" style="text-decoration: none; font-size: 1.2rem;">🔍</a>
             <span style="font-size: 1.2rem;">👤</span>
         </div>
     </header>
@@ -42,18 +43,25 @@
     </div>
 
     <!-- Seções de Conteúdo -->
-    <div class="categoria-titulo">Continuar Assistindo</div>
+    <div class="categoria-titulo">Top 7 Filmes</div>
     <div class="carrossel">
         <a href="detalhes.html" class="filme-card">Aventura Espacial</a>
         <a href="detalhes.html" class="filme-card">Filme 2</a>
         <a href="detalhes.html" class="filme-card">Filme 3</a>
     </div>
 
-    <div class="categoria-titulo">Em Alta</div>
+    <div class="categoria-titulo">Séries Populares</div>
     <div class="carrossel">
         <a href="detalhes.html" class="filme-card">Série 1</a>
         <a href="detalhes.html" class="filme-card">Série 2</a>
         <a href="detalhes.html" class="filme-card">Série 3</a>
+    </div>
+
+    <div class="categoria-titulo">Filmes de Ação</div>
+    <div class="carrossel">
+        <a href="detalhes.html" class="filme-card">Ação 1</a>
+        <a href="detalhes.html" class="filme-card">Ação 2</a>
+        <a href="detalhes.html" class="filme-card">Ação 3</a>
     </div>
 
 </body>
