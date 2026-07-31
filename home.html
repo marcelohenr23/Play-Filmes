@@ -20,6 +20,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -64,6 +65,7 @@
             width: 18px;
             height: 18px;
             fill: var(--neon-blue);
+            pointer-events: none;
         }
 
         .logo-area h1 {
@@ -85,11 +87,6 @@
             border-radius: 20px;
             font-size: 12px;
             cursor: pointer;
-            transition: border-color 0.3s;
-        }
-
-        .user-profile-badge:hover {
-            border-color: var(--neon-blue);
         }
 
         /* Banner de Boas-vindas */
@@ -135,6 +132,7 @@
             padding: 0 20px 10px 20px;
             scroll-snap-type: x mandatory;
             scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
         }
 
         .carousel::-webkit-scrollbar {
@@ -150,13 +148,7 @@
             scroll-snap-align: start;
             cursor: pointer;
             position: relative;
-            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .movie-card:hover {
-            transform: scale(1.03);
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 10px var(--neon-glow);
+            user-select: none;
         }
 
         .movie-poster {
@@ -169,12 +161,14 @@
             font-size: 30px;
             position: relative;
             overflow: hidden;
+            pointer-events: none; /* Garante que o toque passe direto para o card */
         }
 
         .movie-poster img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            pointer-events: none;
         }
 
         .top-number-badge {
@@ -187,6 +181,7 @@
             -webkit-text-stroke: 2px var(--bg-color);
             text-shadow: 0 0 10px var(--neon-blue);
             z-index: 2;
+            pointer-events: none;
         }
 
         .movie-card.no-top .movie-poster {
@@ -195,6 +190,7 @@
 
         .movie-info {
             padding: 8px;
+            pointer-events: none;
         }
 
         .movie-title {
@@ -264,11 +260,6 @@
             justify-content: center;
             cursor: pointer;
             z-index: 10;
-            transition: border-color 0.3s;
-        }
-
-        .back-btn:hover {
-            border-color: var(--neon-blue);
         }
 
         .player-content {
@@ -327,12 +318,6 @@
             gap: 8px;
             cursor: pointer;
             margin-bottom: 10px;
-            transition: background 0.3s, box-shadow 0.3s;
-        }
-
-        .btn-action-primary:hover {
-            background-color: var(--neon-blue);
-            box-shadow: 0 0 15px var(--neon-glow);
         }
 
         .btn-action-secondary {
@@ -350,12 +335,6 @@
             gap: 8px;
             cursor: pointer;
             margin-bottom: 20px;
-            transition: border-color 0.3s, background 0.3s;
-        }
-
-        .btn-action-secondary:hover {
-            border-color: var(--neon-blue);
-            background-color: #242f4d;
         }
 
         .player-synopsis {
@@ -384,11 +363,6 @@
             gap: 5px;
             font-size: 11px;
             cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .action-icon-btn:hover {
-            color: var(--neon-blue);
         }
 
         .action-icon-btn svg {
@@ -423,7 +397,6 @@
             gap: 3px;
             cursor: pointer;
             text-decoration: none;
-            transition: color 0.3s;
         }
 
         .nav-item.active {
@@ -467,19 +440,19 @@
         <div class="category-section">
             <div class="category-title has-border">🎬 Filmes</div>
             <div class="carousel">
-                <div class="movie-card no-top" onclick="openPlayer('Cores da Justiça', 'img/coresdajustica.jpg', 'Ação', 'Um thriller de ação eletrizante onde a busca por justiça cruza os limites da lei nas ruas da cidade.')">
+                <div class="movie-card no-top" data-title="Cores da Justiça" data-img="img/coresdajustica.jpg" data-genre="Ação" data-synopsis="Um thriller de ação eletrizante onde a busca por justiça cruza os limites da lei nas ruas da cidade.">
                     <div class="movie-poster"><img src="img/coresdajustica.jpg" alt="Cores da Justiça"></div>
                     <div class="movie-info"><div class="movie-title">Cores da Justiça</div><div class="movie-genre">Ação</div></div>
                 </div>
-                <div class="movie-card no-top" onclick="openPlayer('Johnny English', 'img/jonyingles.jpg', 'Comédia', 'O agente secreto mais atrapalhado do mundo precisa salvar a coroa britânica em uma aventura hilária.')">
+                <div class="movie-card no-top" data-title="Johnny English" data-img="img/jonyingles.jpg" data-genre="Comédia" data-synopsis="O agente secreto mais atrapalhado do mundo precisa salvar a coroa britânica em uma aventura hilária.">
                     <div class="movie-poster"><img src="img/jonyingles.jpg" alt="Johnny English"></div>
                     <div class="movie-info"><div class="movie-title">Johnny English</div><div class="movie-genre">Comédia</div></div>
                 </div>
-                <div class="movie-card no-top" onclick="openPlayer('Tubarão de 6 Cabeças', 'img/oataquedos6tubaroes.jpg', 'Terror', 'Turistas em uma ilha isolada enfrentam o terror absoluto quando uma abominação marinha mutante com seis cabeças os persegue.')">
+                <div class="movie-card no-top" data-title="Tubarão de 6 Cabeças" data-img="img/oataquedos6tubaroes.jpg" data-genre="Terror" data-synopsis="Turistas em uma ilha isolada enfrentam o terror absoluto quando uma abominação marinha mutante com seis cabeças os persegue.">
                     <div class="movie-poster"><img src="img/oataquedos6tubaroes.jpg" alt="Tubarão de 6 Cabeças"></div>
                     <div class="movie-info"><div class="movie-title">Tubarão de 6 Cabeças</div><div class="movie-genre">Terror</div></div>
                 </div>
-                <div class="movie-card no-top" onclick="openPlayer('Diga Quem Morre', 'img/quemmorre.jpg', 'Suspense', 'Um jogo mortal onde os participantes precisam tomar decisões impossíveis antes que o tempo se esgote.')">
+                <div class="movie-card no-top" data-title="Diga Quem Morre" data-img="img/quemmorre.jpg" data-genre="Suspense" data-synopsis="Um jogo mortal onde os participantes precisam tomar decisões impossíveis antes que o tempo se esgote.">
                     <div class="movie-poster"><img src="img/quemmorre.jpg" alt="Diga Quem Morre"></div>
                     <div class="movie-info"><div class="movie-title">Diga Quem Morre</div><div class="movie-genre">Suspense</div></div>
                 </div>
@@ -490,19 +463,19 @@
         <div class="category-section">
             <div class="category-title">🏆 Top 10 Filmes</div>
             <div class="carousel">
-                <div class="movie-card" onclick="openPlayer('Cores da Justiça', 'img/coresdajustica.jpg', 'Ação', 'Um thriller de ação eletrizante onde a busca por justiça cruza os limites da lei nas ruas da cidade.')">
+                <div class="movie-card" data-title="Cores da Justiça" data-img="img/coresdajustica.jpg" data-genre="Ação" data-synopsis="Um thriller de ação eletrizante onde a busca por justiça cruza os limites da lei nas ruas da cidade.">
                     <div class="movie-poster"><img src="img/coresdajustica.jpg" alt="Cores da Justiça"><span class="top-number-badge">1</span></div>
                     <div class="movie-info"><div class="movie-title">Cores da Justiça</div><div class="movie-genre">Ação</div></div>
                 </div>
-                <div class="movie-card" onclick="openPlayer('Johnny English', 'img/jonyingles.jpg', 'Comédia', 'O agente secreto mais atrapalhado do mundo precisa salvar a coroa britânica em uma aventura hilária.')">
+                <div class="movie-card" data-title="Johnny English" data-img="img/jonyingles.jpg" data-genre="Comédia" data-synopsis="O agente secreto mais atrapalhado do mundo precisa salvar a coroa britânica em uma aventura hilária.">
                     <div class="movie-poster"><img src="img/jonyingles.jpg" alt="Johnny English"><span class="top-number-badge">2</span></div>
                     <div class="movie-info"><div class="movie-title">Johnny English</div><div class="movie-genre">Comédia</div></div>
                 </div>
-                <div class="movie-card" onclick="openPlayer('Tubarão de 6 Cabeças', 'img/oataquedos6tubaroes.jpg', 'Terror', 'Turistas em uma ilha isolada enfrentam o terror absoluto quando uma abominação marinha mutante com seis cabeças os persegue.')">
+                <div class="movie-card" data-title="Tubarão de 6 Cabeças" data-img="img/oataquedos6tubaroes.jpg" data-genre="Terror" data-synopsis="Turistas em uma ilha isolada enfrentam o terror absoluto quando uma abominação marinha mutante com seis cabeças os persegue.">
                     <div class="movie-poster"><img src="img/oataquedos6tubaroes.jpg" alt="Tubarão de 6 Cabeças"><span class="top-number-badge">3</span></div>
                     <div class="movie-info"><div class="movie-title">Tubarão de 6 Cabeças</div><div class="movie-genre">Terror</div></div>
                 </div>
-                <div class="movie-card" onclick="openPlayer('Diga Quem Morre', 'img/quemmorre.jpg', 'Suspense', 'Um jogo mortal onde os participantes precisam tomar decisões impossíveis antes que o tempo se esgote.')">
+                <div class="movie-card" data-title="Diga Quem Morre" data-img="img/quemmorre.jpg" data-genre="Suspense" data-synopsis="Um jogo mortal onde os participantes precisam tomar decisões impossíveis antes que o tempo se esgote.">
                     <div class="movie-poster"><img src="img/quemmorre.jpg" alt="Diga Quem Morre"><span class="top-number-badge">4</span></div>
                     <div class="movie-info"><div class="movie-title">Diga Quem Morre</div><div class="movie-genre">Suspense</div></div>
                 </div>
@@ -513,11 +486,11 @@
         <div class="category-section">
             <div class="category-title has-border">😱 Terror</div>
             <div class="carousel">
-                <div class="movie-card no-top" onclick="openPlayer('Tubarão de 6 Cabeças', 'img/oataquedos6tubaroes.jpg', 'Terror', 'Turistas em uma ilha isolada enfrentam o terror absoluto quando uma abominação marinha mutante com seis cabeças os persegue.')">
+                <div class="movie-card no-top" data-title="Tubarão de 6 Cabeças" data-img="img/oataquedos6tubaroes.jpg" data-genre="Terror" data-synopsis="Turistas em uma ilha isolada enfrentam o terror absoluto quando uma abominação marinha mutante com seis cabeças os persegue.">
                     <div class="movie-poster"><img src="img/oataquedos6tubaroes.jpg" alt="Tubarão de 6 Cabeças"></div>
                     <div class="movie-info"><div class="movie-title">Tubarão de 6 Cabeças</div><div class="movie-genre">Terror</div></div>
                 </div>
-                <div class="movie-card no-top" onclick="openPlayer('Diga Quem Morre', 'img/quemmorre.jpg', 'Terror', 'Um jogo mortal onde os participantes precisam tomar decisões impossíveis antes que o tempo se esgote.')">
+                <div class="movie-card no-top" data-title="Diga Quem Morre" data-img="img/quemmorre.jpg" data-genre="Terror" data-synopsis="Um jogo mortal onde os participantes precisam tomar decisões impossíveis antes que o tempo se esgote.">
                     <div class="movie-poster"><img src="img/quemmorre.jpg" alt="Diga Quem Morre"></div>
                     <div class="movie-info"><div class="movie-title">Diga Quem Morre</div><div class="movie-genre">Terror</div></div>
                 </div>
@@ -528,7 +501,7 @@
         <div class="category-section">
             <div class="category-title has-border">😂 Para Morrer de Rir</div>
             <div class="carousel">
-                <div class="movie-card no-top" onclick="openPlayer('Johnny English', 'img/jonyingles.jpg', 'Comédia', 'O agente secreto mais atrapalhado do mundo precisa salvar a coroa britânica em uma aventura hilária.')">
+                <div class="movie-card no-top" data-title="Johnny English" data-img="img/jonyingles.jpg" data-genre="Comédia" data-synopsis="O agente secreto mais atrapalhado do mundo precisa salvar a coroa britânica em uma aventura hilária.">
                     <div class="movie-poster"><img src="img/jonyingles.jpg" alt="Johnny English"></div>
                     <div class="movie-info"><div class="movie-title">Johnny English</div><div class="movie-genre">Comédia</div></div>
                 </div>
@@ -539,7 +512,7 @@
         <div class="category-section">
             <div class="category-title has-border">💥 Ação a Todo Momento</div>
             <div class="carousel">
-                <div class="movie-card no-top" onclick="openPlayer('Cores da Justiça', 'img/coresdajustica.jpg', 'Ação', 'Um thriller de ação eletrizante onde a busca por justiça cruza os limites da lei nas ruas da cidade.')">
+                <div class="movie-card no-top" data-title="Cores da Justiça" data-img="img/coresdajustica.jpg" data-genre="Ação" data-synopsis="Um thriller de ação eletrizante onde a busca por justiça cruza os limites da lei nas ruas da cidade.">
                     <div class="movie-poster"><img src="img/coresdajustica.jpg" alt="Cores da Justiça"></div>
                     <div class="movie-info"><div class="movie-title">Cores da Justiça</div><div class="movie-genre">Ação</div></div>
                 </div>
@@ -549,4 +522,9 @@
         <!-- SEÇÃO: SÉRIES -->
         <div class="category-section">
             <div class="category-title has-border">📺 Séries</div>
-            <div clas
+            <div class="carousel">
+                <div class="movie-card no-top" data-title="House of the Dragon" data-img="img/coresdajustica.jpg" data-genre="Fantasia" data-synopsis="A história da guerra civil dos Targaryen em Westeros.">
+                    <div class="movie-poster">🐉</div>
+                    <div class="movie-info"><div class="movie-title">House of the Dragon</div><div class="movie-genre">Fantasia</div></div>
+                </div>
+                <div class="movie-ca
