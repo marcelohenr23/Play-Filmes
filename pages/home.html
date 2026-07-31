@@ -16,11 +16,14 @@
         .filtro-btn.active { background: #0055ff; font-weight: bold; }
 
         .banner-principal { width: 100%; height: 250px; background: linear-gradient(to bottom, transparent, #050811), url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80') center/cover; display: flex; align-items: flex-end; padding: 20px; }
-        .btn-assistir { background: #0055ff; color: #fff; padding: 10px 20px; border-radius: 6px; font-weight: bold; font-size: 1rem; border: none; }
+        .btn-assistir { background: #0055ff; color: #fff; padding: 10px 20px; border-radius: 6px; font-weight: bold; font-size: 1rem; border: none; text-decoration: none; display: inline-block; }
         .categoria-titulo { padding: 15px 20px 5px 20px; font-size: 1.1rem; color: #00d2ff; }
         .carrossel { display: flex; overflow-x: auto; gap: 10px; padding: 10px 20px; scrollbar-width: none; }
         .carrossel::-webkit-scrollbar { display: none; }
-        .filme-card { min-width: 110px; height: 160px; background: #0a0f1d; border-radius: 8px; border: 1px solid #0055ff; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; text-align: center; padding: 5px; color: #8c92a4; }
+        
+        /* Transformando os cards em links clicáveis para a página de detalhes */
+        .filme-card { min-width: 110px; height: 160px; background: #0a0f1d; border-radius: 8px; border: 1px solid #0055ff; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; text-align: center; padding: 5px; color: #8c92a4; text-decoration: none; transition: transform 0.2s; }
+        .filme-card:active { transform: scale(0.95); }
     </style>
 </head>
 <body>
@@ -41,42 +44,42 @@
     <div class="banner-principal">
         <div>
             <h2 style="margin-bottom: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Aventura Espacial</h2>
-            <button class="btn-assistir">▶ Assistir</button>
+            <a href="detalhes.html" class="btn-assistir">▶ Assistir</a>
         </div>
     </div>
 
     <!-- Seção de Filmes -->
     <div class="categoria-titulo">Top 7 Filmes</div>
     <div class="carrossel">
-        <div class="filme-card">Top 1</div>
-        <div class="filme-card">Top 2</div>
-        <div class="filme-card">Top 3</div>
-        <div class="filme-card">Top 4</div>
+        <a href="detalhes.html" class="filme-card">Top 1</a>
+        <a href="detalhes.html" class="filme-card">Top 2</a>
+        <a href="detalhes.html" class="filme-card">Top 3</a>
+        <a href="detalhes.html" class="filme-card">Top 4</a>
     </div>
 
     <div class="categoria-titulo">Filmes</div>
     <div class="carrossel">
-        <div class="filme-card">Filme 1</div>
-        <div class="filme-card">Filme 2</div>
-        <div class="filme-card">Filme 3</div>
-        <div class="filme-card">Filme 4</div>
+        <a href="detalhes.html" class="filme-card">Filme 1</a>
+        <a href="detalhes.html" class="filme-card">Filme 2</a>
+        <a href="detalhes.html" class="filme-card">Filme 3</a>
+        <a href="detalhes.html" class="filme-card">Filme 4</a>
     </div>
 
     <!-- Seção de Séries -->
     <div class="categoria-titulo">Top 7 Séries</div>
     <div class="carrossel">
-        <div class="filme-card">Top Série 1</div>
-        <div class="filme-card">Top Série 2</div>
-        <div class="filme-card">Top Série 3</div>
-        <div class="filme-card">Top Série 4</div>
+        <a href="detalhes.html" class="filme-card">Top Série 1</a>
+        <a href="detalhes.html" class="filme-card">Top Série 2</a>
+        <a href="detalhes.html" class="filme-card">Top Série 3</a>
+        <a href="detalhes.html" class="filme-card">Top Série 4</a>
     </div>
 
     <div class="categoria-titulo">Séries</div>
     <div class="carrossel">
-        <div class="filme-card">Série 1</div>
-        <div class="filme-card">Série 2</div>
-        <div class="filme-card">Série 3</div>
-        <div class="filme-card">Série 4</div>
+        <a href="detalhes.html" class="filme-card">Série 1</a>
+        <a href="detalhes.html" class="filme-card">Série 2</a>
+        <a href="detalhes.html" class="filme-card">Série 3</a>
+        <a href="detalhes.html" class="filme-card">Série 4</a>
     </div>
 
 </body>
