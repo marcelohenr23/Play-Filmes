@@ -532,9 +532,42 @@
         </button>
     </nav>
 
-    <!-- SCRIPT DE INTERATIVIDADE -->
+    <!-- SCRIPT DE INTERATIVIDADE CORRIGIDO PARA MOBILE -->
     <script>
         const movieCards = document.querySelectorAll('.movie-card');
-        const catalogScreen = document.getElementById('catalogScreen');
         const moviePlayerScreen = document.getElementById('moviePlayerScreen');
         const playerBackBtn = document.getElementById('playerBackBtn');
+
+        const playerTitle = document.getElementById('playerTitle');
+        const playerBannerImg = document.getElementById('playerBannerImg');
+        const playerGenreTag = document.getElementById('playerGenreTag');
+        const playerGenreSub = document.getElementById('playerGenreSub');
+        const playerSynopsis = document.getElementById('playerSynopsis');
+
+        movieCards.forEach(card => {
+            // Usamos 'pointerdown' para responder instantaneamente no toque do celular
+            card.addEventListener('pointerdown', (e) => {
+                e.preventDefault(); // Previne conflitos com o scroll horizontal do carrossel
+                
+                const title = card.getAttribute('data-title');
+                const img = card.getAttribute('data-img');
+                const genre = card.getAttribute('data-genre');
+                const synopsis = card.getAttribute('data-synopsis');
+
+                playerTitle.innerText = title;
+                playerBannerImg.src = img;
+                playerGenreTag.innerText = genre;
+                playerGenreSub.innerText = genre;
+                playerSynopsis.innerText = synopsis;
+
+                moviePlayerScreen.style.display = 'block';
+                window.scrollTo(0, 0);
+            });
+        });
+
+        playerBackBtn.addEventListener('pointerdown', () => {
+            moviePlayerScreen.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
