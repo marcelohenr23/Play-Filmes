@@ -2,26 +2,46 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Play Filmes - Início</title>
     <link rel="stylesheet" href="../css/style.css">
     <style>
-        body { background-color: #050811; color: #fff; margin: 0; padding-bottom: 50px; }
+        /* Trava a tela para evitar rolagem lateral indesejada no app */
+        html, body { 
+            background-color: #050811; 
+            color: #fff; 
+            margin: 0; 
+            padding: 0; 
+            overflow-x: hidden; 
+            width: 100%;
+            height: 100%;
+        }
+
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: #0a0f1d; border-bottom: 1px solid #0055ff; }
         .logo { color: #00d2ff; font-weight: bold; font-size: 1.2rem; }
         
         .filtros-nav { display: flex; gap: 15px; padding: 12px 20px; background: #0a0f1d; overflow-x: auto; border-bottom: 1px solid rgba(0,85,255,0.2); scrollbar-width: none; }
         .filtros-nav::-webkit-scrollbar { display: none; }
         .filtro-btn { background: rgba(0, 85, 255, 0.2); border: 1px solid #0055ff; color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 0.9rem; white-space: nowrap; text-decoration: none; display: inline-block; cursor: pointer; }
-        .filtro-btn.active { background: #0055ff; font-weight: bold; }
+        .filtro-btn.active { background: #00d2ff; color: #050811; font-weight: bold; }
 
-        .banner-principal { width: 100%; height: 250px; background: linear-gradient(to bottom, transparent, #050811), url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80') center/cover; display: flex; align-items: flex-end; padding: 20px; }
+        .banner-principal { width: 100%; height: 220px; background: linear-gradient(to bottom, transparent, #050811), url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80') center/cover; display: flex; align-items: flex-end; padding: 20px; box-sizing: border-box; }
         .btn-assistir { background: #0055ff; color: #fff; padding: 10px 20px; border-radius: 6px; font-weight: bold; font-size: 1rem; border: none; text-decoration: none; display: inline-block; }
+        
         .categoria-titulo { padding: 15px 20px 5px 20px; font-size: 1.1rem; color: #00d2ff; }
-        .carrossel { display: flex; overflow-x: auto; gap: 10px; padding: 10px 20px; scrollbar-width: none; }
+        
+        /* Carrossel suave e travado apenas na horizontal */
+        .carrossel { 
+            display: flex; 
+            overflow-x: auto; 
+            gap: 12px; 
+            padding: 10px 20px; 
+            scrollbar-width: none; 
+            -webkit-overflow-scrolling: touch;
+        }
         .carrossel::-webkit-scrollbar { display: none; }
         
-        /* Padrão fixo para todas as capas ficarem do mesmo tamanho e sem texto */
+        /* Padrão fixo para todas as capas */
         .filme-card { 
             min-width: 110px; 
             width: 110px;
@@ -35,9 +55,23 @@
             background-size: cover !important; 
             background-position: center !important; 
             background-repeat: no-repeat !important;
+            position: relative;
             display: inline-block;
         }
         .filme-card:active { transform: scale(0.95); }
+
+        /* Estilo do número azul nos Top Filmes */
+        .numero-top {
+            position: absolute;
+            bottom: 5px;
+            left: 8px;
+            color: #00d2ff;
+            font-size: 2.2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9), -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+            font-family: sans-serif;
+            line-height: 1;
+        }
     </style>
 </head>
 <body>
@@ -61,59 +95,44 @@
 
     <div class="banner-principal">
         <div>
-            <h2 style="margin-bottom: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Aventura Espacial</h2>
-            <a href="detalhes.html" class="btn-assistir">▶ Assistir</a>
+            <h2 style="margin-bottom: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); font-size: 1.4rem;">Homem de Ferro</h2>
+            <a href="detalhes.html?filme=Homem%20de%20Ferro" class="btn-assistir">▶ Assistir</a>
         </div>
     </div>
 
-    <!-- Seção de Filmes -->
+    <!-- SEÇÃO: Top 7 Filmes (Com números azuis) -->
     <div class="categoria-titulo">Top 7 Filmes</div>
     <div class="carrossel">
-        <a href="detalhes.html?filme=Homem%20de%20Ferro" class="filme-card" style="background-image: url('../img/homemdeferro.jpg');"></a>
-        <a href="detalhes.html?filme=Creed%20II" class="filme-card" style="background-image: url('../img/creed2.jpg');"></a>
-        <a href="detalhes.html?filme=Invocação%20do%20Mal%202" class="filme-card" style="background-image: url('../img/invocacao2.jpg');"></a>
-        <a href="detalhes.html?filme=A%20Revolução%20dos%20Bichos" class="filme-card" style="background-image: url('../img/aevolucaodosbichos.jpg');"></a>
+        <a href="detalhes.html?filme=Homem%20de%20Ferro" class="filme-card" style="background-image: url('../img/homemdeferro.jpg');"><span class="numero-top">1</span></a>
+        <a href="detalhes.html?filme=Creed%20II" class="filme-card" style="background-image: url('../img/creed2.jpg');"><span class="numero-top">2</span></a>
+        <a href="detalhes.html?filme=Invocação%20do%20Mal%202" class="filme-card" style="background-image: url('../img/invocacao2.jpg');"><span class="numero-top">3</span></a>
+        <a href="detalhes.html?filme=A%20Revolução%20dos%20Bichos" class="filme-card" style="background-image: url('../img/aevolucaodosbichos.jpg');"><span class="numero-top">4</span></a>
+        <a href="detalhes.html?filme=Mais%20Forte%20que%20o%20Mundo" class="filme-card" style="background-image: url('../img/maisfortequeomundo.jpg');"><span class="numero-top">5</span></a>
     </div>
 
+    <!-- SEÇÃO: Filmes (Apenas Filmes) -->
     <div class="categoria-titulo">Filmes</div>
     <div class="carrossel">
-        <a href="detalhes.html?filme=Mais%20Forte%20que%20o%20Mundo" class="filme-card" style="background-image: url('../img/maisfortequeomundo.jpg');"></a>
         <a href="detalhes.html?filme=Homem%20de%20Ferro" class="filme-card" style="background-image: url('../img/homemdeferro.jpg');"></a>
         <a href="detalhes.html?filme=Creed%20II" class="filme-card" style="background-image: url('../img/creed2.jpg');"></a>
         <a href="detalhes.html?filme=Invocação%20do%20Mal%202" class="filme-card" style="background-image: url('../img/invocacao2.jpg');"></a>
+        <a href="detalhes.html?filme=Mais%20Forte%20que%20o%20Mundo" class="filme-card" style="background-image: url('../img/maisfortequeomundo.jpg');"></a>
     </div>
 
-    <!-- Seção de Séries -->
+    <!-- SEÇÃO: Top 7 Séries (Apenas Séries/Conteúdo dedicado) -->
     <div class="categoria-titulo">Top 7 Séries</div>
     <div class="carrossel">
-        <a href="detalhes.html?filme=A%20Revolução%20dos%20Bichos" class="filme-card" style="background-image: url('../img/aevolucaodosbichos.jpg');"></a>
-        <a href="detalhes.html?filme=Mais%20Forte%20que%20o%20Mundo" class="filme-card" style="background-image: url('../img/maisfortequeomundo.jpg');"></a>
-        <a href="detalhes.html?filme=Homem%20de%20Ferro" class="filme-card" style="background-image: url('../img/homemdeferro.jpg');"></a>
-        <a href="detalhes.html?filme=Creed%20II" class="filme-card" style="background-image: url('../img/creed2.jpg');"></a>
+        <a href="detalhes.html?filme=A%20Revolução%20dos%20Bichos" class="filme-card" style="background-image: url('../img/aevolucaodosbichos.jpg');"><span class="numero-top" style="color: #00d2ff;">1</span></a>
+        <a href="detalhes.html?filme=Invocação%20do%20Mal%202" class="filme-card" style="background-image: url('../img/invocacao2.jpg');"><span class="numero-top" style="color: #00d2ff;">2</span></a>
     </div>
 
+    <!-- SEÇÃO: Séries -->
     <div class="categoria-titulo">Séries</div>
     <div class="carrossel">
-        <a href="detalhes.html?filme=Invocação%20do%20Mal%202" class="filme-card" style="background-image: url('../img/invocacao2.jpg');"></a>
         <a href="detalhes.html?filme=A%20Revolução%20dos%20Bichos" class="filme-card" style="background-image: url('../img/aevolucaodosbichos.jpg');"></a>
-        <a href="detalhes.html?filme=Mais%20Forte%20que%20o%20Mundo" class="filme-card" style="background-image: url('../img/maisfortequeomundo.jpg');"></a>
-        <a href="detalhes.html?filme=Homem%20de%20Ferro" class="filme-card" style="background-image: url('../img/homemdeferro.jpg');"></a>
     </div>
 
-    <script>
-        window.addEventListener('DOMContentLoaded', function() {
-            // Se houver filmes salvos personalizados pelo usuário, atualiza os cards dinamicamente mantendo o tamanho limpo
-            const filmesSalvos = JSON.parse(localStorage.getItem('filmesImagens')) || [];
-            if (filmesSalvos.length > 0) {
-                const cards = document.querySelectorAll('.filme-card');
-                filmesSalvos.forEach((filme, index) => {
-                    if (cards[index]) {
-                        cards[index].style.backgroundImage = `url(${filme.imagem})`;
-                        cards[index].href = `detalhes.html?filme=${encodeURIComponent(filme.titulo)}`;
-                    }
-                });
-            }
-        });
-    </script>
+    <div style="height: 40px;"></div>
+
 </body>
 </html>
