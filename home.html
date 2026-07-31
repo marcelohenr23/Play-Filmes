@@ -532,9 +532,10 @@
         </button>
     </nav>
 
-    <!-- SCRIPT DE INTERATIVIDADE CORRIGIDO PARA MOBILE -->
+    <!-- SCRIPT AJUSTADO: SÓ ABRE AO CLICAR NA IMAGEM -->
     <script>
-        const movieCards = document.querySelectorAll('.movie-card');
+        // Agora selecionamos especificamente as imagens dos cartões
+        const movieImages = document.querySelectorAll('.movie-card img');
         const moviePlayerScreen = document.getElementById('moviePlayerScreen');
         const playerBackBtn = document.getElementById('playerBackBtn');
 
@@ -544,11 +545,12 @@
         const playerGenreSub = document.getElementById('playerGenreSub');
         const playerSynopsis = document.getElementById('playerSynopsis');
 
-        movieCards.forEach(card => {
-            // Usamos 'pointerdown' para responder instantaneamente no toque do celular
-            card.addEventListener('pointerdown', (e) => {
-                e.preventDefault(); // Previne conflitos com o scroll horizontal do carrossel
-                
+        movieImages.forEach(imgElement => {
+            imgElement.addEventListener('click', (e) => {
+                // Sobe para encontrar o card principal que contém os dados (data-*)
+                const card = e.target.closest('.movie-card');
+                if (!card) return;
+
                 const title = card.getAttribute('data-title');
                 const img = card.getAttribute('data-img');
                 const genre = card.getAttribute('data-genre');
@@ -565,7 +567,7 @@
             });
         });
 
-        playerBackBtn.addEventListener('pointerdown', () => {
+        playerBackBtn.addEventListener('click', () => {
             moviePlayerScreen.style.display = 'none';
         });
     </script>
