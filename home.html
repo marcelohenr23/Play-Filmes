@@ -89,7 +89,7 @@
             cursor: pointer;
         }
 
-        /* Saudação */
+        /* Banner de Boas-vindas */
         .welcome-banner {
             padding: 25px 20px 15px 20px;
         }
@@ -105,7 +105,7 @@
             color: var(--text-muted);
         }
 
-        /* Categorias e Carrossel */
+        /* Títulos de Categorias */
         .category-section {
             margin-bottom: 22px;
         }
@@ -124,6 +124,7 @@
             border-left: 3px solid var(--neon-blue);
         }
 
+        /* Carrossel Horizontal */
         .carousel {
             display: flex;
             gap: 10px;
@@ -370,7 +371,7 @@
             fill: currentColor;
         }
 
-        /* Menu Inferior Fixo */
+        /* Menu Inferior */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -424,7 +425,7 @@
                 <h1>PLAY FILMES</h1>
             </div>
             <div class="user-profile-badge" onclick="window.location.href='perfil.html'">
-                <span>🍿</span>
+                <span id="userAvatar">🍿</span>
                 <strong>Perfil</strong>
             </div>
         </header>
@@ -482,62 +483,58 @@
         </div>
     </div>
 
-    <!-- TELA DE DETALHES / PLAYER (ESTILO NETFLIX) -->
+    <!-- TELA DE DETALHES / PLAYER (OCULTA POR PADRÃO) -->
     <div id="moviePlayerScreen">
         <div class="player-header-banner">
-            <button class="back-btn" onclick="closePlayer()">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="#ffffff"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            <button class="back-btn" id="playerBackBtn">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
             </button>
-            <img id="playerImg" src="" alt="Capa do Filme">
+            <img id="playerBannerImg" src="" alt="Banner">
         </div>
         <div class="player-content">
-            <span class="player-top-tag">PLAY FILMES ORIGINAL</span>
-            <h2 id="playerTitle" class="player-movie-title">Nome do Filme</h2>
-            
+            <span class="player-top-tag" id="playerGenreTag">AÇÃO</span>
+            <h2 class="player-movie-title" id="playerTitle">Nome do Filme</h2>
             <div class="player-meta">
-                <span style="color: #46d369; font-weight: bold;">98% relevante</span>
-                <span>2026</span>
                 <span class="badge-hd">HD</span>
-                <span id="playerGenre" style="text-transform: uppercase;">Ação</span>
+                <span id="playerGenreSub">Ação</span>
+                <span>2026</span>
             </div>
-
-            <button class="btn-action-primary" onclick="alert('Iniciando reprodução...')">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="#000"><path d="M8 5v14l11-7z"/></svg>
-                Assistir
+            <button class="btn-action-primary">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Assistir
             </button>
-
-            <button class="btn-action-secondary" onclick="alert('Download iniciado!')">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                Baixar
+            <button class="btn-action-secondary">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg> Minha Lista
             </button>
-
-            <p id="playerSynopsis" class="player-synopsis">Sinopse detalhada do filme escolhido...</p>
-
+            <p class="player-synopsis" id="playerSynopsis">Sinopse do filme vai aqui...</p>
             <div class="player-actions-row">
-                <button class="action-icon-btn" onclick="alert('Adicionado à Minha Lista!')">
-                    <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-                    Minha lista
+                <button class="action-icon-btn">
+                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg> Classificação
                 </button>
-                <button class="action-icon-btn" onclick="alert('Avaliado com sucesso!')">
-                    <svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
-                    Avaliar
+                <button class="action-icon-btn">
+                    <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg> Compartilhar
                 </button>
-                <button class="action-icon-btn" onclick="alert('Link copiado para compartilhar!')">
-                    <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
-                    Compartilhe
+                <button class="action-icon-btn">
+                    <svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z"/></svg> Baixar
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Menu Inferior Fixo -->
+    <!-- MENU INFERIOR -->
     <nav class="bottom-nav">
         <button class="nav-item active">
             <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
             Início
         </button>
-        <button class="nav-item" onclick="alert('Seção de Clipes em breve!')">
-            <svg viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>
+        <button class="nav-item" onclick="window.location.href='perfil.html'">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-8C6.13 2 3 5.13 3 9v6c0 3.87 3.13 7 7 7h8c3.87 0 7-3.13 7-7V9c0-3.87-3.13-7-7-7zm-5 6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 10c-2.03 0-4.43-.82-5.82-2.33C8.55 14.35 10.65 14 13 14s4.45.35 5.82 1.66C17.43 17.18 15.03 18 13 18z"/></svg>
             Clipes
         </button>
-        <button class="nav-item" onclick="alert('Busca em breve!'
+    </nav>
+
+    <!-- SCRIPT DE INTERATIVIDADE -->
+    <script>
+        const movieCards = document.querySelectorAll('.movie-card');
+        const catalogScreen = document.getElementById('catalogScreen');
+        const moviePlayerScreen = document.getElementById('moviePlayerScreen');
+        const playerBackBtn = document.getElementById('playerBackBtn');
