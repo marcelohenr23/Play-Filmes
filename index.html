@@ -7,14 +7,11 @@
     <style>
         body {
             background-color: #050811;
-            color: #fff;
+            color: #ffffff;
+            font-family: sans-serif;
+            text-align: center;
+            padding-top: 150px;
             margin: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-family: Arial, sans-serif;
         }
         .logo-splash {
             font-size: 2.2rem;
@@ -22,7 +19,6 @@
             color: #00d2ff;
             margin-bottom: 15px;
             text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
-            letter-spacing: 1px;
         }
         .loading-text {
             font-size: 1rem;
@@ -36,11 +32,10 @@
     <div class="loading-text">Carregando...</div>
 
     <script>
-        // Depois da animação/carregamento, redireciona para a tela seguinte (ex: login ou cadastro)
+        // Redireciona para a tela de cadastro após 1.5 segundos
         setTimeout(function() {
-            // Mude para a próxima página do seu fluxo quando criar, ex: "pages/login.html"
-            window.location.href = "pages/home.html"; 
-        }, 2000);
+            window.location.href = "pages/cadastro.html";
+        }, 1500);
     </script>
 
 </body>
