@@ -12,27 +12,27 @@
         
         .filtros-nav { display: flex; gap: 15px; padding: 12px 20px; background: #0a0f1d; overflow-x: auto; border-bottom: 1px solid rgba(0,85,255,0.2); scrollbar-width: none; }
         .filtros-nav::-webkit-scrollbar { display: none; }
-        .filtro-btn { background: rgba(0, 85, 255, 0.2); border: 1px solid #0055ff; color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 0.9rem; white-space: nowrap; text-decoration: none; display: inline-block; cursor: pointer; }
+        .filtro-btn { background: rgba(0, 85, 255, 0.2); border: 1px solid #0055ff; color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 0.9rem; white-space: nowrap; text-decoration: none; display: inline-block; }
         .filtro-btn.active { background: #0055ff; font-weight: bold; }
 
-        .banner-principal { width: 100%; height: 250px; background: linear-gradient(to bottom, transparent, #050811), url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80') center/cover; display: flex; align-items: flex-end; padding: 20px; }
-        .btn-assistir { background: #0055ff; color: #fff; padding: 10px 20px; border-radius: 6px; font-weight: bold; font-size: 1rem; border: none; text-decoration: none; display: inline-block; }
         .categoria-titulo { padding: 15px 20px 5px 20px; font-size: 1.1rem; color: #00d2ff; }
         .carrossel { display: flex; overflow-x: auto; gap: 10px; padding: 10px 20px; scrollbar-width: none; }
         .carrossel::-webkit-scrollbar { display: none; }
         
-        .filme-card { min-width: 110px; height: 160px; background: #0a0f1d; border-radius: 8px; border: 1px solid #0055ff; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; text-align: center; padding: 5px; color: #8c92a4; text-decoration: none; transition: transform 0.2s; }
-        .filme-card:active { transform: scale(0.95); }
+        .filme-card { min-width: 110px; height: 160px; background: #0a0f1d; border-radius: 8px; border: 1px solid #0055ff; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; text-align: center; padding: 5px; color: #8c92a4; text-decoration: none; }
     </style>
 </head>
 <body>
 
     <header>
         <span class="logo">PLAY FILMES</span>
-        <div>🔍 👤</div>
+        <div>
+            <a href="busca.html" style="text-decoration: none; font-size: 1.2rem; margin-right: 12px;">🔍</a>
+            <span style="font-size: 1.2rem;">👤</span>
+        </div>
     </header>
 
-    <!-- Menu Superior com os links funcionando -->
+    <!-- Barra de Navegação -->
     <div class="filtros-nav">
         <a href="home.html" class="filtro-btn active">Início</a>
         <a href="series.html" class="filtro-btn">Séries</a>
@@ -41,45 +41,19 @@
         <a href="minhalista.html" class="filtro-btn">Minha Lista</a>
     </div>
 
-    <div class="banner-principal">
-        <div>
-            <h2 style="margin-bottom: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Aventura Espacial</h2>
-            <a href="detalhes.html" class="btn-assistir">▶ Assistir</a>
-        </div>
-    </div>
-
-    <!-- Seção de Filmes -->
-    <div class="categoria-titulo">Top 7 Filmes</div>
+    <!-- Seções de Conteúdo -->
+    <div class="categoria-titulo">Continuar Assistindo</div>
     <div class="carrossel">
-        <a href="detalhes.html" class="filme-card">Top 1</a>
-        <a href="detalhes.html" class="filme-card">Top 2</a>
-        <a href="detalhes.html" class="filme-card">Top 3</a>
-        <a href="detalhes.html" class="filme-card">Top 4</a>
-    </div>
-
-    <div class="categoria-titulo">Filmes</div>
-    <div class="carrossel">
-        <a href="detalhes.html" class="filme-card">Filme 1</a>
+        <a href="detalhes.html" class="filme-card">Aventura Espacial</a>
         <a href="detalhes.html" class="filme-card">Filme 2</a>
         <a href="detalhes.html" class="filme-card">Filme 3</a>
-        <a href="detalhes.html" class="filme-card">Filme 4</a>
     </div>
 
-    <!-- Seção de Séries -->
-    <div class="categoria-titulo">Top 7 Séries</div>
-    <div class="carrossel">
-        <a href="detalhes.html" class="filme-card">Top Série 1</a>
-        <a href="detalhes.html" class="filme-card">Top Série 2</a>
-        <a href="detalhes.html" class="filme-card">Top Série 3</a>
-        <a href="detalhes.html" class="filme-card">Top Série 4</a>
-    </div>
-
-    <div class="categoria-titulo">Séries</div>
+    <div class="categoria-titulo">Em Alta</div>
     <div class="carrossel">
         <a href="detalhes.html" class="filme-card">Série 1</a>
         <a href="detalhes.html" class="filme-card">Série 2</a>
         <a href="detalhes.html" class="filme-card">Série 3</a>
-        <a href="detalhes.html" class="filme-card">Série 4</a>
     </div>
 
 </body>
