@@ -171,6 +171,13 @@
             align-items: center;
             font-size: 30px;
             position: relative;
+            overflow: hidden;
+        }
+
+        .movie-poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         /* Badge de TOP 1 ao 10 */
@@ -278,11 +285,11 @@
     <div class="category-section">
         <div class="category-title has-border">🎬 Filmes</div>
         <div class="carousel">
-            <div class="movie-card no-top"><div class="movie-poster">⚔️</div><div class="movie-info"><div class="movie-title">Gladiador II</div><div class="movie-genre">Ação</div></div></div>
-            <div class="movie-card no-top"><div class="movie-poster">🔫</div><div class="movie-info"><div class="movie-title">Missão Impossível 8</div><div class="movie-genre">Ação</div></div></div>
-            <div class="movie-card no-top"><div class="movie-poster">😂</div><div class="movie-info"><div class="movie-title">Se Beber, Não Case! 4</div><div class="movie-genre">Comédia</div></div></div>
-            <div class="movie-card no-top"><div class="movie-poster">🦖</div><div class="movie-info"><div class="movie-title">Jurassic Park: Renascer</div><div class="movie-genre">Aventura</div></div></div>
-            <div class="movie-card no-top"><div class="movie-poster">👨‍👩‍👧</div><div class="movie-info"><div class="movie-title">Divertida Mente 3</div><div class="movie-genre">Animação</div></div></div>
+            <div class="movie-card no-top"><div class="movie-poster"><img src="img/cazadasangrenta.jpg" alt="Caçada Sangrenta"></div><div class="movie-info"><div class="movie-title">Caçada Sangrenta</div><div class="movie-genre">Ação</div></div></div>
+            <div class="movie-card no-top"><div class="movie-poster"><img src="img/coresdajustica.jpg" alt="Cores da Justiça"></div><div class="movie-info"><div class="movie-title">Cores da Justiça</div><div class="movie-genre">Ação</div></div></div>
+            <div class="movie-card no-top"><div class="movie-poster"><img src="img/forcabutapunicao.jpg" alt="Força Bruta: Punição"></div><div class="movie-info"><div class="movie-title">Força Bruta: Punição</div><div class="movie-genre">Ação</div></div></div>
+            <div class="movie-card no-top"><div class="movie-poster"><img src="img/forcabutasemsaida.jpg" alt="Força Bruta: Sem Saída"></div><div class="movie-info"><div class="movie-title">Força Bruta: Sem Saída</div><div class="movie-genre">Ação</div></div></div>
+            <div class="movie-card no-top"><div class="movie-poster"><img src="img/jonyingles.jpg" alt="Johnny English"></div><div class="movie-info"><div class="movie-title">Johnny English</div><div class="movie-genre">Comédia</div></div></div>
         </div>
     </div>
 
@@ -290,16 +297,16 @@
     <div class="category-section">
         <div class="category-title">🏆 Top 10 Filmes</div>
         <div class="carousel">
-            <div class="movie-card"><div class="movie-poster">🦸‍♂️<span class="top-number-badge">1</span></div><div class="movie-info"><div class="movie-title">Vingadores</div><div class="movie-genre">Ação</div></div></div>
-            <div class="movie-card"><div class="movie-poster">🚢<span class="top-number-badge">2</span></div><div class="movie-info"><div class="movie-title">Titanic</div><div class="movie-genre">Romance</div></div></div>
-            <div class="movie-card"><div class="movie-poster">🧙‍♂️<span class="top-number-badge">3</span></div><div class="movie-info"><div class="movie-title">O Senhor dos Anéis</div><div class="movie-genre">Fantasia</div></div></div>
-            <div class="movie-card"><div class="movie-poster">🕵️‍♂️<span class="top-number-badge">4</span></div><div class="movie-info"><div class="movie-title">Interestelar</div><div class="movie-genre">Ficção</div></div></div>
-            <div class="movie-card"><div class="movie-poster">🦁<span class="top-number-badge">5</span></div><div class="movie-info"><div class="movie-title">O Rei Leão</div><div class="movie-genre">Animação</div></div></div>
-            <div class="movie-card"><div class="movie-poster">🦖<span class="top-number-badge">6</span></div><div class="movie-info"><div class="movie-title">Jurassic Park</div><div class="movie-genre">Aventura</div></div></div>
-            <div class="movie-card"><div class="movie-poster">🏎️<span class="top-number-badge">7</span></div><div class="movie-info"><div class="movie-title">Velozes e Furiosos</div><div class="movie-genre">Ação</div></div></div>
-            <div class="movie-card"><div class="movie-poster">👻<span class="top-number-badge">8</span></div><div class="movie-info"><div class="movie-title">Os Caça-Fantasmas</div><div class="movie-genre">Comédia</div></div></div>
-            <div class="movie-card"><div class="movie-poster">🔫<span class="top-number-badge">9</span></div><div class="movie-info"><div class="movie-title">John Wick</div><div class="movie-genre">Ação</div></div></div>
-            <div class="movie-card"><div class="movie-poster">🕴️<span class="top-number-badge">10</span></div><div class="movie-info"><div class="movie-title">Matrix</div><div class="movie-genre">Ficção</div></div></div>
+            <div class="movie-card"><div class="movie-poster"><img src="img/cazadasangrenta.jpg" alt="Caçada Sangrenta"><span class="top-number-badge">1</span></div><div class="movie-info"><div class="movie-title">Caçada Sangrenta</div><div class="movie-genre">Ação</div></div></div>
+            <div class="movie-card"><div class="movie-poster"><img src="img/coresdajustica.jpg" alt="Cores da Justiça"><span class="top-number-badge">2</span></div><div class="movie-info"><div class="movie-title">Cores da Justiça</div><div class="movie-genre">Ação</div></div></div>
+            <div class="movie-card"><div class="movie-poster"><img src="img/forcabutapunicao.jpg" alt="Força Bruta: Punição"><span class="top-number-badge">3</span></div><div class="movie-info"><div class="movie-title">Força Bruta: Punição</div><div class="movie-genre">Ação</div></div></div>
+            <div class="movie-card"><div class="movie-poster"><img src="img/forcabutasemsaida.jpg" alt="Força Bruta: Sem Saída"><span class="top-number-badge">4</span></div><div class="movie-info"><div class="movie-title">Força Bruta: Sem Saída</div><div class="movie-genre">Ação</div></div></div>
+            <div class="movie-card"><div class="movie-poster"><img src="img/jonyingles.jpg" alt="Johnny English"><span class="top-number-badge">5</span></div><div class="movie-info"><div class="movie-title">Johnny English</div><div class="movie-genre">Comédia</div></div></div>
+            <div class="movie-card"><div class="movie-poster"><img src="img/oataquedos6tubaroes.jpg" alt="O Ataque do Tubarão de 6 Cabeças"><span class="top-number-badge">6</span></div><div class="movie-info"><div class="movie-title">Tubarão de 6 Cabeças</div><div class="movie-genre">Terror</div></div></div>
+            <div class="movie-card"><div class="movie-poster"><img src="img/quemmorre.jpg" alt="Diga Quem Morre"><span class="top-number-badge">7</span></div><div class="movie-info"><div class="movie-title">Diga Quem Morre</div><div class="movie-genre">Suspense</div></div></div>
+            <div class="movie-card"><div class="movie-poster"><img src="img/tomorrow.jpg" alt="A Better Tomorrow"><span class="top-number-badge">8</span></div><div class="movie-info"><div class="movie-title">A Better Tomorrow</div><div class="movie-genre">Ação</div></div></div>
+            <div class="movie-card"><div class="movie-poster"><img src="img/cazadasangrenta.jpg" alt="Caçada Sangrenta"><span class="top-number-badge">9</span></div><div class="movie-info"><div class="movie-title">Caçada Sangrenta</div><div class="movie-genre">Ação</div></div></div>
+            <div class="movie-card"><div class="movie-poster"><img src="img/coresdajustica.jpg" alt="Cores da Justiça"><span class="top-number-badge">10</span></div><div class="movie-info"><div class="movie-title">Cores da Justiça</div><div class="movie-genre">Ação</div></div></div>
         </div>
     </div>
 
@@ -307,11 +314,11 @@
     <div class="category-section">
         <div class="category-title has-border">😱 Terror</div>
         <div class="carousel">
-            <div class="movie-card no-top"><div class="movie-poster">👻</div><div class="movie-info"><div class="movie-title">Invocação do Mal</div><div class="movie-genre">Terror</div></div></div>
-            <div class="movie-card no-top"><div class="movie-poster">🤡</div><div class="movie-info"><div class="movie-title">It: A Coisa</div><div class="movie-genre">Terror</div></div></div>
-            <div class="movie-card no-top"><div class="movie-poster">🔪</div><div class="movie-info"><div class="movie-title">Pânico VI</div><div class="movie-genre">Terror</div></div></div>
-            <div class="movie-card no-top"><div class="movie-poster">🕯️</div><div class="movie-info"><div class="movie-title">A Freira 2</div><div class="movie-genre">Terror</div></div></div>
-            <div class="movie-card no-top"><div class="movie-poster">🪓</div><div class="movie-info"><div class="movie-title">O Exorcista</div><div class="movie-genre">Terror</div></div></div>
+            <div class="movie-card no-top"><div class="movie-poster"><img src="img/oataquedos6tubaroes.jpg" alt="O Ataque do Tubarão de 6 Cabeças"></div><div class="movie-info"><div class="movie-title">Tubarão de 6 Cabeças</div><div class="movie-genre">Terror</div></div></div>
+            <div class="movie-card no-top"><div class="movie-poster"><img src="img/quemmorre.jpg" alt="Diga Quem Morre"></div><div class="movie-info"><div class="movie-title">Diga Quem Morre</div><div class="movie-genre">Terror</div></div></div>
+            <div class="movie-card no-top"><div class="movie-poster"><img src="img/cazadasangrenta.jpg" alt="Caçada Sangrenta"></div><div class="movie-info"><div class="movie-title">Caçada Sangrenta</div><div class="movie-genre">Terror</div></div></div>
+            <div class="movie-card no-top"><div class="movie-poster"><img src="img/oataquedos6tubaroes.jpg" alt="O Ataque do Tubarão de 6 Cabeças"></div><div class="movie-info"><div class="movie-title">Tubarão de 6 Cabeças</div><div class="movie-genre">Terror</div></div></div>
+            <div class="movie-card no-top"><div class="movie-poster"><img src="img/quemmorre.jpg" alt="Diga Quem Morre"></div><div class="movie-info"><div class="movie-title">Diga Quem Morre</div><div class="movie-genre">Terror</div></div></div>
         </div>
     </div>
 
@@ -319,11 +326,11 @@
     <div class="category-section">
         <div class="category-title has-border">😂 Para Morrer de Rir</div>
         <div class="carousel">
-            <div class="movie-card no-top"><div class="movie-poster">🍻</div><div class="movie-info"><div class="movie-title">Se Beber, Não Case!</div><div class="movie-genre">Comédia</div></div></div>
-            <div class="movie-card no-top"><div class="movie-poster">🍼</div><div class="movie-info"><div class="movie-title">As Branquelas</div><div class="movie-genre">Comédia</div></div></div>
-            <div class="movie-card no-top"><div class="movie-poster">🎭</div><div class="movie-info"><div class="movie-title">Gente Grande</div><div class="movie-genre">Comédia</div></div></div>
-            <div class="movie-card no-top"><div class="movie-poster">🦹‍♂️</div><div class="movie-info"><div class="movie-title">Meu Malvado Favorito</div><div class="movie-genre">Comédia</div></div></div>
-            <div class="movie-card no-top"><div class="movie-poster">🦆</div><div class="movie-info"><div class="movie-title">Todo Mundo em Pânico</div><div class="movie-genre">Comédia</div></div></div>
+            <div class="movie-card no-top"><div class="movie-poster"><img src="img/jonyingles.jpg" alt="Johnny English"></div><div class="movie-info"><div class="movie-title">Johnny English</div><div class="movie-genre">Comédia</div></div></div>
+            <div class="movie-card no-top"><div class="movie-poster"><img src="img/jonyingles.jpg" alt="Johnny English"></div><div class="movie-info"><div class="movie-title">Johnny English 2</div><div class="movie-genre">Comédia</div></div></div>
+            <div class="movie-card no-top"><div class="movie-poster"><img src="img/jonyingles.jpg" alt="Johnny English"></div><div class="movie-info"><div class="movie-title">Johnny English 3</div><div class="movie-genre">Comédia</div></div></div>
+            <div class="movie-card no-top"><div class="movie-poster"><img src="img/jonyingles.jpg" alt="Johnny English"></div><div class="movie-info"><div class="movie-title">Johnny English Retorna</div><div class="movie-genre">Comédia</div></div></div>
+            <div class="movie-card no-top"><div class="movie-poster"><img src="img/jonyingles.jpg" alt="Johnny English"></div><div class="movie-info"><div class="movie-title">Johnny English Especial</div><div class="movie-genre">Comédia</div></div></div>
         </div>
     </div>
 
@@ -331,11 +338,11 @@
     <div class="category-section">
         <div class="category-title has-border">💥 Ação a Todo Momento</div>
         <div class="carousel">
-            <div class="movie-card no-top"><div class="movie-poster">🚗</div><div class="movie-info"><div class="movie-title">Mad Max: Estrada da Furor</div><div class="movie-genre">Ação</div></div></div>
-            <div class="movie-card no-top"><div class="movie-poster">🎯</div><div class="movie-info"><div class="movie-title">Resgate</div><div class="movie-genre">Ação</div></div></div>
-            <div class="movie-card no-top"><div class="movie-poster">⚡</div><div class="movie-info"><div class="movie-title">Velozes e Furiosos 10</div><div class="movie-genre">Ação</div></div></div>
-            <div class="movie-card no-top"><div class="movie-poster">🦾</div><div class="movie-info"><div class="movie-title">Exterminador do Futuro</div><div class="movie-genre">Ação</div></div></div>
-            <div class="movie-card no-top"><div class="movie-poster">🔥</div><div class="movie-info"><div class="movie-title">Bad Boys: Até o Fim</div><div class="movie-genre">Ação</div></div></div>
+            <div class="movie-card no-top"><div class="movie-poster"><img src="img/tomorrow.jpg" alt="A Better Tomorrow"></div><div class="movie-info"><div class="movie-title">A Better Tomorrow</div><div class="movie-genre">Ação</div></div></div>
+            <div class="movie-card no-top"><div class="movie-poster"><img src="img/cazadasangrenta.jpg" alt="Caçada Sangrenta"></div><div class="movie-info"><div class="movie-title">Caçada Sangrenta</div><div class="movie-genre">Ação</div></div></div>
+            <div class="movie-card no-top"><div class="movie-poster"><img src="img/coresdajustica.jpg" alt="Cores da Justiça"></div><div class="movie-info"><div class="movie-title">Cores da Justiça</div><div class="movie-genre">Ação</div></div></div>
+            <div class="movie-card no-top"><div class="movie-poster"><img src="img/forcabutapunicao.jpg" alt="Força Bruta: Punição"></div><div class="movie-info"><div class="movie-title">Força Bruta: Punição</div><div class="movie-genre">Ação</div></div></div>
+            <div class="movie-card no-top"><div class="movie-poster"><img src="img/forcabutasemsaida.jpg" alt="Força Bruta: Sem Saída"></div><div class="movie-info"><div class="movie-title">Força Bruta: Sem Saída</div><div class="movie-genre">Ação</div></div></div>
         </div>
     </div>
 
@@ -364,31 +371,4 @@
             <div class="movie-card"><div class="movie-poster">🧟<span class="top-number-badge">5</span></div><div class="movie-info"><div class="movie-title">The Walking Dead</div><div class="movie-genre">Terror</div></div></div>
             <div class="movie-card"><div class="movie-poster">⚡<span class="top-number-badge">6</span></div><div class="movie-info"><div class="movie-title">The Boys</div><div class="movie-genre">Ação</div></div></div>
             <div class="movie-card"><div class="movie-poster">🩸<span class="top-number-badge">7</span></div><div class="movie-info"><div class="movie-title">Dexter</div><div class="movie-genre">Crime</div></div></div>
-            <div class="movie-card"><div class="movie-poster">⚔️<span class="top-number-badge">8</span></div><div class="movie-info"><div class="movie-title">Vikings</div><div class="movie-genre">Aventura</div></div></div>
-            <div class="movie-card"><div class="movie-poster">🏢<span class="top-number-badge">9</span></div><div class="movie-info"><div class="movie-title">The Office</div><div class="movie-genre">Comédia</div></div></div>
-            <div class="movie-card"><div class="movie-poster">🧊<span class="top-number-badge">10</span></div><div class="movie-info"><div class="movie-title">Game of Thrones</div><div class="movie-genre">Fantasia</div></div></div>
-        </div>
-    </div>
-
-    <!-- Menu Inferior -->
-    <nav class="bottom-nav">
-        <a href="home.html" class="nav-item active">
-            <svg viewBox="0 0 24 24"><path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/></svg>
-            Início
-        </a>
-        <a href="pesquisa.html" class="nav-item">
-            <svg viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.43,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.43C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"/></svg>
-            Pesquisar
-        </a>
-        <a href="favoritos.html" class="nav-item">
-            <svg viewBox="0 0 24 24"><path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/></svg>
-            Favoritos
-        </a>
-        <a href="perfil.html" class="nav-item">
-            <svg viewBox="0 0 24 24"><path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/></svg>
-            Perfil
-        </a>
-    </nav>
-
-</body>
-    </html>
+            <div class="movie-card"><div class="movie-poster">⚔️<span class="top-number-badge">8</span></div><div class="movie-info"><div class="movie-title">Vikings</div><div cl
