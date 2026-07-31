@@ -9,6 +9,12 @@
         body { background-color: #050811; color: #fff; margin: 0; padding-bottom: 50px; }
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: #0a0f1d; border-bottom: 1px solid #0055ff; }
         .logo { color: #00d2ff; font-weight: bold; font-size: 1.2rem; }
+        
+        /* Barra de Filtros (Séries, Filmes, Categorias) */
+        .filtros-nav { display: flex; gap: 15px; padding: 12px 20px; background: #0a0f1d; overflow-x: auto; border-bottom: 1px solid rgba(0,85,255,0.2); }
+        .filtro-btn { background: rgba(0, 85, 255, 0.2); border: 1px solid #0055ff; color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 0.9rem; white-space: nowrap; cursor: pointer; }
+        .filtro-btn.active { background: #0055ff; font-weight: bold; }
+
         .banner-principal { width: 100%; height: 250px; background: linear-gradient(to bottom, transparent, #050811), url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80') center/cover; display: flex; align-items: flex-end; padding: 20px; }
         .btn-assistir { background: #0055ff; color: #fff; padding: 10px 20px; border-radius: 6px; font-weight: bold; font-size: 1rem; border: none; }
         .categoria-titulo { padding: 15px 20px 5px 20px; font-size: 1.1rem; color: #00d2ff; }
@@ -24,6 +30,15 @@
         <span class="logo">PLAY FILMES</span>
         <div>🔍 👤</div>
     </header>
+
+    <!-- Barra de Opções (Séries, Filmes, Categorias) -->
+    <div class="filtros-nav">
+        <button class="filtro-btn active">Início</button>
+        <button class="filtro-btn">Séries</button>
+        <button class="filtro-btn">Filmes</button>
+        <button class="filtro-btn">Categorias</button>
+        <button class="filtro-btn">Minha Lista</button>
+    </div>
 
     <!-- Banner Principal -->
     <div class="banner-principal">
@@ -43,13 +58,13 @@
         <div class="filme-card">Filme 5</div>
     </div>
 
-    <!-- Categoria 2: Adrenalina -->
-    <div class="categoria-titulo">Adrenalina</div>
+    <!-- Categoria 2: Top 7 Séries -->
+    <div class="categoria-titulo">Top 7 Séries</div>
     <div class="carrossel">
-        <div class="filme-card">Ação 1</div>
-        <div class="filme-card">Ação 2</div>
-        <div class="filme-card">Ação 3</div>
-        <div class="filme-card">Ação 4</div>
+        <div class="filme-card">Série 1</div>
+        <div class="filme-card">Série 2</div>
+        <div class="filme-card">Série 3</div>
+        <div class="filme-card">Série 4</div>
     </div>
 
 </body>
