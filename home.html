@@ -77,16 +77,34 @@
             -webkit-text-fill-color: transparent;
         }
 
+        /* Área de Perfil e Login no Topo */
+        .user-actions-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .user-profile-badge {
             display: flex;
             align-items: center;
             gap: 8px;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 5px 10px;
+            padding: 5px 12px;
             border-radius: 20px;
             font-size: 12px;
             cursor: pointer;
+            color: var(--text-main);
+            text-decoration: none;
+            transition: border-color 0.2s;
+        }
+
+        .user-profile-badge:hover {
+            border-color: var(--neon-blue);
+        }
+
+        .user-profile-badge span {
+            font-size: 14px;
         }
 
         /* Banner de Boas-vindas */
@@ -166,7 +184,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            cursor: pointer; /* Mostra que é clicável só na imagem */
+            cursor: pointer; /* Indica que só a imagem abre o player */
         }
 
         .top-number-badge {
@@ -188,7 +206,7 @@
 
         .movie-info {
             padding: 8px;
-            pointer-events: none; /* Garante que o texto embaixo não interfira no toque */
+            pointer-events: none;
         }
 
         .movie-title {
@@ -422,15 +440,19 @@
                 </div>
                 <h1>PLAY FILMES</h1>
             </div>
-            <div class="user-profile-badge" onclick="window.location.href='perfil.html'">
-                <span id="userAvatar">🍿</span>
-                <strong>Perfil</strong>
+
+            <!-- Botão de Perfil / Login Restaurado -->
+            <div class="user-actions-header">
+                <a href="perfil.html" class="user-profile-badge" id="profileBadge">
+                    <span id="userAvatar">🍿</span>
+                    <strong id="userNameText">Perfil</strong>
+                </a>
             </div>
         </header>
 
         <!-- Saudação -->
         <div class="welcome-banner">
-            <h2>Olá!</h2>
+            <h2 id="welcomeTitle">Olá!</h2>
             <p>Explore nosso catálogo</p>
         </div>
 
@@ -481,44 +503,7 @@
         </div>
     </div>
 
-    <!-- TELA DE DETALHES / PLAYER -->
-    <div id="moviePlayerScreen">
-        <div class="player-header-banner">
-            <button class="back-btn" id="playerBackBtn">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-            </button>
-            <img id="playerBannerImg" src="" alt="Banner">
-        </div>
-        <div class="player-content">
-            <span class="player-top-tag" id="playerGenreTag">AÇÃO</span>
-            <h2 class="player-movie-title" id="playerTitle">Nome do Filme</h2>
-            <div class="player-meta">
-                <span class="badge-hd">HD</span>
-                <span id="playerGenreSub">Ação</span>
-                <span>2026</span>
-            </div>
-            <button class="btn-action-primary" onclick="alert('Iniciando reprodução...')">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Assistir
-            </button>
-            <button class="btn-action-secondary" onclick="alert('Adicionado à lista!')">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg> Minha Lista
-            </button>
-            <p class="player-synopsis" id="playerSynopsis">Sinopse do filme vai aqui...</p>
-            <div class="player-actions-row">
-                <button class="action-icon-btn" onclick="alert('Avaliado!')">
-                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg> Classificação
-                </button>
-                <button class="action-icon-btn" onclick="alert('Link copiado!')">
-                    <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg> Compartilhar
-                </button>
-                <button class="action-icon-btn" onclick="alert('Download iniciado!')">
-                    <svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z"/></svg> Baixar
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- MENU INFERIOR -->
+  <!-- MENU INFERIOR -->
     <nav class="bottom-nav">
         <button class="nav-item active">
             <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
@@ -530,9 +515,21 @@
         </button>
     </nav>
 
-        <!-- SCRIPT AJUSTADO: SÓ ABRE AO CLICAR NA IMAGEM -->
+    <!-- SCRIPTS -->
     <script>
-        // Agora selecionamos especificamente as imagens dos cartões
+        // 1. Lógica para carregar o nome/avatar se o cliente estiver logado (localStorage)
+        window.addEventListener('DOMContentLoaded', () => {
+            const loggedUser = localStorage.getItem('usuarioLogado') || sessionStorage.getItem('usuarioLogado');
+            const userNameText = document.getElementById('userNameText');
+            const welcomeTitle = document.getElementById('welcomeTitle');
+
+            if (loggedUser) {
+                userNameText.innerText = loggedUser;
+                welcomeTitle.innerText = `Olá, ${loggedUser}!`;
+            }
+        });
+
+        // 2. Lógica para abrir o player SOMENTE ao clicar na imagem do pôster
         const movieImages = document.querySelectorAll('.movie-card img');
         const moviePlayerScreen = document.getElementById('moviePlayerScreen');
         const playerBackBtn = document.getElementById('playerBackBtn');
@@ -545,7 +542,6 @@
 
         movieImages.forEach(imgElement => {
             imgElement.addEventListener('click', (e) => {
-                // Sobe para encontrar o card principal que contém os dados (data-*)
                 const card = e.target.closest('.movie-card');
                 if (!card) return;
 
