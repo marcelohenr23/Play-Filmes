@@ -59,7 +59,7 @@
     </div>
 
     <script>
-        // Banco de dados interno com as sinopses verdadeiras, capas e trailers (URLs do YouTube em formato embed)
+        // Banco de dados completo com todos os filmes, sinopses e trailers
         const bancoFilmes = {
             "Pantera Negra": {
                 ano: "2018", idade: "14+", duracao: "2h 14m", genero: "Ação / Ficção",
@@ -72,6 +72,18 @@
                 imagem: "../img/guerracivil.jpg",
                 trailer: "https://www.youtube.com/embed/dKrVegVI0Us",
                 sinopse: "A intervenção governamental nos Vingadores provoca uma fenda profunda entre o Capitão América e o Homem de Ferro, dividindo os heróis em dois campos rivais em meio a uma nova conspiração global."
+            },
+            "Capitão América Guerra Civil": {
+                ano: "2016", idade: "12+", duracao: "2h 27m", genero: "Ação / Aventura",
+                imagem: "../img/guerracivil.jpg",
+                trailer: "https://www.youtube.com/embed/dKrVegVI0Us",
+                sinopse: "A intervenção governamental nos Vingadores provoca uma fenda profunda entre o Capitão América e o Homem de Ferro, dividindo os heróis em dois campos rivais em meio a uma nova conspiração global."
+            },
+            "Homem de Ferro": {
+                ano: "2008", idade: "12+", duracao: "2h 06m", genero: "Ação / Ficção",
+                imagem: "../img/homemdeferro.jpg",
+                trailer: "https://www.youtube.com/embed/8ugaeA-nMTc",
+                sinopse: "Tony Stark é um industrial bilionário e inventor brilhante que é sequestrado e forçado a construir uma arma devastadora. Em vez disso, ele cria uma armadura de alta tecnologia para escapar e salvar o mundo."
             },
             "Homem de Ferro 2": {
                 ano: "2010", idade: "12+", duracao: "2h 04m", genero: "Ação / Ficção",
@@ -102,6 +114,18 @@
                 imagem: "../img/xmen.jpg",
                 trailer: "https://www.youtube.com/embed/COvnHv42T-A",
                 sinopse: "O primeiro e mais poderoso mutante do universo Marvel desperta após milênios desiludido com o mundo e recruta seguidores, incluindo um Magneto desiludido, para purificar a Terra."
+            },
+            "Creed II": {
+                ano: "2018", idade: "12+", duracao: "2h 10m", genero: "Esporte / Drama",
+                imagem: "../img/creed2.jpg",
+                trailer: "https://www.youtube.com/embed/uiMLji_kqIs",
+                sinopse: "Adonis Creed deve equilibrar sua vida pessoal e seu treinamento para sua próxima grande luta, enfrentando um oponente que tem laços com o passado de sua família."
+            },
+            "Mais Forte que o Mundo": {
+                ano: "2016", idade: "14+", duracao: "1h 55m", genero: "Biografia / Drama",
+                imagem: "../img/maisfortequeomundo.jpg",
+                trailer: "https://www.youtube.com/embed/R3QxQ8Rj2Bw",
+                sinopse: "A trajetória dramática e emocionante de José Aldo, desde a infância difícil em Manaus até se tornar o campeão mundial de luta livre nas artes marciais mistas (MMA)."
             }
         };
 
@@ -117,14 +141,18 @@
             const generoEl = document.getElementById('generoFilme');
             const sinopseEl = document.getElementById('sinopseFilme');
             const btnTrailer = document.getElementById('btnVerTrailer');
+            const btnAssistir = document.getElementById('btnAssistir');
 
             if (tituloElemento) tituloElemento.textContent = nomeFilme;
 
-            // Procura no banco de dados interno ou pega do localStorage caso tenha sido cadastrado manualmente
+            // Atualiza o link do botão Assistir para enviar o filme correto para o player.html
+            if (btnAssistir) {
+                btnAssistir.href = `player.html?filme=${encodeURIComponent(nomeFilme)}`;
+            }
+
             let dados = bancoFilmes[nomeFilme];
 
             if (!dados) {
-                // Tenta buscar do localStorage se não estiver no código fixo
                 const filmesSalvos = JSON.parse(localStorage.getItem('filmesImagens')) || [];
                 const salvo = filmesSalvos.find(f => f.titulo === nomeFilme);
                 if (salvo) {
@@ -135,23 +163,20 @@
                         sinopse: "Sinopse indisponível no momento para este título."
                     };
                 } else {
-                    dados = bancoFilmes["Pantera Negra"]; // Fallback padrão
+                    dados = bancoFilmes["Pantera Negra"];
                 }
             }
 
-            // Aplica os dados na tela
             if (anoEl) anoEl.textContent = dados.ano;
             if (idadeEl) idadeEl.textContent = dados.idade;
             if (duracaoEl) duracaoEl.textContent = dados.duracao;
             if (generoEl) generoEl.textContent = dados.genero;
             if (sinopseEl) sinopseEl.textContent = dados.sinopse;
 
-            // Define a imagem de fundo inicial
             if (banner) {
                 banner.style.backgroundImage = `url('${dados.imagem}')`;
             }
 
-            // Ação do botão "Ver Trailer": Transforma a imagem do topo em um player de vídeo do YouTube incorporado
             if (btnTrailer) {
                 btnTrailer.addEventListener('click', function() {
                     if (dados.trailer) {
