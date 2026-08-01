@@ -2,58 +2,66 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Play Filmes - Reproduzindo</title>
     <link rel="stylesheet" href="../css/style.css">
     <style>
         body { background-color: #000; color: #fff; margin: 0; height: 100vh; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
         
         /* Topo do Player com botão de voltar */
-        .player-header { display: flex; align-items: center; padding: 20px; background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent); position: absolute; top: 0; width: 100%; z-index: 10; }
-        .btn-voltar { color: #fff; font-size: 1.5rem; text-decoration: none; margin-right: 15px; background: rgba(0,0,0,0.5); padding: 5px 12px; border-radius: 50%; }
-        .titulo-video { font-size: 1.1rem; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        .player-header { display: flex; align-items: center; padding: 15px 20px; background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent); position: absolute; top: 0; width: 100%; z-index: 10; box-sizing: border-box; }
+        .btn-voltar { color: #fff; font-size: 1.5rem; text-decoration: none; margin-right: 15px; background: rgba(0,0,0,0.6); padding: 4px 12px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); }
+        .titulo-video { font-size: 1.1rem; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.8); color: #00d2ff; }
 
-        /* Tela simulando o vídeo rodando */
-        .player-screen { flex: 1; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle, #0a0f1d 0%, #000 100%); position: relative; }
-        .play-simulado { font-size: 4rem; color: rgba(0, 210, 255, 0.6); animation: pulse 2s infinite; }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.6; }
-            50% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.6; }
-        }
-
-        /* Barra de controles inferior */
-        .player-controls { padding: 20px; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); display: flex; flex-direction: column; gap: 10px; }
-        .barra-progresso { width: 100%; height: 5px; background: rgba(255,255,255,0.3); border-radius: 5px; position: relative; }
-        .progresso-atual { width: 35%; height: 100%; background: #0055ff; border-radius: 5px; }
-        .controles-botoes { display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; color: #8c92a4; }
+        /* Tela do Player ocupando a tela inteira com o iframe */
+        .player-screen { flex: 1; display: flex; align-items: center; justify-content: center; background: #000; position: relative; width: 100%; height: 100%; }
+        .player-screen iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
 
     <!-- Topo -->
     <div class="player-header">
-        <a href="detalhes.html" class="btn-voltar">‹</a>
-        <span class="titulo-video">Aventura Espacial - Dublado</span>
+        <a href="#" id="btnVoltarDetalhes" class="btn-voltar">‹</a>
+        <span class="titulo-video" id="tituloVideo">Carregando filme...</span>
     </div>
 
-    <!-- Tela do Vídeo -->
-    <div class="player-screen">
-        <div class="play-simulado">▶</div>
+    <!-- Tela do Vídeo (Iframe do player injetado aqui) -->
+    <div class="player-screen" id="playerContainer">
+        <!-- O player real será inserido via JavaScript -->
     </div>
 
-    <!-- Controles -->
-    <div class="player-controls">
-        <div class="barra-progresso">
-            <div class="progresso-atual"></div>
-        </div>
-        <div class="controles-botoes">
-            <span>14:20</span>
-            <span>🔊 ⚙️ 📺</span>
-            <span>-45:10</span>
-        </div>
-    </div>
+    <script>
+        // Banco de dados contendo os links/iframes reais de player para cada filme
+        const linksPlayers = {
+            "Warcraft": '<iframe src="https://betterflix.lat/api/player?id=68735&type=movie" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>',
+            "Pantera Negra": '<iframe src="https://betterflix.lat/api/player?id=284054&type=movie" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>',
+            "Guerra Civil": '<iframe src="https://betterflix.lat/api/player?id=271110&type=movie" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>',
+            "Homem de Ferro 2": '<iframe src="https://betterflix.lat/api/player?id=10138&type=movie" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>',
+            "Jumanji": '<iframe src="https://betterflix.lat/api/player?id=353486&type=movie" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>',
+            "15h17 Trem para Paris": '<iframe src="https://betterflix.lat/api/player?id=463927&type=movie" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>',
+            "X-Men Apocalipse": '<iframe src="https://betterflix.lat/api/player?id=246655&type=movie" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>'
+        };
 
+        window.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const nomeFilme = params.get('filme') || "Warcraft";
+
+            // Atualiza o título no topo
+            document.getElementById('tituloVideo').textContent = nomeFilme + " - Dublado";
+
+            // Configura o botão de voltar para retornar para a página de detalhes correta do filme
+            document.getElementById('btnVoltarDetalhes').href = `detalhes.html?filme=${encodeURIComponent(nomeFilme)}`;
+
+            // Injeta o player correspondente na tela
+            const container = document.getElementById('playerContainer');
+            if (linksPlayers[nomeFilme]) {
+                container.innerHTML = linksPlayers[nomeFilme];
+            } else {
+                // Player padrão caso não encontre específico
+                container.innerHTML = `<iframe src="https://betterflix.lat/api/player?id=68735&type=movie" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>`;
+            }
+        });
+    </script>
 </body>
 </html>
