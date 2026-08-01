@@ -8,68 +8,158 @@
     <style>
         body { background-color: #050811; color: #fff; margin: 0; padding-bottom: 50px; }
         
-        .banner-detalhe { width: 100%; height: 280px; background: linear-gradient(to bottom, transparent 60%, #050811), url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80') center/cover; position: relative; }
-        .btn-voltar-topo { position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.6); color: #fff; text-decoration: none; padding: 6px 12px; border-radius: 50%; font-size: 1.2rem; border: 1px solid rgba(0,85,255,0.3); }
+        /* Área do Trailer / Imagem de Capa no Topo */
+        .banner-detalhe { width: 100%; height: 260px; background-size: cover; background-position: center; position: relative; background-color: #000; }
+        .banner-detalhe::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 60px; background: linear-gradient(to bottom, transparent, #050811); }
+        .btn-voltar-topo { position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.6); color: #fff; text-decoration: none; padding: 4px 10px; border-radius: 50%; font-size: 1.4rem; border: 1px solid rgba(0,85,255,0.3); z-index: 10; }
+
+        /* Estilo para quando o trailer for um vídeo incorporado */
+        .banner-detalhe iframe { width: 100%; height: 100%; border: none; }
 
         .info-container { padding: 0 20px; }
         .titulo-filme { font-size: 1.5rem; color: #00d2ff; margin-bottom: 8px; font-weight: bold; }
-        .meta-info { display: flex; gap: 15px; font-size: 0.9rem; color: #8c92a4; margin-bottom: 20px; align-items: center; }
+        .meta-info { display: flex; gap: 15px; font-size: 0.9rem; color: #8c92a4; margin-bottom: 15px; align-items: center; }
         .badge-idade { background: #1b263b; border: 1px solid #0055ff; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; color: #fff; }
 
-        .btn-assistir { background: #0055ff; color: #fff; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 1rem; border: none; text-decoration: none; display: block; text-align: center; width: 100%; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 85, 255, 0.4); margin-bottom: 20px; transition: transform 0.2s; }
-        .btn-assistir:active { transform: scale(0.98); }
+        .botoes-container { display: flex; gap: 10px; margin-bottom: 20px; }
+        .btn-acao { background: #0055ff; color: #fff; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 0.95rem; border: none; text-decoration: none; display: block; text-align: center; flex: 1; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 85, 255, 0.4); transition: transform 0.2s; cursor: pointer; }
+        .btn-trailer { background: rgba(0, 85, 255, 0.2); border: 1px solid #0055ff; color: #00d2ff; box-shadow: none; }
+        .btn-acao:active { transform: scale(0.98); }
 
         .sinopse { font-size: 0.95rem; color: #b0b4c0; line-height: 1.5; }
     </style>
 </head>
 <body>
 
-    <!-- Banner Superior com Botão de Voltar -->
+    <!-- Banner Superior / Trailer com Botão de Voltar -->
     <div class="banner-detalhe" id="bannerDetalhe">
         <a href="home.html" class="btn-voltar-topo">‹</a>
     </div>
 
     <!-- Informações do Filme/Série -->
     <div class="info-container">
-        <div class="titulo-filme">Aventura Espacial</div>
+        <div class="titulo-filme" id="tituloFilme">Carregando...</div>
         
         <div class="meta-info">
-            <span>2026</span>
-            <span class="badge-idade">12+</span>
-            <span>2h 15m</span>
-            <span>Ficção Científica</span>
+            <span id="anoFilme">--</span>
+            <span class="badge-idade" id="idadeFilme">12+</span>
+            <span id="duracaoFilme">--</span>
+            <span id="generoFilme">--</span>
         </div>
 
-        <!-- Botão Assistir Agora integrado ao Player -->
-        <a href="player.html" class="btn-assistir">▶ Assistir Agora</a>
+        <!-- Botões de Ação -->
+        <div class="botoes-container">
+            <a href="player.html" class="btn-acao" id="btnAssistir">▶ Assistir Agora</a>
+            <button class="btn-acao btn-trailer" id="btnVerTrailer">🎬 Ver Trailer</button>
+        </div>
 
-        <div class="sinopse">
-            Em um futuro distante, um grupo de exploradores viaja através de fendas desconhecidas no espaço em busca de um novo lar para a humanidade, enfrentando perigos cósmicos e escolhas difíceis.
+        <div class="sinopse" id="sinopseFilme">
+            Carregando sinopse...
         </div>
     </div>
 
     <script>
+        // Banco de dados interno com as sinopses verdadeiras, capas e trailers (URLs do YouTube em formato embed)
+        const bancoFilmes = {
+            "Pantera Negra": {
+                ano: "2018", idade: "14+", duracao: "2h 14m", genero: "Ação / Ficção",
+                imagem: "../img/pantera.jpg",
+                trailer: "https://www.youtube.com/embed/xjDjIWPwcPU",
+                sinopse: "T'Challa, herdeiro do reino de Wakanda, precisa se defender de inimigos estrangeiros e disputas internas pelo trono após a morte de seu pai, usando os recursos tecnológicos avançados de sua nação."
+            },
+            "Guerra Civil": {
+                ano: "2016", idade: "12+", duracao: "2h 27m", genero: "Ação / Aventura",
+                imagem: "../img/guerracivil.jpg",
+                trailer: "https://www.youtube.com/embed/dKrVegVI0Us",
+                sinopse: "A intervenção governamental nos Vingadores provoca uma fenda profunda entre o Capitão América e o Homem de Ferro, dividindo os heróis em dois campos rivais em meio a uma nova conspiração global."
+            },
+            "Homem de Ferro 2": {
+                ano: "2010", idade: "12+", duracao: "2h 04m", genero: "Ação / Ficção",
+                imagem: "../img/homemdeferroo.jpg",
+                trailer: "https://www.youtube.com/embed/BoohRoVA9WQ",
+                sinopse: "Com a identidade de Tony Stark revelada ao mundo, ele enfrenta pressões do governo, problemas de saúde com o reator em seu peito e a ameaça vingativa de Ivan Vanko aliado a um rival corporativo."
+            },
+            "Jumanji": {
+                ano: "2017", idade: "12+", duracao: "1h 59m", genero: "Aventura / Comédia",
+                imagem: "../img/jumaji.jpg",
+                trailer: "https://www.youtube.com/embed/2QKg5SZ_35I",
+                sinopse: "Quatro adolescentes encontram um antigo videogame cuja ação se passa em uma floresta tropical perigosa. Eles entram nos corpos dos avatares escolhidos e precisam zerar o jogo para escapar vivos."
+            },
+            "Warcraft": {
+                ano: "2016", idade: "12+", duracao: "2h 03m", genero: "Fantasia / Ação",
+                imagem: "../img/warcraft.jpg",
+                trailer: "https://www.youtube.com/embed/2SSu7yMorr8",
+                sinopse: "O pacífico reino de Azeroth está à beira de uma guerra quando sua civilização enfrenta uma raça de guerreiros Orcs fugindo de seu mundo moribundo para colonizar um novo lar."
+            },
+            "15h17 Trem para Paris": {
+                ano: "2018", idade: "14+", duracao: "1h 34m", genero: "Drama / Suspense",
+                imagem: "../img/1517.jpg",
+                trailer: "https://www.youtube.com/embed/g7RzWJ5f_gM",
+                sinopse: "Baseado em fatos reais, acompanha a jornada de três amigos americanos que evitam um atentado terrorista a bordo de um trem de alta velocidade com destino a Paris em agosto de 2015."
+            },
+            "X-Men Apocalipse": {
+                ano: "2016", idade: "12+", duracao: "2h 24m", genero: "Ação / Ficção",
+                imagem: "../img/xmen.jpg",
+                trailer: "https://www.youtube.com/embed/COvnHv42T-A",
+                sinopse: "O primeiro e mais poderoso mutante do universo Marvel desperta após milênios desiludido com o mundo e recruta seguidores, incluindo um Magneto desiludido, para purificar a Terra."
+            }
+        };
+
         window.addEventListener('DOMContentLoaded', function() {
             const params = new URLSearchParams(window.location.search);
-            const nomeFilme = params.get('filme');
+            const nomeFilme = params.get('filme') || "Pantera Negra";
             
-            if (nomeFilme) {
-                // Atualiza o título do filme na tela de detalhes
-                const tituloElemento = document.querySelector('.titulo-filme');
-                if (tituloElemento) {
-                    tituloElemento.textContent = nomeFilme;
-                }
+            const tituloElemento = document.getElementById('tituloFilme');
+            const banner = document.getElementById('bannerDetalhe');
+            const anoEl = document.getElementById('anoFilme');
+            const idadeEl = document.getElementById('idadeFilme');
+            const duracaoEl = document.getElementById('duracaoFilme');
+            const generoEl = document.getElementById('generoFilme');
+            const sinopseEl = document.getElementById('sinopseFilme');
+            const btnTrailer = document.getElementById('btnVerTrailer');
 
-                // Busca a imagem correta salva no localStorage para colocar no banner de fundo
+            if (tituloElemento) tituloElemento.textContent = nomeFilme;
+
+            // Procura no banco de dados interno ou pega do localStorage caso tenha sido cadastrado manualmente
+            let dados = bancoFilmes[nomeFilme];
+
+            if (!dados) {
+                // Tenta buscar do localStorage se não estiver no código fixo
                 const filmesSalvos = JSON.parse(localStorage.getItem('filmesImagens')) || [];
-                const filmeEncontrado = filmesSalvos.find(f => f.titulo === nomeFilme);
-
-                if (filmeEncontrado) {
-                    const banner = document.getElementById('bannerDetalhe');
-                    if (banner) {
-                        banner.style.background = `linear-gradient(to bottom, transparent 60%, #050811), url(${filmeEncontrado.imagem}) center/cover`;
-                    }
+                const salvo = filmesSalvos.find(f => f.titulo === nomeFilme);
+                if (salvo) {
+                    dados = {
+                        ano: "2026", idade: "12+", duracao: "2h 00m", genero: "Filme",
+                        imagem: salvo.imagem,
+                        trailer: "",
+                        sinopse: "Sinopse indisponível no momento para este título."
+                    };
+                } else {
+                    dados = bancoFilmes["Pantera Negra"]; // Fallback padrão
                 }
+            }
+
+            // Aplica os dados na tela
+            if (anoEl) anoEl.textContent = dados.ano;
+            if (idadeEl) idadeEl.textContent = dados.idade;
+            if (duracaoEl) duracaoEl.textContent = dados.duracao;
+            if (generoEl) generoEl.textContent = dados.genero;
+            if (sinopseEl) sinopseEl.textContent = dados.sinopse;
+
+            // Define a imagem de fundo inicial
+            if (banner) {
+                banner.style.backgroundImage = `url('${dados.imagem}')`;
+            }
+
+            // Ação do botão "Ver Trailer": Transforma a imagem do topo em um player de vídeo do YouTube incorporado
+            if (btnTrailer) {
+                btnTrailer.addEventListener('click', function() {
+                    if (dados.trailer) {
+                        banner.innerHTML = `<a href="home.html" class="btn-voltar-topo">‹</a><iframe src="${dados.trailer}?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                    } else {
+                        alert("Trailer indisponível para este título.");
+                    }
+                });
             }
         });
     </script>
