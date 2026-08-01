@@ -32,15 +32,19 @@
     </div>
 
     <script>
-        // Banco de dados contendo os links/iframes reais de player para cada filme
+        // Banco de dados com os links reais de player do fembed.lol para cada filme
         const linksPlayers = {
-            "Warcraft": '<iframe src="https://betterflix.lat/api/player?id=68735&type=movie" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>',
-            "Pantera Negra": '<iframe src="https://betterflix.lat/api/player?id=284054&type=movie" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>',
-            "Guerra Civil": '<iframe src="https://betterflix.lat/api/player?id=271110&type=movie" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>',
-            "Homem de Ferro 2": '<iframe src="https://betterflix.lat/api/player?id=10138&type=movie" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>',
-            "Jumanji": '<iframe src="https://betterflix.lat/api/player?id=353486&type=movie" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>',
-            "15h17 Trem para Paris": '<iframe src="https://betterflix.lat/api/player?id=463927&type=movie" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>',
-            "X-Men Apocalipse": '<iframe src="https://betterflix.lat/api/player?id=246655&type=movie" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>'
+            "Creed II": "https://fembed.lol/filme/480530",
+            "Mais Forte que o Mundo": "https://fembed.lol/filme/372518",
+            "Homem de Ferro": "https://fembed.lol/filme/1726",
+            "Guerra Civil": "https://fembed.lol/filme/271110",
+            "Capitão América Guerra Civil": "https://fembed.lol/filme/271110",
+            "X-Men Apocalipse": "https://fembed.lol/filme/246655",
+            "Homem de Ferro 2": "https://fembed.lol/filme/10138",
+            "15h17 Trem para Paris": "https://fembed.lol/filme/453201",
+            "Pantera Negra": "https://fembed.lol/filme/284054",
+            "Jumanji": "https://fembed.lol/filme/353486",
+            "Warcraft": "https://fembed.lol/filme/68735"
         };
 
         window.addEventListener('DOMContentLoaded', function() {
@@ -53,14 +57,12 @@
             // Configura o botão de voltar para retornar para a página de detalhes correta do filme
             document.getElementById('btnVoltarDetalhes').href = `detalhes.html?filme=${encodeURIComponent(nomeFilme)}`;
 
-            // Injeta o player correspondente na tela
+            // Pega o link correspondente ou usa o Warcraft como padrão
+            const urlPlayer = linksPlayers[nomeFilme] || "https://fembed.lol/filme/68735";
+
+            // Injeta o player em formato iframe na tela cheia
             const container = document.getElementById('playerContainer');
-            if (linksPlayers[nomeFilme]) {
-                container.innerHTML = linksPlayers[nomeFilme];
-            } else {
-                // Player padrão caso não encontre específico
-                container.innerHTML = `<iframe src="https://betterflix.lat/api/player?id=68735&type=movie" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>`;
-            }
+            container.innerHTML = `<iframe src="${urlPlayer}" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>`;
         });
     </script>
 </body>
