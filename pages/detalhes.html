@@ -59,7 +59,7 @@
     </div>
 
     <script>
-        // Banco de dados completo com todos os filmes, sinopses e trailers
+        // Banco de dados padrão
         const bancoFilmes = {
             "Pantera Negra": {
                 ano: "2018", idade: "14+", duracao: "2h 14m", genero: "Ação / Ficção",
@@ -145,28 +145,33 @@
 
             if (tituloElemento) tituloElemento.textContent = nomeFilme;
 
-            // Atualiza o link do botão Assistir para enviar o filme correto para o player.html
+            // Envia o nome do filme correto para o player.html
             if (btnAssistir) {
                 btnAssistir.href = `player.html?filme=${encodeURIComponent(nomeFilme)}`;
             }
 
-            let dados = bancoFilmes[nomeFilme];
+            // 1. Tenta buscar primeiro no localStorage (filmes cadastrados automaticamente)
+            const filmesSalvos = JSON.parse(localStorage.getItem('filmesImagens')) || [];
+            const salvo = filmesSalvos.find(f => f.titulo === nomeFilme);
 
-            if (!dados) {
-                const filmesSalvos = JSON.parse(localStorage.getItem('filmesImagens')) || [];
-                const salvo = filmesSalvos.find(f => f.titulo === nomeFilme);
-                if (salvo) {
-                    dados = {
-                        ano: "2026", idade: "12+", duracao: "2h 00m", genero: "Filme",
-                        imagem: salvo.imagem,
-                        trailer: "",
-                        sinopse: "Sinopse indisponível no momento para este título."
-                    };
-                } else {
-                    dados = bancoFilmes["Pantera Negra"];
-                }
+            let dados = null;
+
+            if (salvo) {
+                dados = {
+                    ano: salvo.ano || "2026",
+                    idade: salvo.idade || "12+",
+                    duracao: salvo.duracao || "2h 00m",
+                    genero: salvo.genero || "Filme",
+                    imagem: salvo.imagem,
+                    trailer: salvo.trailer || "",
+                    sinopse: salvo.sinopse || "Sinopse não informada para este título."
+                };
+            } else {
+                // 2. Se não estiver no localStorage, pega do banco fixo
+                dados = bancoFilmes[nomeFilme] || bancoFilmes["Pantera Negra"];
             }
 
+            // Aplica os dados na tela
             if (anoEl) anoEl.textContent = dados.ano;
             if (idadeEl) idadeEl.textContent = dados.idade;
             if (duracaoEl) duracaoEl.textContent = dados.duracao;
