@@ -32,7 +32,7 @@
     </div>
 
     <script>
-        // Banco de dados com os links reais de player do fembed.lol para cada filme
+        // Banco de dados fixo com os links do fembed.lol
         const linksPlayers = {
             "Creed II": "https://fembed.lol/filme/480530",
             "Mais Forte que o Mundo": "https://fembed.lol/filme/372518",
@@ -57,8 +57,18 @@
             // Configura o botão de voltar para retornar para a página de detalhes correta do filme
             document.getElementById('btnVoltarDetalhes').href = `detalhes.html?filme=${encodeURIComponent(nomeFilme)}`;
 
-            // Pega o link correspondente ou usa o Warcraft como padrão
-            const urlPlayer = linksPlayers[nomeFilme] || "https://fembed.lol/filme/68735";
+            let urlPlayer = "";
+
+            // 1. Tenta buscar o link do player no localStorage (filmes adicionados dinamicamente)
+            const filmesSalvos = JSON.parse(localStorage.getItem('filmesImagens')) || [];
+            const salvo = filmesSalvos.find(f => f.titulo === nomeFilme);
+
+            if (salvo && salvo.player) {
+                urlPlayer = salvo.player;
+            } else {
+                // 2. Se não estiver no localStorage, busca no banco fixo ou usa Warcraft como padrão
+                urlPlayer = linksPlayers[nomeFilme] || "https://fembed.lol/filme/68735";
+            }
 
             // Injeta o player em formato iframe na tela cheia
             const container = document.getElementById('playerContainer');
