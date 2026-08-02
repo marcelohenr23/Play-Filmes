@@ -163,12 +163,11 @@
                 trailer: "https://www.youtube.com/embed/MxSlplkEDvQ",
                 sinopse: "Harry, Rony e Hermione abandonam Hogwarts para caçar e destruir as Horcruxes restantes de Voldemort, enfrentando perigos extremos sozinhos e sem a proteção dos professores."
             },
-            /* NOVOS FILMES ADICIONADOS */
             "Bright": {
                 ano: "2017", idade: "16+", duracao: "1h 57m", genero: "Ação / Fantasia",
                 imagem: "../img/bright.jpg",
                 trailer: "https://www.youtube.com/embed/v9qXzM_dFcg",
-                sinopse: "Em uma Los Angeles alternativa onde humanos conviven com orcs, elfos e fadas, um policial humano e seu parceiro orc encontram um artefato poderoso que pode mudar o mundo."
+                sinopse: "Em uma Los Angeles alternativa onde humanos conviviam com orcs, elfos e fadas, um policial humano e seu parceiro orc encontram um artefato poderoso que pode mudar o mundo."
             },
             "Blade Runner 2049": {
                 ano: "2017", idade: "16+", duracao: "2h 44m", genero: "Ficção / Suspense",
@@ -265,10 +264,14 @@
                 imagem: "../img/pijamalistrado.jpg",
                 trailer: "https://www.youtube.com/embed/9XqWqN07u8Y",
                 sinopse: "Durante a Segunda Guerra Mundial, Bruno, o filho de oito anos de um oficial nazista, muda-se para perto de um campo de concentração e faz uma amizade proibida com um menino judeu do outro lado da cerca."
-            }
-        };
-
-        window.addEventListener('DOMContentLoaded', function() {
+            },
+            "Caçada Brutal": {
+                ano: "2016", idade: "16+", duracao: "1h 31m", genero: "Ação / Suspense",
+                imagem: "../img/cacdabrutal.jpg",
+                trailer: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                sinopse: "Um ex-presidiário tenta se reconectar com sua filha rebelde que está fugindo de traficantes de drogas implacáveis, usando todas as suas habilid
+                  
+            window.addEventListener('DOMContentLoaded', function() {
             const params = new URLSearchParams(window.location.search);
             const nomeFilme = params.get('filme') || "Pantera Negra";
             
@@ -321,10 +324,22 @@
                 banner.style.backgroundImage = `url('${dados.imagem}')`;
             }
 
+            // Alternar entre imagem de capa e o trailer do YouTube
+            let mostrandoTrailer = false;
             if (btnTrailer) {
                 btnTrailer.addEventListener('click', function() {
                     if (dados.trailer) {
-                        banner.innerHTML = `<a href="home.html" class="btn-voltar-topo">‹</a><iframe src="${dados.trailer}?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                        if (!mostrandoTrailer) {
+                            banner.style.backgroundImage = 'none';
+                            banner.innerHTML = `<a href="home.html" class="btn-voltar-topo">‹</a><iframe src="${dados.trailer}?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                            btnTrailer.textContent = "🖼 Ver Capa";
+                            mostrandoTrailer = true;
+                        } else {
+                            banner.innerHTML = `<a href="home.html" class="btn-voltar-topo">‹</a>`;
+                            banner.style.backgroundImage = `url('${dados.imagem}')`;
+                            btnTrailer.textContent = "🎬 Ver Trailer";
+                            mostrandoTrailer = false;
+                        }
                     } else {
                         alert("Trailer indisponível para este título.");
                     }
