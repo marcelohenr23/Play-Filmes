@@ -334,80 +334,27 @@
         };
 
         window.addEventListener('DOMContentLoaded', function() {
-            const params = new URLSearchParams(window.location.search);
-            const nomeFilme = params.get('filme') || "Pantera Negra";
-            
-            const tituloElemento = document.getElementById('tituloFilme');
-            const banner = document.getElementById('bannerDetalhe');
-            const anoEl = document.getElementById('anoFilme');
-            const idadeEl = document.getElementById('idadeFilme');
-            const duracaoEl = document.getElementById('duracaoFilme');
-            const generoEl = document.getElementById('generoFilme');
-            const sinopseEl = document.getElementById('sinopseFilme');
-            const btnTrailer = document.getElementById('btnVerTrailer');
-            const btnAssistir = document.getElementById('btnAssistir');
+    const params = new URLSearchParams(window.location.search);
+    const nomeFilme = params.get('filme') || "Pantera Negra";
+    
+    // Elementos da página onde o texto aparece
+    const tituloElemento = document.getElementById('tituloFilme');
+    const anoEl = document.getElementById('anoFilme');
+    const idadeEl = document.getElementById('idadeFilme');
+    const duracaoEl = document.getElementById('duracaoFilme');
+    const generoEl = document.getElementById('generoFilme');
+    const sinopseEl = document.getElementById('sinopseFilme');
 
-            if (tituloElemento) tituloElemento.textContent = nomeFilme;
+    // Define o título na tela
+    if (tituloElemento) tituloElemento.textContent = nomeFilme;
 
-            // Envia o nome do filme correto para o player.html
-            if (btnAssistir) {
-                btnAssistir.href = `player.html?filme=${encodeURIComponent(nomeFilme)}`;
-            }
+    // Puxa os dados do filme correspondente
+    let dados = bancoFilmes[nomeFilme] || bancoFilmes["Pantera Negra"];
 
-            // 1. Tenta buscar primeiro no localStorage (filmes cadastrados automaticamente)
-            const filmesSalvos = JSON.parse(localStorage.getItem('filmesImagens')) || [];
-            const salvo = filmesSalvos.find(f => f.titulo === nomeFilme);
-
-            let dados = null;
-
-            if (salvo) {
-                dados = {
-                    ano: salvo.ano || "2026",
-                    idade: salvo.idade || "12+",
-                    duracao: salvo.duracao || "2h 00m",
-                    genero: salvo.genero || "Filme",
-                    imagem: salvo.imagem,
-                    trailer: salvo.trailer || "",
-                    sinopse: salvo.sinopse || "Sinopse não informada para este título."
-                };
-            } else {
-                // 2. Se não estiver no localStorage, pega do banco fixo
-                dados = bancoFilmes[nomeFilme] || bancoFilmes["Pantera Negra"];
-            }
-
-            // Aplica os dados na tela
-            if (anoEl) anoEl.textContent = dados.ano;
-            if (idadeEl) idadeEl.textContent = dados.idade;
-            if (duracaoEl) duracaoEl.textContent = dados.duracao;
-            if (generoEl) generoEl.textContent = dados.genero;
-            if (sinopseEl) sinopseEl.textContent = dados.sinopse;
-
-            if (banner) {
-                banner.style.backgroundImage = `url('${dados.imagem}')`;
-            }
-
-            // Alternar entre imagem de capa e o trailer do YouTube
-            let mostrandoTrailer = false;
-            if (btnTrailer) {
-                btnTrailer.addEventListener('click', function() {
-                    if (dados.trailer) {
-                        if (!mostrandoTrailer) {
-                            banner.style.backgroundImage = 'none';
-                            banner.innerHTML = `<a href="home.html" class="btn-voltar-topo">‹</a><iframe src="${dados.trailer}?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-                            btnTrailer.textContent = "🖼 Ver Capa";
-                            mostrandoTrailer = true;
-                        } else {
-                            banner.innerHTML = `<a href="home.html" class="btn-voltar-topo">‹</a>`;
-                            banner.style.backgroundImage = `url('${dados.imagem}')`;
-                            btnTrailer.textContent = "🎬 Ver Trailer";
-                            mostrandoTrailer = false;
-                        }
-                    } else {
-                        alert("Trailer indisponível para este título.");
-                    }
-                });
-            }
-        });
-    </script>
-</body>
-</html>
+    // Preenche os campos na página HTML
+    if (anoEl) anoEl.textContent = dados.ano;
+    if (idadeEl) idadeEl.textContent = dados.idade;
+    if (duracaoEl) duracaoEl.textContent = dados.duracao;
+    if (generoEl) generoEl.textContent = dados.genero;
+    if (sinopseEl) sinopseEl.textContent = dados.sinopse;
+});
