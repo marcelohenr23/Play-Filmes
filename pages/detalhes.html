@@ -6,37 +6,37 @@
     <title>Play Filmes - Detalhes</title>
     <link rel="stylesheet" href="../css/style.css">
     <style>
-        body { background-color: #050811; color: #fff; margin: 0; padding-bottom: 50px; }
+        body { background-color: #050811; color: #fff; margin: 0; padding-bottom: 50px; font-family: sans-serif; }
         
-        /* Área do Trailer / Imagem de Capa no Topo */
-        .banner-detalhe { width: 100%; height: 260px; background-size: cover; background-position: center; position: relative; background-color: #000; }
-        .banner-detalhe::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 60px; background: linear-gradient(to bottom, transparent, #050811); }
-        .btn-voltar-topo { position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.6); color: #fff; text-decoration: none; padding: 4px 10px; border-radius: 50%; font-size: 1.4rem; border: 1px solid rgba(0,85,255,0.3); z-index: 10; }
+        /* Banner com gradiente elegante para substituir imagens quebradas */
+        .banner-detalhe { 
+            width: 100%; 
+            height: 220px; 
+            background: linear-gradient(135deg, #0b132b, #1c2541, #0055ff); 
+            position: relative; 
+        }
+        .btn-voltar-topo { position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.6); color: #fff; text-decoration: none; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 1.4rem; border: 1px solid rgba(0,85,255,0.3); z-index: 10; }
 
-        /* Estilo para quando o trailer for um vídeo incorporado */
         .banner-detalhe iframe { width: 100%; height: 100%; border: none; }
 
-        .info-container { padding: 0 20px; }
+        .info-container { padding: 20px; }
         .titulo-filme { font-size: 1.5rem; color: #00d2ff; margin-bottom: 8px; font-weight: bold; }
-        .meta-info { display: flex; gap: 15px; font-size: 0.9rem; color: #8c92a4; margin-bottom: 15px; align-items: center; }
+        .meta-info { display: flex; gap: 12px; font-size: 0.9rem; color: #8c92a4; margin-bottom: 15px; align-items: center; flex-wrap: wrap; }
         .badge-idade { background: #1b263b; border: 1px solid #0055ff; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; color: #fff; }
 
         .botoes-container { display: flex; gap: 10px; margin-bottom: 20px; }
-        .btn-acao { background: #0055ff; color: #fff; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 0.95rem; border: none; text-decoration: none; display: block; text-align: center; flex: 1; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 85, 255, 0.4); transition: transform 0.2s; cursor: pointer; }
+        .btn-acao { background: #0055ff; color: #fff; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 0.95rem; border: none; text-decoration: none; display: block; text-align: center; flex: 1; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 85, 255, 0.4); cursor: pointer; }
         .btn-trailer { background: rgba(0, 85, 255, 0.2); border: 1px solid #0055ff; color: #00d2ff; box-shadow: none; }
-        .btn-acao:active { transform: scale(0.98); }
 
         .sinopse { font-size: 0.95rem; color: #b0b4c0; line-height: 1.5; }
     </style>
 </head>
 <body>
 
-    <!-- Banner Superior / Trailer com Botão de Voltar -->
     <div class="banner-detalhe" id="bannerDetalhe">
         <a href="home.html" class="btn-voltar-topo">‹</a>
     </div>
 
-    <!-- Informações do Filme/Série -->
     <div class="info-container">
         <div class="titulo-filme" id="tituloFilme">Carregando...</div>
         
@@ -47,7 +47,6 @@
             <span id="generoFilme">--</span>
         </div>
 
-        <!-- Botões de Ação -->
         <div class="botoes-container">
             <a href="player.html" class="btn-acao" id="btnAssistir">▶ Assistir Agora</a>
             <button class="btn-acao btn-trailer" id="btnVerTrailer">🎬 Ver Trailer</button>
@@ -59,302 +58,78 @@
     </div>
 
     <script>
-        // Banco de dados ATUALIZADO com todos os filmes novos e antigos
+        // Banco de dados completo
         const bancoFilmes = {
-            "Pantera Negra": {
-                ano: "2018", idade: "14+", duracao: "2h 14m", genero: "Ação / Ficção",
-                imagem: "../img/pantera.jpg",
-                trailer: "https://www.youtube.com/embed/xjDjIWPwcPU",
-                sinopse: "T'Challa, herdeiro do reino de Wakanda, precisa se defender de inimigos estrangeiros e disputas internas pelo trono após a morte de seu pai, usando os recursos tecnológicos avançados de sua nação."
-            },
-            "Guerra Civil": {
-                ano: "2016", idade: "12+", duracao: "2h 27m", genero: "Ação / Aventura",
-                imagem: "../img/guerracivil.jpg",
-                trailer: "https://www.youtube.com/embed/dKrVegVI0Us",
-                sinopse: "A intervenção governamental nos Vingadores provoca uma fenda profunda entre o Capitão América e o Homem de Ferro, dividindo os heróis em dois campos rivais em meio a uma nova conspiração global."
-            },
-            "Capitão América Guerra Civil": {
-                ano: "2016", idade: "12+", duracao: "2h 27m", genero: "Ação / Aventura",
-                imagem: "../img/guerracivil.jpg",
-                trailer: "https://www.youtube.com/embed/dKrVegVI0Us",
-                sinopse: "A intervenção governamental nos Vingadores provoca uma fenda profunda entre o Capitão América e o Homem de Ferro, dividindo os heróis em dois campos rivais em meio a uma nova conspiração global."
-            },
-            "Homem de Ferro": {
-                ano: "2008", idade: "12+", duracao: "2h 06m", genero: "Ação / Ficção",
-                imagem: "../img/homemdeferro.jpg",
-                trailer: "https://www.youtube.com/embed/8ugaeA-nMTc",
-                sinopse: "Tony Stark é um industrial bilionário e inventor brilhante que é sequestrado e forçado a construir uma arma devastadora. Em vez disso, ele cria uma armadura de alta tecnologia para escapar e salvar o mundo."
-            },
-            "Homem de Ferro 2": {
-                ano: "2010", idade: "12+", duracao: "2h 04m", genero: "Ação / Ficção",
-                imagem: "../img/homemdeferroo.jpg",
-                trailer: "https://www.youtube.com/embed/BoohRoVA9WQ",
-                sinopse: "Com a identidade de Tony Stark revelada ao mundo, ele enfrenta pressões do governo, problemas de saúde com o reator em seu peito e a ameaça vingativa de Ivan Vanko aliado a um rival corporativo."
-            },
-            "Jumanji": {
-                ano: "2017", idade: "12+", duracao: "1h 59m", genero: "Aventura / Comédia",
-                imagem: "../img/jumaji.jpg",
-                trailer: "https://www.youtube.com/embed/2QKg5SZ_35I",
-                sinopse: "Quatro adolescentes encontram um antigo videogame cuja ação se passa em uma floresta tropical perigosa. Eles entram nos corpos dos avatares escolhidos e precisam zerar o jogo para escapar vivos."
-            },
-            "Warcraft": {
-                ano: "2016", idade: "12+", duracao: "2h 03m", genero: "Fantasia / Ação",
-                imagem: "../img/warcraft.jpg",
-                trailer: "https://www.youtube.com/embed/2SSu7yMorr8",
-                sinopse: "O pacífico reino de Azeroth está à beira de uma guerra quando sua civilização enfrenta uma raça de guerreiros Orcs fugindo de seu mundo moribundo para colonizar um novo lar."
-            },
-            "15h17 Trem para Paris": {
-                ano: "2018", idade: "14+", duracao: "1h 34m", genero: "Drama / Suspense",
-                imagem: "../img/1517.jpg",
-                trailer: "https://www.youtube.com/embed/g7RzWJ5f_gM",
-                sinopse: "Baseado em fatos reais, acompanha a jornada de três amigos americanos que evitam um atentado terrorista a bordo de um trem de alta velocidade com destino a Paris em agosto de 2015."
-            },
-            "X-Men Apocalipse": {
-                ano: "2016", idade: "12+", duracao: "2h 24m", genero: "Ação / Ficção",
-                imagem: "../img/xmen.jpg",
-                trailer: "https://www.youtube.com/embed/COvnHv42T-A",
-                sinopse: "O primeiro e mais poderoso mutante do universo Marvel desperta após milênios desiludido com o mundo e recruta seguidores, incluindo um Magneto desiludido, para purificar a Terra."
-            },
-            "Creed II": {
-                ano: "2018", idade: "12+", duracao: "2h 10m", genero: "Esporte / Drama",
-                imagem: "../img/creed2.jpg",
-                trailer: "https://www.youtube.com/embed/uiMLji_kqIs",
-                sinopse: "Adonis Creed deve equilibrar sua vida pessoal e seu treinamento para sua próxima grande luta, enfrentando um oponente que tem laços com o passado de sua família."
-            },
-            "Mais Forte que o Mundo": {
-                ano: "2016", idade: "14+", duracao: "1h 55m", genero: "Biografia / Drama",
-                imagem: "../img/maisfortequeomundo.jpg",
-                trailer: "https://www.youtube.com/embed/R3QxQ8Rj2Bw",
-                sinopse: "A trajetória dramática e emocionante de José Aldo, desde a infância difícil em Manaus até se tornar o campeão mundial de luta livre nas artes marciais mistas (MMA)."
-            },
-            "O Senhor dos Anéis: A Sociedade do Anel": {
-                ano: "2001", idade: "12+", duracao: "2h 58m", genero: "Fantasia / Aventura",
-                imagem: "../img/sociedadedoanel.jpg",
-                trailer: "https://www.youtube.com/embed/V75dMMIW2B4",
-                sinopse: "Em uma terra fantástica e épica, um jovem hobbit chamado Frodo Bolseiro herda um anel mágico único e perigoso, iniciando uma jornada perigosa para destruí-lo na Montanha da Fenda."
-            },
-            "O Senhor dos Anéis: As Duas Torres": {
-                ano: "2002", idade: "12+", duracao: "2h 59m", genero: "Fantasia / Aventura",
-                imagem: "../img/asduastorres.jpg",
-                trailer: "https://www.youtube.com/embed/LbfMDwc4azU",
-                sinopse: "Após a dissolução da Sociedade do Anel, os heróis se dividem em múltiplos caminhos para lutar contra as forças do mal de Sauron e Saruman, enquanto Frodo e Sam se aproximam de Mordor com a ajuda de Gollum."
-            },
-            "Harry Potter e o Prisioneiro de Azkaban": {
-                ano: "2004", idade: "12+", duracao: "2h 22m", genero: "Fantasia / Aventura",
-                imagem: "../img/eoprisioneiro.jpg",
-                trailer: "https://www.youtube.com/embed/1ZdlFXiGhgM",
-                sinopse: "Harry Potter retorna para seu terceiro ano em Hogwarts, onde descobre que um perigoso prisioneiro fugitivo, Sirius Black, escapou de Azkaban e parece estar atrás dele."
-            },
-            "Harry Potter e o Cálice de Fogo": {
-                ano: "2005", idade: "12+", duracao: "2h 37m", genero: "Fantasia / Aventura",
-                imagem: "../img/calicedefogo.jpg",
-                trailer: "https://www.youtube.com/embed/3EGojqqjdGY",
-                sinopse: "Harry é inesperadamente selecionado para competir no perigoso Torneio Tribruxo, enfrentando dragões, tarefas aquáticas e um labirinto mortal que culmina no retorno das forças das trevas."
-            },
-            "Harry Potter e o Enigma do Príncipe": {
-                ano: "2009", idade: "12+", duracao: "2h 33m", genero: "Fantasia / Aventura",
-                imagem: "../img/enigma.jpg",
-                trailer: "https://www.youtube.com/embed/JksjoWKysQU",
-                sinopse: "Com Voldemort apertando o cerco sobre os mundos trouxa e bruxo, Harry encontra um misterioso livro de poções que pertenceu ao 'Príncipe Mestiço' enquanto Dumbledore o prepara para o confronto final."
-            },
-            "Harry Potter e as Relíquias da Morte: Parte 1": {
-                ano: "2010", idade: "12+", duracao: "2h 26m", genero: "Fantasia / Aventura",
-                imagem: "../img/reliquias.jpg",
-                trailer: "https://www.youtube.com/embed/MxSlplkEDvQ",
-                sinopse: "Harry, Rony e Hermione abandonam Hogwarts para caçar e destruir as Horcruxes restantes de Voldemort, enfrentando perigos extremos sozinhos e sem a proteção dos professores."
-            },
-            "Bright": {
-                ano: "2017", idade: "16+", duracao: "1h 57m", genero: "Ação / Fantasia",
-                imagem: "../img/bright.jpg",
-                trailer: "https://www.youtube.com/embed/v9qXzM_dFcg",
-                sinopse: "Em uma Los Angeles alternativa onde humanos conviviam com orcs, elfos e fadas, um policial humano e seu parceiro orc encontram um artefato poderoso que pode mudar o mundo."
-            },
-            "Blade Runner 2049": {
-                ano: "2017", idade: "16+", duracao: "2h 44m", genero: "Ficção / Suspense",
-                imagem: "../img/blade.jpg",
-                trailer: "https://www.youtube.com/embed/gCcx85zbxz4",
-                sinopse: "Trinta anos após os eventos do primeiro filme, um novo Blade Runner, o policial K de Los Angeles, desenterra um segredo há muito enterrado que tem o potencial de mergulhar o que resta da sociedade no caos."
-            },
-            "Tempestade: Planeta em Fúria": {
-                ano: "2017", idade: "12+", duracao: "1h 49m", genero: "Ação / Ficção",
-                imagem: "../img/tempestade.jpg",
-                trailer: "https://www.youtube.com/embed/fA5-Jk4V_fM",
-                sinopse: "Após uma série de catástrofes naturais sem precedentes, os líderes mundiais criam uma rede de satélites para controlar o clima. No entanto, o sistema começa a atacar a Terra, ameaçando toda a humanidade."
-            },
-            "Homem-Aranha: De Volta ao Lar": {
-                ano: "2017", idade: "12+", duracao: "2h 13m", genero: "Ação / Aventura",
-                imagem: "../img/homemaranha.jpg",
-                trailer: "https://www.youtube.com/embed/n9DwoQ7HWvI",
-                sinopse: "Peter Parker tenta equilibrar sua vida de estudante do ensino médio com sua identidade secreta como o super-herói Homem-Aranha, contando com a mentoria de Tony Stark enquanto enfrenta o vilão Abutre."
-            },
-            "Toy Story 2": {
-                ano: "1999", idade: "Livre", duracao: "1h 32m", genero: "Animação / Aventura",
-                imagem: "../img/toystory2.jpg",
-                trailer: "https://www.youtube.com/embed/Lu9U87pGoAs",
-                sinopse: "Quando Woody é roubado por um colecionador de brinquedos ganancioso, Buzz Lightyear e o restante dos brinquedos partem em uma missão de resgate hilária e emocionante para trazê-lo de volta para casa."
-            },
-            "Shrek 2": {
-                ano: "2004", idade: "Livre", duracao: "1h 33m", genero: "Animação / Comédia",
-                imagem: "../img/shrek2.jpg",
-                trailer: "https://www.youtube.com/embed/XqWZIfEXv4U",
-                sinopse: "Shrek e Fiona viajam para o reino de Tão Tão Distante para visitar os pais dela, mas o rei reluta em aceitar o ogro como genro, dando margem aos planos maquiavélicos da Fada Madrinha."
-            },
-            "Planeta dos Macacos: A Guerra": {
-                ano: "2017", idade: "14+", duracao: "2h 20m", genero: "Ação / Drama",
-                imagem: "../img/planetadosmacacos.jpg",
-                trailer: "https://www.youtube.com/embed/JDwA_VUtG8s",
-                sinopse: "Caesar e seus símios são forçados a um conflito mortal contra um exército de humanos liderado por um coronel impiedoso, culminando em uma batalha que definirá o futuro de ambas as espécies."
-            },
-            "A Torre Negra": {
-                ano: "2017", idade: "12+", duracao: "1h 35m", genero: "Fantasia / Ação",
-                imagem: "../img/torrenegra.jpg",
-                trailer: "https://www.youtube.com/embed/GAb_gz_Jgxw",
-                sinopse: "O Pistoleiro Roland Deschain viaja por um mundo em decomposição em busca da Torre Negra, um prédio lendário que mantém o universo unido, enquanto enfrenta o vilão Homem de Preto."
-            },
-            "Carros 3": {
-                ano: "2017", idade: "Livre", duracao: "1h 42m", genero: "Animação / Esporte",
-                imagem: "../img/carros3.jpg",
-                trailer: "https://www.youtube.com/embed/2Leos_UTkrc",
-                sinopse: "Surpreendido por uma nova geração de carros ultrarrápidos, o lendário Relâmpago McQueen é repentinamente afastado do esporte que ama, precisando da ajuda de uma jovem treinadora para retornar às pistas."
-            },
-            "Toy Story 3": {
-                ano: "2010", idade: "Livre", duracao: "1h 43m", genero: "Animação / Aventura",
-                imagem: "../img/toystory3.jpg",
-                trailer: "https://www.youtube.com/embed/JcpWXaA2qeg",
-                sinopse: "Andy está se preparando para ir para a faculdade, deixando seus fiéis brinquedos preocupados com seu futuro incerto. Eles acabam acidentalmente indo parar em uma creche caótica controlada por um urso de pelúcia mandão."
-            },
-            "Piratas do Caribe: A Vingança de Salazar": {
-                ano: "2017", idade: "12+", duracao: "2h 09m", genero: "Ação / Aventura",
-                imagem: "../img/avingancasalazar.jpg",
-                trailer: "https://www.youtube.com/embed/HkTqvsnK8RI",
-                sinopse: "O Capitão Jack Sparrow cruza com marinheiros fantasmas mortais liderados por seu antigo rival, o aterrorizante Capitão Salazar, que escapou do Triângulo do Diabo determinado a matar todos os piratas do mar."
-            },
-            "1922": {
-                ano: "2017", idade: "18+", duracao: "1h 42m", genero: "Terror / Suspense",
-                imagem: "../img/1922.jpg",
-                trailer: "https://www.youtube.com/embed/V9h4NfR_YyU",
-                sinopse: "Baseado na obra de Stephen King, um fazendeiro confessa o assassinato de sua esposa com a ajuda relutante de seu filho adolescente, mas um rastro de terror e remorso começa a persegui-lo."
-            },
-            "Amor Acima de Tudo": {
-                ano: "2017", idade: "12+", duracao: "1h 43m", genero: "Drama / Romance",
-                imagem: "../img/amoracima.jpg",
-                trailer: "https://www.youtube.com/embed/0r9Y1O191vM",
-                sinopse: "Dois adolescentes presos em um hospital devido a graves problemas de saúde desenvolvem um vínculo profundo que desafia as adversidades de suas condições médicas."
-            },
-            "American Pie: O Reencontro": {
-                ano: "2012", idade: "16+", duracao: "1h 53m", genero: "Comédia",
-                imagem: "../img/americanpie.jpg",
-                trailer: "https://www.youtube.com/embed/fA8N1S7j0_w",
-                sinopse: "Os amigos originais de East Great Falls se reúnem para uma reunião de ex-alunos do ensino médio no fim de semana, descobrindo como o tempo mudou suas vidas e mantendo suas clássicas loucuras."
-            },
-            "Divergente": {
-                ano: "2014", idade: "14+", duracao: "2h 19m", genero: "Ficção / Ação",
-                imagem: "../img/divergente.jpg",
-                trailer: "https://www.youtube.com/embed/sutgWjz10sM",
-                sinopse: "Em uma sociedade futurista dividida em facções com base nas virtudes humanas, Beatrice Prior descobre que é uma 'Divergente', não se encaixando em nenhuma categoria e descobrindo uma perigosa conspiração."
-            },
-            "Até o Fim": {
-                ano: "2016", idade: "14+", duracao: "1h 42m", genero: "Drama / Crime",
-                imagem: "../img/ateofim.jpg",
-                trailer: "https://www.youtube.com/embed/JQ9_iiHwgiw",
-                sinopse: "Um pai divorciado e seu irmão ex-presidiário planejam uma série de roubos a bancos no oeste do Texas para salvar a fazenda da família, enquanto são perseguidos por um ranger obstinado prestes a se aposentar."
-            },
-            "O Menino do Pijama Listrado": {
-                ano: "2008", idade: "12+", duracao: "1h 34m", genero: "Drama / História",
-                imagem: "../img/pijamalistrado.jpg",
-                trailer: "https://www.youtube.com/embed/9XqWqN07u8Y",
-                sinopse: "Durante a Segunda Guerra Mundial, Bruno, o filho de oito anos de um oficial nazista, muda-se para perto de um campo de concentração e faz uma amizade proibida com um menino judeu do outro lado da cerca."
-            },
-            "Caçada Brutal": {
-                ano: "2016", idade: "16+", duracao: "1h 31m", genero: "Ação / Suspense",
-                imagem: "../img/cacdabrutal.jpg",
-                trailer: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-                sinopse: "Um ex-presidiário tenta se reconectar com sua filha rebelde que está fugindo de traficantes de drogas implacáveis, usando todas as suas habilidades para protegê-la."
-            },
-            "Liga da Justiça": {
-                ano: "2017", idade: "12+", duracao: "2h 00m", genero: "Ação / Aventura",
-                imagem: "../img/ligadajustica.jpg",
-                trailer: "https://www.youtube.com/embed/3cxixDgHUYw",
-                sinopse: "Impulsionado pela restauração de sua fé na humanidade e inspirado pelo ato altruísta do Superman, Bruce Wayne se une à sua nova aliada, Diana Prince, para enfrentar um inimigo ainda maior."
-            },
-            "Resident Evil 3: A Extinção": {
-                ano: "2007", idade: "14+", duracao: "1h 34m", genero: "Ação / Terror",
-                imagem: "../img/residentevil3.jpg",
-                trailer: "https://www.youtube.com/embed/C6uL0xK_9dY",
-                sinopse: "Anos após a destruição de Raccoon City, Alice vaga pelas vastas extensões desertas do deserto de Nevada, juntando-se a um comboio de sobreviventes que tentam cruzar o país antes que o vírus os consuma."
-            },
-            "Alma Perdida": {
-                ano: "2009", idade: "14+", duracao: "1h 28m", genero: "Terror / Suspense",
-                imagem: "../img/almaperdida.jpg",
-                trailer: "https://www.youtube.com/embed/1ZdlFXiGhgM",
-                sinopse: "Uma jovem começa a ser atormentada por visões aterrorizantes e por um espírito maligno que quer assumir o controle de seu corpo e de sua alma."
-            },
-            "Resident Evil 4: Recomeço": {
-                ano: "2010", idade: "14+", duracao: "1h 37m", genero: "Ação / Terror",
-                imagem: "../img/residentevil4.jpg",
-                trailer: "https://www.youtube.com/embed/M993_b7wXzQ",
-                sinopse: "Em um mundo dizimado por um vírus que transforma suas vítimas em mortos-vivos, Alice continua sua jornada para encontrar sobreviventes e levá-los para um lugar seguro."
-            },
-            "A Hora do Rush 2": {
-                ano: "2001", idade: "12+", duracao: "1h 30m", genero: "Ação / Comédia",
-                imagem: "../img/ahoradorush2.jpg",
-                trailer: "https://www.youtube.com/embed/9sW7n00V3gU",
-                sinopse: "O inspetor Lee e o detetive Carter viajam para Hong Kong para férias, mas acabam envolvidos em um caso de explosão na embaixada americana e uma investigação de falsificação de dinheiro."
-            },
-            "A Inundação": {
-                ano: "2018", idade: "12+", duracao: "1h 32m", genero: "Ação / Suspense",
-                imagem: "../img/ainundacao.jpg",
-                trailer: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-                sinopse: "Em meio a uma tempestade catastrófica que inunda uma delegacia, policiais tentam manter presos perigosos sob controle enquanto criminosos tentam invadir o local."
-            },
-            "Onde Está Segunda?": {
-                ano: "2017", idade: "16+", duracao: "2h 03m", genero: "Ficção / Suspense",
-                imagem: "../img/ondestaasegunda.jpg",
-                trailer: "https://www.youtube.com/embed/gxV2jE8qN4Y",
-                sinopse: "Em um mundo futuro com uma política estrita de filho único, sete irmãs idênticas compartilham uma única identidade para sobreviver, até que uma delas desaparece misteriosamente."
-            },
-            "Thor Ragnarok": {
-                ano: "2017", idade: "12+", duracao: "2h 10m", genero: "Ação / Aventura",
-                imagem: "../img/thorragnarok.jpg",
-                trailer: "https://www.youtube.com/embed/ue80QwXMRHg",
-                sinopse: "Prisioneiro do outro lado do universo, Thor se encontra em uma corrida contra o tempo para retornar a Asgard e impedir o Ragnarok – a destruição de seu mundo natal – pelas mãos da implacável Hela."
-            },
-            "O Assassino: O Primeiro Alvo": {
-                ano: "2017", idade: "16+", duracao: "1h 52m", genero: "Ação / Suspense",
-                imagem: "../img/oassassino.jpg",
-                trailer: "https://www.youtube.com/embed/0G6wNq76mBc",
-                sinopse: "Acompanha a ascensão de Mitch Rapp, um agente de operações secretas da CIA que sofreu uma perda trágica e agora trabalha sob a tutela de um veterano da Guerra Fria para combater células terroristas."
-            },
-            "O Hobbit: A Batalha dos Cinco Exércitos": {
-                ano: "2014", idade: "12+", duracao: "2h 24m", genero: "Fantasia / Aventura",
-                imagem: "../img/ohobbit5.jpg",
-                trailer: "https://www.youtube.com/embed/ZSzeFFhKEs4",
-                sinopse: "Thorin Escudo de Carvalho e os anões de Erebor reclamaram a vastas riquezas de sua terra natal, mas agora enfrentam as consequências de liberar o dragão Smaug e a iminência de uma guerra épica."
-            }
+            "Pantera Negra": { ano: "2018", idade: "14+", duracao: "2h 14m", genero: "Ação / Ficção", trailer: "https://www.youtube.com/embed/xjDjIWPwcPU", sinopse: "T'Challa, herdeiro do reino de Wakanda, precisa se defender de inimigos estrangeiros e disputas internas pelo trono após a morte de seu pai." },
+            "Thor Ragnarok": { ano: "2017", idade: "12+", duracao: "2h 10m", genero: "Ação / Aventura", trailer: "https://www.youtube.com/embed/ue80QwXMRHg", sinopse: "Prisioneiro do outro lado do universo, Thor se encontra em uma corrida contra o tempo para retornar a Asgard e impedir o Ragnarok." },
+            "Guerra Civil": { ano: "2016", idade: "12+", duracao: "2h 27m", genero: "Ação / Aventura", trailer: "https://www.youtube.com/embed/dKrVegVI0Us", sinopse: "A intervenção governamental nos Vingadores provoca uma fenda profunda entre o Capitão América e o Homem de Ferro." },
+            "Homem de Ferro": { ano: "2008", idade: "12+", duracao: "2h 06m", genero: "Ação / Ficção", trailer: "https://www.youtube.com/embed/8ugaeA-nMTc", sinopse: "Tony Stark é um industrial bilionário que constrói uma armadura de alta tecnologia para escapar do cativeiro e salvar o mundo." },
+            "Jumanji": { ano: "2017", idade: "12+", duracao: "1h 59m", genero: "Aventura / Comédia", trailer: "https://www.youtube.com/embed/2QKg5SZ_35I", sinopse: "Quatro adolescentes entram em um videogame perigoso e precisam zerar o jogo para escapar vivos." },
+            "Liga da Justiça": { ano: "2017", idade: "12+", duracao: "2h 00m", genero: "Ação / Aventura", trailer: "https://www.youtube.com/embed/3cxixDgHUYw", sinopse: "Bruce Wayne se une à sua nova aliada, Diana Prince, para enfrentar um inimigo ainda maior." }
         };
 
         window.addEventListener('DOMContentLoaded', function() {
-    const params = new URLSearchParams(window.location.search);
-    const nomeFilme = params.get('filme') || "Pantera Negra";
-    
-    // Elementos da página onde o texto aparece
-    const tituloElemento = document.getElementById('tituloFilme');
-    const anoEl = document.getElementById('anoFilme');
-    const idadeEl = document.getElementById('idadeFilme');
-    const duracaoEl = document.getElementById('duracaoFilme');
-    const generoEl = document.getElementById('generoFilme');
-    const sinopseEl = document.getElementById('sinopseFilme');
+            const params = new URLSearchParams(window.location.search);
+            
+            // Pega o parâmetro 'filme' ou tenta ler 'nome' caso o link mande de outro jeito
+            let nomeFilme = params.get('filme') || params.get('nome') || "Pantera Negra";
+            
+            // Limpa espaços extras ou símbolos caso venham corrompidos
+            nomeFilme = decodeURIComponent(nomeFilme.trim());
 
-    // Define o título na tela
-    if (tituloElemento) tituloElemento.textContent = nomeFilme;
+            const tituloElemento = document.getElementById('tituloFilme');
+            const anoEl = document.getElementById('anoFilme');
+            const idadeEl = document.getElementById('idadeFilme');
+            const duracaoEl = document.getElementById('duracaoFilme');
+            const generoEl = document.getElementById('generoFilme');
+            const sinopseEl = document.getElementById('sinopseFilme');
+            const btnAssistir = document.getElementById('btnAssistir');
+            const banner = document.getElementById('bannerDetalhe');
 
-    // Puxa os dados do filme correspondente
-    let dados = bancoFilmes[nomeFilme] || bancoFilmes["Pantera Negra"];
+            // Define o título na tela imediatamente
+            if (tituloElemento) tituloElemento.textContent = nomeFilme;
 
-    // Preenche os campos na página HTML
-    if (anoEl) anoEl.textContent = dados.ano;
-    if (idadeEl) idadeEl.textContent = dados.idade;
-    if (duracaoEl) duracaoEl.textContent = dados.duracao;
-    if (generoEl) generoEl.textContent = dados.genero;
-    if (sinopseEl) sinopseEl.textContent = dados.sinopse;
-});
+            // Atualiza o link do player para o filme correto
+            if (btnAssistir) {
+                btnAssistir.href = `player.html?filme=${encodeURIComponent(nomeFilme)}`;
+            }
+
+            // Busca os dados no banco (se não achar, pega o Pantera Negra como padrão)
+            let dados = bancoFilmes[nomeFilme] || {
+                ano: "2026", idade: "12+", duracao: "1h 50m", genero: "Filme / Ação",
+                trailer: "", sinopse: "Informações detalhadas sobre este título em breve no catálogo."
+            };
+
+            // Preenche os elementos da página com os dados encontrados
+            if (anoEl) anoEl.textContent = dados.ano;
+            if (idadeEl) idadeEl.textContent = dados.idade;
+            if (duracaoEl) duracaoEl.textContent = dados.duracao;
+            if (generoEl) generoEl.textContent = dados.genero;
+            if (sinopseEl) sinopseEl.textContent = dados.sinopse;
+
+            // Botão de Trailer
+            const btnTrailer = document.getElementById('btnVerTrailer');
+            let mostrandoTrailer = false;
+            if (btnTrailer) {
+                btnTrailer.addEventListener('click', function() {
+                    if (dados.trailer) {
+                        if (!mostrandoTrailer) {
+                            banner.style.background = '#000';
+                            banner.innerHTML = `<a href="home.html" class="btn-voltar-topo">‹</a><iframe src="${dados.trailer}?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                            btnTrailer.textContent = "🖼 Ocultar Trailer";
+                            mostrandoTrailer = true;
+                        } else {
+                            banner.innerHTML = `<a href="home.html" class="btn-voltar-topo">‹</a>`;
+                            banner.style.background = 'linear-gradient(135deg, #0b132b, #1c2541, #0055ff)';
+                            btnTrailer.textContent = "🎬 Ver Trailer";
+                            mostrandoTrailer = false;
+                        }
+                    } else {
+                        alert("Trailer indisponível para este título.");
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
